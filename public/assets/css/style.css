@@ -487,7 +487,7 @@ h1, h2, h3, h4, h5, h6, .postnav #prepost, .postnav  #nextpost, .bbp-forum-title
     line-height: 35px;
     font-size: 15px;
     text-align: center;
-    color: #3f6da1;
+    color: #2F5596;
     float: left;
     -webkit-transition: .35s all;
     -transition: .35s all;
@@ -6724,7 +6724,7 @@ Header Magazine style
     float: left;
 }
 .jl_header_magazine_style.two_header_top_style.jl_cus_top_share .header_top_bar_wrapper{
-    background: #3f6da1;
+    background: #2F5596;
 
 }
 
@@ -6856,7 +6856,7 @@ Header Magazine style
     z-index: 1000 !important;
 }
 .jl_header_magazine_style.header_layout_style3_custom .menu_wrapper{
-    background-color: #305b90;
+    background-color: #1F3864;
     border-top: 0px solid #acacac;
     border-bottom: 0px solid #acacac;
 }
@@ -9222,7 +9222,7 @@ Menu slide
     padding: 30px 0px 0px 0px;
     color: #333333;
     position: fixed;
-    background: #305b90;
+    background: #1F3864;
     overflow-y: scroll !important;
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
@@ -17350,12 +17350,12 @@ input.input-text,
     text-decoration: none !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
-    border-color: #305b90;
-    color: #305b90;
+    border-color: #1F3864;
+    color: #1F3864;
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li:not(.active) a:hover {
-    color: #305b90;
+    color: #1F3864;
 }
 
 .woocommerce div.product .woocommerce-tabs .panel {
@@ -18446,7 +18446,7 @@ go to top
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #3f6da1;
+    color: #2F5596;
     -webkit-transition: 1s;
     -moz-transition: 1s;
     transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out;
@@ -18530,7 +18530,7 @@ go to top
 Footer
 -------------------------------------------------------------------------------------*/
 .enable_footer_columns_dark{
-    background: #151515;
+    background: #1F3864;
     color: #f7f7f7;
     border-top: 1px solid #303030;
 }
@@ -18552,7 +18552,7 @@ Footer
     width: 40px;
     height: 40px;
     line-height: 40px;
-    background: #3a3939;
+    background: #000;
     border-radius: 5px;
 }
 .enable_footer_columns_dark .social-icons-list-widget li a:hover{
@@ -19579,7 +19579,7 @@ margin-right: 5px; }
     font-style: normal;
     letter-spacing: 0.04em; }
 .entry-author__name:hover {
-    color: #305b90; }
+    color: #1F3864; }
 
 .card-mod{
     position:relative;
@@ -19884,7 +19884,7 @@ margin-right: 5px; }
 .jadwal-sholat__inner-main thead td {
     padding-bottom: 0px;
     border: 0px!important;
-    color: #305b90;
+    color: #1F3864;
     font-weight: 700;
     font-size: 16px;
 }
@@ -19902,7 +19902,7 @@ margin-right: 5px; }
     outline: none !important;
     border: none;
     font-weight: 700;
-    color: #305b90;
+    color: #1F3864;
     background-color: #f0f0f0;
     cursor: pointer;
 }
