@@ -13,7 +13,7 @@
                                 <div class="profile-image-wrapper">
                                     <div class="profile-image">
                                         <div class="avatar">
-                                            <img src="{{ $item->image }}" alt="Card Picture">
+                                            <img src="{{ is_file(public_path($item->image)) ? $item->image : '/assets/images/thumb.png' }}" alt="Card Picture">
                                         </div>
                                     </div>
                                 </div>

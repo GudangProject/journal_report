@@ -95,12 +95,12 @@
                                                     <h5 class="text-primary">STATUS</h5>
                                                     <div class="d-flex flex-row">
                                                         <div class="custom-control custom-radio">
-                                                            <input name="status" type="radio" id="customRadio4" class="custom-control-input" value="1" checked/>
-                                                            <label class="custom-control-label" for="customRadio4">Aktif</label>
+                                                            <input name="status" type="radio" id="customRadio6" class="custom-control-input" value="1" checked/>
+                                                            <label class="custom-control-label" for="customRadio6">Aktif</label>
                                                         </div>
                                                         <div class="custom-control custom-radio ml-2">
-                                                            <input name="status" type="radio" id="customRadio5" class="custom-control-input" value="0"/>
-                                                            <label class="custom-control-label" for="customRadio5">Tidak</label>
+                                                            <input name="status" type="radio" id="customRadio7" class="custom-control-input" value="0"/>
+                                                            <label class="custom-control-label" for="customRadio7">Tidak</label>
                                                         </div>
                                                     </div>
                                                     @if ($errors->has('status'))<span class="text-danger">{{$errors->first('status')}}</span>@endif

@@ -14,7 +14,7 @@
                         <div class="jl_grid_overlay_col">
                             <div class="jl_grid_verlay_wrap jl_radus_e">
                                 <a href="{{ url($item->image) }}">
-                                <div class="jl_f_img_bg" style="background-image: url('{{ $item->image }}');"></div>
+                                <div class="jl_f_img_bg" style="background-image: url('{{ is_file(public_path($item->image)) ? $item->image : '/assets/images/thumb.png' }}');"></div>
                                 <a href="{{ $item->image }}" download>
                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span>
                                 </a>

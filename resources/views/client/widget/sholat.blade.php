@@ -44,11 +44,11 @@
 @section('scripts')
 <script>
     const BASE_API = 'https://api.myquran.com/v1/sholat'
-    const initialCityId = 2622
+    const initialCityId = 3003
     var dateYear = '<?php echo date("Y");?>';
     var dateMonth = '<?php echo date("m");?>';
     var dateDay = '<?php echo date("d");?>';
-    const filterCity = city => city.lokasi.startsWith('KOTA ')
+    const filterCity = city => city.lokasi.length < 25;
     const normalizeCity = city => ({id: city.id, name: city.lokasi.replace('KOTA ', ''), selected: city.id === initialCityId.toString()})
     const cityElement = city => `<option id="${city.id}" value="${city.id}" ${city.selected ? 'selected' : ''}>${city.name}</option>`
     const timeElement = ($, id, value) => $(`#${id}`).html(value)

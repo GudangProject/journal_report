@@ -17,7 +17,7 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="jl_topik_center blog-style-one blog-small-grid">
                                         <div class="jl_topik_center_w jl_radus_e" style="max-heigt: 350px!important;">
-                                            <div class="jl_f_img_bg" style="background-image: url({{ $item->image }});"></div>
+                                            <div class="jl_f_img_bg" style="background-image: url({{ is_file(public_path($item->image)) ? $item->image : '/assets/images/thumb.png' }});"></div>
                                             <a href="{{ url($item->image) }}" class="jl_f_img_link"></a>
                                               <a href="{{ $item->image }}" download>
                                               <span class="jl_post_type_icon">
