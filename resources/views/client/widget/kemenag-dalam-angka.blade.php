@@ -66,8 +66,78 @@
         <input type="radio" name="custom-tabs" id="tabfour">
         <label for="tabfour">JUMLAH FKUB, SEKBER DAN DESA SADAR KERUKUNAN</label>
         <div class="tab">
-          <h1>Tab Four Content</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <div class="accordion" id="accordionExample">
+                <div class="p-0">
+                    <div class="">
+                        <button class="btn btn-dark btn-block text-left mb-2" type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-list"></i>  FORUM KERUKUNAN UMAT BERAGAMA (FKUB)
+                        </button>
+                    </div>
+
+                    <div id="collapseOne1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card">
+                            <div class="card-deck p-4">
+                                @foreach ($menu_office as $fkub)
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                            <h3 class="data-count">{{ $fkub->fkub }}</h3>
+                                            <h6>KAB.{{ strtoupper($fkub->title) }}</h6>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="p-0">
+                    <div class="">
+                        <button class="btn btn-dark btn-block text-left mb-2" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-list"></i>  SEKRETARIAT BERSAMA (SEKBER)
+                        </button>
+                    </div>
+
+                    <div id="collapseOne2" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card">
+                            <div class="card-deck p-4">
+                                @foreach ($menu_office as $sekber)
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                            <h3 class="data-count">{{ $sekber->sekber }}</h3>
+                                            <h6>KAB.{{ strtoupper($sekber->title) }}</h6>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="p-0">
+                    <div class="">
+                        <button class="btn btn-dark btn-block text-left mb-2" type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-list"></i>  DESA SADAR KERUKUNAN
+                        </button>
+                    </div>
+
+                    <div id="collapseOne3" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card">
+                            <div class="card-deck p-4">
+                                @foreach ($menu_office as $desake)
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                            <h3 class="data-count">{{ $desake->desa_sadar_kerukunan }}</h3>
+                                            <h6>KAB.{{ strtoupper($desake->title) }}</h6>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

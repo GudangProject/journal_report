@@ -108,6 +108,21 @@
                                                     <input id="title" name="jumlah_desa" type="number" class="form-control" placeholder="Jumlah Desa" value="{{ $data->jumlah_desa }}"/>
                                                     @if ($errors->has('jumlah_desa'))<span class="text-danger">{{$errors->first('jumlah_desa')}}</span>@endif
                                                 </div>
+                                                <div class="form-group mb-2 mt-2">
+                                                    <h5 class="text-primary">FORUM KERUKUNAN UMAT BERAGAMA (FKUB)</h5>
+                                                    <input id="title" name="fkub" type="number" class="form-control" placeholder="Jumlah FKUB" value="{{ $data->fkub }}"/>
+                                                    @if ($errors->has('fkub'))<span class="text-danger">{{$errors->first('fkub')}}</span>@endif
+                                                </div>
+                                                <div class="form-group mb-2">
+                                                    <h5 class="text-primary">SEKRETARIAT BERSAMA (SEKBER)</h5>
+                                                    <input id="title" name="sekber" type="number" class="form-control" placeholder="Jumlah SEKBER" value="{{ $data->sekber }}"/>
+                                                    @if ($errors->has('sekber'))<span class="text-danger">{{$errors->first('sekber')}}</span>@endif
+                                                </div>
+                                                <div class="form-group mb-2 mt-2">
+                                                    <h5 class="text-primary">DESA SADAR KERUKUNAN</h5>
+                                                    <input id="title" name="desa_sadar_kerukunan" type="number" class="form-control" placeholder="Jumlah" value="{{ $data->desa_sadar_kerukunan }}"/>
+                                                    @if ($errors->has('desa_sadar_kerukunan'))<span class="text-danger">{{$errors->first('desa_sadar_kerukunan')}}</span>@endif
+                                                </div>
                                                 <div class="form-group mb-2">
                                                     <h5 class="text-primary">IMAGE</h5>
                                                     <div class="media flex-column text-center">

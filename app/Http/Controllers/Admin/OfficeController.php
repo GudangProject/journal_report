@@ -96,6 +96,9 @@ class OfficeController extends Controller
             $save->jumlah_kecamatan = $request->jumlah_kecamatan;
             $save->jumlah_kelurahan = $request->jumlah_kelurahan;
             $save->jumlah_desa      = $request->jumlah_desa;
+            $save->fkub             = $request->fkub;
+            $save->sekber           = $request->sekber;
+            $save->desa_sadar_kerukunan = $request->desa_sadar_kerukunan;
             $save->image            = $image;
             $save->status           = $request->status;
             $save->category_id      = $request->category_id;
@@ -185,9 +188,17 @@ class OfficeController extends Controller
             if($image){
                 $save->image    = $image;
             }
-            $save->status = $request->status;
-            $save->category_id = $request->category_id;
-            $save->updated_by = auth()->user()->id;
+
+            $save->luas_wilayah     = $request->luas_wilayah;
+            $save->jumlah_kecamatan = $request->jumlah_kecamatan;
+            $save->jumlah_kelurahan = $request->jumlah_kelurahan;
+            $save->jumlah_desa      = $request->jumlah_desa;
+            $save->fkub             = $request->fkub;
+            $save->sekber           = $request->sekber;
+            $save->desa_sadar_kerukunan = $request->desa_sadar_kerukunan;
+            $save->status           = $request->status;
+            $save->category_id      = $request->category_id;
+            $save->updated_by       = auth()->user()->id;
             $save->save();
 
             Cache::flush("office-$data->slug");
