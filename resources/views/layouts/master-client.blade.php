@@ -42,6 +42,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{ asset('assets/css/main.css')}} " type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('assets/css/colors.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('app-assets/css/custom.css') }}" type="text/css" media="all">
     @yield('styles')
 </head>
 
@@ -68,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/theia-sticky-sidebar@1.7.0/dist/theia-sticky-sidebar.min.js"></script>
 
     @yield('scripts')
-
+    @stack('custom-scripts')
 </body>
 
 </html>

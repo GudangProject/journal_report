@@ -1,0 +1,57 @@
+/* CSS KEMENAG DALAM ANGKA */
+.custom-tabs {
+	display: flex;
+	flex-wrap: wrap;
+    font-family: sans-serif;
+
+}
+.custom-tabs label {
+	order: 1;
+	display: block;
+	padding: 1rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+    color: #333;
+    background: #ddd;
+    font-weight: bold;
+    transition: background ease 0.2s;
+}
+.custom-tabs .tab {
+  order: 99;
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  /* padding: 1rem; */
+  background: #fff;
+}
+.custom-tabs input[type="radio"] {
+	display: none;
+}
+.custom-tabs input[type="radio"]:checked + label {
+	background: #2f5596;
+    color: #fff;
+}
+.custom-tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#card-height{
+    max-height: 100px !important;
+}
+
+@media (max-width: 1024px) {
+  .custom-tabs .tab,
+  .custom-tabs label {
+    order: initial;
+  }
+  .custom-tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+
+}
+
+

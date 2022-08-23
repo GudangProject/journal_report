@@ -25,6 +25,7 @@
                 </div>
             </div>
             @include('client.widget.slide-card', ['title'=>'LAYANAN', 'data'=>$services, 'status'=>true])
+            @include('client.widget.kemenag-dalam-angka', ['title'=>'KEMENAG DALAM ANGKA', 'data'=>$services, 'status'=>true])
         </div>
     </section>
 
