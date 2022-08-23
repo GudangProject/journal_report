@@ -86,6 +86,26 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Luas Wilayah</h5>
+                                                    <input id="title" name="luas_wilayah" type="text" class="form-control" placeholder="Luas Wilayah" value="{{ old('luas_wilayah') }}"/>
+                                                    @if ($errors->has('luas_wilayah'))<span class="text-danger">{{$errors->first('luas_wilayah')}}</span>@endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Jumlah Kecamatan</h5>
+                                                    <input id="title" name="jumlah_kecamatan" type="number" class="form-control" placeholder="Jumlah Kecamatan" value="{{ old('jumlah_kecamatan') }}"/>
+                                                    @if ($errors->has('jumlah_kecamatan'))<span class="text-danger">{{$errors->first('jumlah_kecamatan')}}</span>@endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Jumlah Kelurahan</h5>
+                                                    <input id="title" name="jumlah_kelurahan" type="number" class="form-control" placeholder="Jumlah Kelurahan" value="{{ old('jumlah_kelurahan') }}"/>
+                                                    @if ($errors->has('jumlah_kelurahan'))<span class="text-danger">{{$errors->first('jumlah_kelurahan')}}</span>@endif
+                                                </div>
+                                                <div class="form-group mb-2">
+                                                    <h5 class="text-primary">Jumlah Desa</h5>
+                                                    <input id="title" name="jumlah_desa" type="number" class="form-control" placeholder="Jumlah Desa" value="{{ old('jumlah_desa') }}"/>
+                                                    @if ($errors->has('jumlah_desa'))<span class="text-danger">{{$errors->first('jumlah_desa')}}</span>@endif
+                                                </div>
                                                 <div class="form-group mb-2">
                                                     <h5 class="text-primary">IMAGE</h5>
                                                     <div class="media flex-column text-center">

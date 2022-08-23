@@ -32,6 +32,10 @@ class OfficeController extends Controller
             'title'=>'required|max:255|unique:offices',
             'slug'=>'required|unique:offices',
             'category_id'=>'required',
+            'luas_wilayah'=>'required',
+            'jumlah_kecamatan'=>'required',
+            'jumlah_kelurahan'=>'required',
+            'jumlah_desa'=>'required',
             'image'=>'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
         ]);
 
@@ -83,15 +87,19 @@ class OfficeController extends Controller
 
         try{
             $save = new Office();
-            $save->title = $request->title;
-            $save->slug = Str::slug($request->title);
-            $save->description = $request->description;
-            $save->content = $request->content;
-            $save->information = $request->information;
-            $save->image = $image;
-            $save->status = $request->status;
-            $save->category_id = $request->category_id;
-            $save->created_by = auth()->user()->id;
+            $save->title            = $request->title;
+            $save->slug             = Str::slug($request->title);
+            $save->description      = $request->description;
+            $save->content          = $request->content;
+            $save->information      = $request->information;
+            $save->luas_wilayah     = $request->luas_wilayah;
+            $save->jumlah_kecamatan = $request->jumlah_kecamatan;
+            $save->jumlah_kelurahan = $request->jumlah_kelurahan;
+            $save->jumlah_desa      = $request->jumlah_desa;
+            $save->image            = $image;
+            $save->status           = $request->status;
+            $save->category_id      = $request->category_id;
+            $save->created_by       = auth()->user()->id;
             $save->save();
 
             Cache::flush("offices");
