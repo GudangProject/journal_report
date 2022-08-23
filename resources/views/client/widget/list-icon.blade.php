@@ -5,9 +5,9 @@
 @foreach ($data as $item)
     <div class="card p-0 shadow-sm" style="margin-bottom: 10px;">
         <div class="card-body p-1">
-            <div class="row align-items-center justify-content-center">
+            <div class="row align-items-start justify-content-center">
                 <div class="col-2 pr-0">
-                    <h3 class="text-primary pl-3">{{ $loop->index+1 }}</h3>
+                    <h3 class="bullet_number">{{ $loop->index+1 }}</h3>
                 </div>
                 <div class="col-10 pl-0">
                     <h3 class="title-card">

@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/components.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop.css')}} " type="text/css" media="all" />
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('backend/assets/vendor/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" type="text/css" media="all" />
