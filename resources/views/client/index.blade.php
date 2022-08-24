@@ -20,7 +20,7 @@
                     @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                     <hr>
                     @include('client.widget.list', ['title'=>'INFO KEPEGAWAIAN', 'data'=> $data_kepegawaian, 'category_id' => 3, 'limit'=>2])
-                    @include('client.widget.list-image', ['data'=> $wilayah, 'title'=> "ARTIKEL", 'limit'=>3])
+                    @include('client.widget.embed', ['data'=> $files, 'title'=> "FANSPAGE"])
                     </div>
                 </div>
             </div>
