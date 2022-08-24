@@ -180,13 +180,13 @@ class ScreensController extends Controller
     }
 
     public function officers(DataController $data){
-        return view('client.screens.pages',[
+        return view('client.screens.officers',[
             'banner_header' =>$data->images(1),
             'banner_home' =>$data->images(2),
             'banner_footer' =>$data->images(3),
             'menu'          => $data->menu(),
             'menu_office'   => $data->offices(),
-            'title'         => Str::title($category),
+            'title'         => 'Struktur Organisasi',
             'data'          => $data->officers(),
             'popular'      => $data->popular()
         ]);

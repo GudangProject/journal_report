@@ -9,6 +9,7 @@ use App\Models\FileCategory;
 use App\Models\Image;
 use App\Models\Menu;
 use App\Models\Office;
+use App\Models\Officer;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\PageCategory;
@@ -319,9 +320,8 @@ class DataController extends Controller
 
     // SULBAR KEMENAG
     public function officers(){
-        $category_id = PageCategory::where('slug', $slug)->where('status', 1)->value('id');
-        $data = Cache::rememberForever("pages-$category_id-$page", function() use($category_id){
-            $rows = Page::where('category_id', $category_id)->where('status', 1)->orderBy('created_at', 'asc')->paginate(20);
+        $data = Cache::rememberForever("officers", function() {
+            $rows = Officer::where('status', 1)->orderBy('order', 'asc')->get();
             return $rows;
         });
         return $data;

@@ -39,12 +39,15 @@ class OfficersController extends Controller
         $request->image->storeAs('public/officers/', $image);
         // dd($image);
 
+        $officers = Officer::latest()->first()->order;
+        // dd((int)$officers);
         try{
             $save = new Officer();
             $save->name = $request->name;
             $save->position = $request->preview;
             $save->description = $request->content;
-            $save->image = $image;
+            $save->image = '/storage/officers/'.$image;
+            $save->order = (int)$officers+1;
             $save->status = 1;
             $save->created_by = auth()->user()->id;
             $save->save();
@@ -88,7 +91,7 @@ class OfficersController extends Controller
             $save->position = $request->preview;
             $save->description = $request->content;
             if($request->image != null){
-                $save->image = $image;
+                $save->image = '/storage/officers/'.$image;
             }
             $save->status = 1;
             $save->created_by = auth()->user()->id;
