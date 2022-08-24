@@ -19,7 +19,7 @@
                     @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=>3])
                     @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                     <hr>
-                    @include('client.widget.slide-podcast', ['title'=>'PODCAST', 'data'=> $podcast, 'category_id'=>2, 'limit'=>2])
+                    @include('client.widget.list', ['title'=>'INFO KEPEGAWAIAN', 'data'=> $data_kepegawaian, 'category_id' => 3, 'limit'=>2])
                     @include('client.widget.list-image', ['data'=> $wilayah, 'title'=> "ARTIKEL", 'limit'=>3])
                     </div>
                 </div>
