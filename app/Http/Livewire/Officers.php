@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Officer;
+use Illuminate\Support\Facades\DB;
 
 class Officers extends DataTableComponent
 {
 
-    public string $defaultSortColumn = 'created_at';
-    public string $defaultSortDirection = 'desc';
+    public string $defaultSortColumn = 'order';
+    public string $defaultSortDirection = 'asc';
 
     public $selected_id;
 
@@ -44,8 +45,37 @@ class Officers extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Officer::findOrFail($this->selected_id)->delete();
+        Officer::findOrFail($this->selected_id)->delete(    );
         $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
+    public function moveUp($id)
+    {
+        $row = Officer::findOrFail($id);
+        $data = $row->order - 1;
+
+        if($row->parent_id){
+            DB::table('officers')->where('order',$data)->increment('order');
+            DB::table('officers')->where('id', $id)->decrement('order');
+        }else{
+            DB::table('officers')->where('order',$data)->increment('order');
+            DB::table('officers')->where('id', $id)->decrement('order');
+        }
+    }
+
+    public function moveDown($id)
+    {
+        $row = Officer::findOrFail($id);
+        $data = $row->order + 1;
+
+        if($row->parent_id){
+            DB::table('officers')->where('order',$data)->decrement('order');
+            DB::table('officers')->where('id', $id)->increment('order');
+        }else{
+            DB::table('officers')->where('order',$data)->decrement('order');
+            DB::table('officers')->where('id', $id)->increment('order');
+        }
+
     }
 
     public function columns(): array

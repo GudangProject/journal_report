@@ -316,4 +316,14 @@ class DataController extends Controller
         $data = Post::where('slug', $slug)->first();
         return $data;
     }
+
+    // SULBAR KEMENAG
+    public function officers(){
+        $category_id = PageCategory::where('slug', $slug)->where('status', 1)->value('id');
+        $data = Cache::rememberForever("pages-$category_id-$page", function() use($category_id){
+            $rows = Page::where('category_id', $category_id)->where('status', 1)->orderBy('created_at', 'asc')->paginate(20);
+            return $rows;
+        });
+        return $data;
+    }
 }

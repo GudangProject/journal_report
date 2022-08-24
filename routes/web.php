@@ -104,8 +104,9 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/sitemap.xml', [MetaController::class, 'sitemap'])->name('sitemap');
 
+Route::get('struktur', [ScreensController::class, 'officers']);
+
 Route::get('search', [ScreensController::class, 'search'])->name('search');
-Route::get('tags/{q}', [ScreensController::class, 'tags']);
 Route::get('author/{slug}', [ScreenController::class, 'author']);
 
 Route::get('page/{slug}', [ScreenController::class, 'page']);

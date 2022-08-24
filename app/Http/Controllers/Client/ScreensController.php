@@ -178,4 +178,17 @@ class ScreensController extends Controller
             'title'     => "Hasil Pencarian: $request->q",
         ]);
     }
+
+    public function officers(DataController $data){
+        return view('client.screens.pages',[
+            'banner_header' =>$data->images(1),
+            'banner_home' =>$data->images(2),
+            'banner_footer' =>$data->images(3),
+            'menu'          => $data->menu(),
+            'menu_office'   => $data->offices(),
+            'title'         => Str::title($category),
+            'data'          => $data->officers(),
+            'popular'      => $data->popular()
+        ]);
+    }
 }
