@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function index(DataController $data)
     {
+        // dd($data->posts(null));
         return view('client.index', [
             'menu' => $data->menu(),
             'menu_office' => $data->offices(),
@@ -24,7 +25,8 @@ class HomeController extends Controller
             'infografis' => $data->images(4),
             'video' => $data->videos('video'),
             'podcast' => $data->videos('podcast'),
-            'wilayah' => $data->posts('wilayah'),
+            'terbaru' => $data->posts(null),
+            // 'wilayah' => $data->posts('wilayah'),
             'daerah' => $data->posts('daerah'),
             'article' => $data->posts('article'),
         ]);

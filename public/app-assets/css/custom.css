@@ -1,4 +1,7 @@
 /* CSS KEMENAG DALAM ANGKA */
+.kemenag-angka{
+    max-width: 100px;
+}
 .custom-tabs {
 	display: flex;
 	flex-wrap: wrap;
@@ -9,6 +12,7 @@
 	order: 1;
 	display: block;
 	padding: 1rem;
+    /* max-width: 285px; */
 	margin-right: 0.2rem;
 	cursor: pointer;
     color: #333;

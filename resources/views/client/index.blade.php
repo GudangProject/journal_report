@@ -9,7 +9,7 @@
                     @include('client.widget.slide', ['data'=>$headline, 'limit'=>4])
                     @include('client.widget.banner-small', ['data'=>$main_services])
                     @include('client.widget.banner-home', ['data'=>$banner_home])
-                    @include('client.widget.list-row2', ['title'=>'BERITA WILAYAH', 'data'=>$wilayah, 'limit'=>8])
+                    @include('client.widget.list-row2', ['title'=>'BERITA TERBARU', 'data'=>$terbaru, 'limit'=>8])
                     @include('client.widget.slide-video', ['title'=>'VIDEO', 'data'=>$video])
                     @include('client.widget.list-row2', ['title'=> "BERITA DAERAH", 'data'=> $wilayah, 'limit'=>8])
                 </div>
