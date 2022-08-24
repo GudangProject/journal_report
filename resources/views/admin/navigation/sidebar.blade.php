@@ -78,6 +78,13 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ (request()->segment(2) == 'officers' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('officers.index') }}">
+                    <i data-feather="users"></i>
+                    <span class="menu-title text-truncate" data-i18n="File">Struktur Organisasi</span>
+                </a>
+            </li>
+
             <li class="navigation-header {{ (request()->segment(2) == 'settings' ? 'active' : '') }}">
                 <span data-i18n="Setting">Integrasi</span>
                 <i data-feather="more-horizontal"></i>

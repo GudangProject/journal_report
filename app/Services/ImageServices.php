@@ -13,7 +13,7 @@ class ImageServices {
         $settingSize      = $dataImage['setting'];
         $destinationPath  = $dataImage['path'];
         $imageName        = time().'.'.$image->getClientOriginalExtension();
-
+        // dd($imageName);
         self::cekFolder($destinationPath);
 
         // $path_big       = $destinationPath.'big';
@@ -59,6 +59,7 @@ class ImageServices {
 
             return ['status'=>true,'name'=>$imageName];
         }catch(Exception $e){
+            dd($e->getMessage());
             return ['status'=>$e->getMessage(),'name'=>''];
         }
     }

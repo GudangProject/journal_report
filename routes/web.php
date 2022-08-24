@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\FilesCategoryController;
 use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\OfficeController;
+use App\Http\Controllers\Admin\OfficersController;
 use App\Http\Controllers\Admin\PostLinkageController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
@@ -30,7 +31,7 @@ use App\Http\Controllers\Client\MetaController;
 
 use Illuminate\Support\Facades\Route;
 
-if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
+if(version_compare(PHP_VERSION, '8.1.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 }
 
@@ -78,9 +79,13 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         Route::resource('services', ServiceController::class);
         Route::resource('servicecategories', ServiceCategoryController::class);
     });
+
+    Route::resource('officers', OfficersController::class);
+
     Route::prefix('integrations')->group(function (){
         Route::resource('integrations', IntegrationController::class);
     });
+
     Route::group(['middleware' => ['role:super admin']], function () {
         Route::prefix('points')->group(function (){
             Route::resource('points', PointController::class);
