@@ -139,7 +139,7 @@
                 @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=>4])
                 @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                 <hr>
-                @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4])
+                {{-- @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4]) --}}
             </div>
         </div>
         @include('client.widget.list-image-rows', ['data'=> $posts, 'limit'=>8, 'title'=>$data->getCategory->name.' LAINNYA'])

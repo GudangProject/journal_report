@@ -115,24 +115,28 @@ class DashboardController extends Controller
 
     public static function Posts($limit){
         $rows = Post::where('status', 1)
-                ->where('created_at', '>', Carbon::now()->subDays(30))
+                // ->where('created_at', '>', Carbon::now()->subDays(30))
                 ->orderBy('counter', 'DESC')
                 ->paginate($limit);
 
-        foreach ($rows as $k => $v) {
-            $data['data'][$k]['title'] = Str::title($v->title);
-            $data['data'][$k]['category'] = Str::title($v->getCategory->name);
-            $data['data'][$k]['counter'] = $v->counter;
+        if($rows->count() > 0){
+            foreach ($rows as $k => $v) {
+                $data['data'][$k]['title'] = Str::title($v->title);
+                $data['data'][$k]['category'] = Str::title($v->getCategory->name);
+                $data['data'][$k]['counter'] = $v->counter;
+            }
+
+            for($i=0; $i < $limit; $i++){
+                $title[$i] = $data['data'][$i]['title'];
+                $views[$i] = $data['data'][$i]['counter'];
+            }
+
+            $title_json    = json_encode($title);
+            $views_json    = json_encode($views);
+
         }
 
-        for($i=0; $i < $limit; $i++){
-            $title[$i] = $data['data'][$i]['title'];
-            $views[$i] = $data['data'][$i]['counter'];
-        }
-
-        $title_json    = json_encode($title);
-        $views_json    = json_encode($views);
-
+        // dd($title_json);
         return [
             'data' => $data,
             'title' => $title_json,

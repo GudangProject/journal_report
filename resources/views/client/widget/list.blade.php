@@ -14,7 +14,7 @@
         @break
     @endif
     @endforeach
-    @if($status)
+    @if($limit)
     <div class="mt-4">
         <a href="{{ url('informasi') }}">
             <span class="badge d-block badge-light-primary">Selengkapnya <i class="fas fa-arrow-right"></i></span>

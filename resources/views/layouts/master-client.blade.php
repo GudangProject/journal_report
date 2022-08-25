@@ -3,8 +3,8 @@
 
 <head>
 	<title>{{ $meta->title ?? config('app.name') }}</title>
-	<meta name="description" content="{{ $meta->preview }}" />
-	<meta name="keywords" content="{{ $meta->tags }}" />
+	<meta name="description" content="{{ $meta->preview ?? ''}}" />
+	<meta name="keywords" content="{{ $meta->tags ?? ''}}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="author" content="" />
 	<meta charset="UTF-8" />
@@ -12,8 +12,8 @@
 
     <meta property="og:url" content="{{ $meta->url ?? url('/') }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="{{ $meta->title }}" />
-    <meta property="og:description" content="{{ $meta->preview  }}" />
+    <meta property="og:title" content="{{ $meta->title ?? '' }}" />
+    <meta property="og:description" content="{{ $meta->preview ?? ''  }}" />
     <meta property="og:image" content="{{ $meta->meta_image ?? asset('/assets/images/logo.png') }}" />
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="800">
@@ -23,10 +23,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@kemenagsulsel">
     <meta name="twitter:creator" content="@kemenagsulsel">
-    <meta name="twitter:description" content="{{ $meta->description  }}" />
+<meta name="twitter:description" content="{{ $meta->description ?? '' }}" />
     <meta name="twitter:image" content="{{ $meta->meta_image ?? asset('/assets/images/logo.png') }}" />
     <meta name="twitter:image:src" content="{{ $meta->meta_image ?? asset('/assets/images/logo.png') }}" />
-    <meta name="twitter:title" content="{{ $meta->title }}" />
+    <meta name="twitter:title" content="{{ $meta->title ?? ''}}" />
 
 
 	<!-- Favicon-->

@@ -55,6 +55,7 @@ class ScreensController extends Controller
 
     public function posts(Request $request, $category, DataController $data)
     {
+        // dd($category);
         return view('client.screens.posts',[
             'banner_header' =>$data->images(1),
             'banner_home' =>$data->images(2),
@@ -63,7 +64,7 @@ class ScreensController extends Controller
             'menu_office' => $data->offices(),
             'popular'      => $data->popular(),
             'infografis'    => $data->images(4),
-            'video'         => $data->videos(),
+            'video'         => $data->videos('video'),
             'files'         => $data->files(1),
             'data' => $data->postsCategory($category, $request->page),
             'title' => $category,

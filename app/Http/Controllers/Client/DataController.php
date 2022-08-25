@@ -67,18 +67,26 @@ class DataController extends Controller
 
     public static function posts($category = null, $page = null)
     {
-        $category_id = PostCategory::where('slug', $category)->first()->id;
-        $id = PostCategory::where('parent_id', $category_id)->pluck('id')->toArray();
-        array_push($id, $category_id);
+        if($category != null){
+            $category_id = PostCategory::where('slug', $category)->first()->id;
+            $id = PostCategory::where('parent_id', $category_id)->pluck('id')->toArray();
+            array_push($id, $category_id);
 
-        $data = Cache::remember("posts-$category-$page", 60 * 60 * 12, function () use($id, $category_id) {
-            if($category_id){
-                $row = Post::where('status', 1)->whereIn('category_id', $id)->orderBy('published_at', 'DESC')->paginate(30);
-            }else{
+            $data = Cache::remember("posts-$category-$page", 60 * 60 * 12, function () use($id, $category_id) {
+                if($category_id){
+                    $row = Post::where('status', 1)->whereIn('category_id', $id)->orderBy('published_at', 'DESC')->paginate(30);
+                }else{
+                    $row = Post::where('status', 1)->orderBy('published_at', 'DESC')->paginate(30);
+                }
+                return $row;
+            });
+
+        }else{
+            $data = Cache::remember("posts-$page", 60 * 60 * 12, function () {
                 $row = Post::where('status', 1)->orderBy('published_at', 'DESC')->paginate(30);
-            }
-            return $row;
-        });
+                return $row;
+            });
+        }
         return $data;
     }
 
@@ -234,18 +242,25 @@ class DataController extends Controller
 
     public static function videos($category = null, $page = null)
     {
-        $category_id = VideoCategory::where('slug', $category)->first()->id;
-        $id = VideoCategory::where('parent_id', $category_id)->pluck('id')->toArray();
-        array_push($id, $category_id);
+        if($category != null){
+            $category_id = VideoCategory::where('slug', $category)->first()->id;
+            $id = VideoCategory::where('parent_id', $category_id)->pluck('id')->toArray();
+            array_push($id, $category_id);
 
-        $data = Cache::remember("videos-$category-$page", 60 * 60 * 12, function () use($id, $category_id) {
-            if($category_id){
-                $row = Video::where('status', 1)->whereIn('category_id', $id)->orderBy('published_at', 'DESC')->paginate(12)->withQueryString();
-            }else{
+            $data = Cache::remember("videos-$category-$page", 60 * 60 * 12, function () use($id, $category_id) {
+                if($category_id){
+                    $row = Video::where('status', 1)->whereIn('category_id', $id)->orderBy('published_at', 'DESC')->paginate(12)->withQueryString();
+                }else{
+                    $row = Video::where('status', 1)->orderBy('published_at', 'DESC')->paginate(12);
+                }
+                return $row;
+            });
+        }else{
+            $data = Cache::remember("videos-$page", 60 * 60 * 12, function () {
                 $row = Video::where('status', 1)->orderBy('published_at', 'DESC')->paginate(12);
-            }
-            return $row;
-        });
+                return $row;
+            });
+        }
         return $data;
     }
 
