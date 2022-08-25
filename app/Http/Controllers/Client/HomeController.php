@@ -20,7 +20,7 @@ class HomeController extends Controller
             'files' => $data->files(1),
             'data_kepegawaian' => $data->files(3),
             'headline' => $data->headline(),
-            'popular' => $data->popular(),
+            'popular' => $data->posts('daerah'),
             'main_services' => $data->services('layanan-utama'),
             'services' => $data->services('layanan-wilayah'),
             'infografis' => $data->images(4),
