@@ -61,7 +61,7 @@ class PhotosController extends Controller
 
             $save->save();
 
-            Cache::flush("offices");
+            Cache::flush("photos");
 
             return redirect()->route('photos.index')->with('message', "$save->title berhasil ditambahkan");
         }catch(Exception $error){
@@ -130,12 +130,6 @@ class PhotosController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

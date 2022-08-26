@@ -15,7 +15,7 @@
             <img src="{{ asset('app-assets') }}/images/portrait/small/avatar-s-6.jpg" alt="Avatar" height="35" width="35" />
         </div>
         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Tambah Foto Terkait">
-            <a href="/photos-c">
+            <a href="{{ route('create-photo-linkage', $row->id) }}">
                 <img src="{{ asset('app-assets') }}/images/icons/plus.png" alt="Avatar" height="35" width="35" />
             </a>
         </div>

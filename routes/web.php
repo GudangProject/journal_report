@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\OfficersController;
+use App\Http\Controllers\Admin\PhotoContentController;
 use App\Http\Controllers\Admin\PhotosController;
 use App\Http\Controllers\Admin\PostLinkageController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -71,6 +72,8 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::prefix('photos')->group(function (){
         Route::resource('photos', PhotosController::class);
+        Route::resource('photos-content', PhotoContentController::class);
+        Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-pthoto-linkage');
     });
 
     Route::prefix('offices')->group(function (){

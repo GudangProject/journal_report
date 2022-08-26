@@ -19,4 +19,9 @@ class PhotoContent extends Model
         return $this->belongsTo(Photos::class, 'photo_id');
     }
 
+    public function getImageAttribute($value)
+    {
+        return '/storage/photos/linkages/' . $value;
+    }
+
 }
