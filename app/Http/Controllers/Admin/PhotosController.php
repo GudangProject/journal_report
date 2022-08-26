@@ -15,6 +15,7 @@ class PhotosController extends Controller
 
     public function index()
     {
+        // dd('test');
         return view('admin.photos.index');
     }
 

@@ -49,7 +49,7 @@
                                                                 </div>
                                                                 @foreach ($photoLinkage as $item)
                                                                     <div class="media-left">
-                                                                        <a data-fancybox data-type="image" href="{{ $item->image }}">
+                                                                        <a data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
                                                                             <img src="{{ $item->image }}" alt="avatar" height="94" width="94" class="cursor-pointer rounded" />
                                                                         </a>
                                                                     </div>

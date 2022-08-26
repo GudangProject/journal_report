@@ -11,11 +11,15 @@
         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="">
             <img src="{{ $row->image }}" alt="Avatar" height="35" width="35" />
         </div>
-        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Alberto Glotzbach">
-            <img src="{{ asset('app-assets') }}/images/portrait/small/avatar-s-6.jpg" alt="Avatar" height="35" width="35" />
-        </div>
+        @foreach (\App\Models\PhotoContent::where('photo_id', $row->id)->orderByDesc('created_at')->limit(4)->get() as $item)
+            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Klik untuk melihat detail">
+                <a data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
+                    <img src={{ $item->image }} alt="Avatar" height="35" width="35" />
+                </a>
+            </div>
+        @endforeach
         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Tambah Foto Terkait">
-            <a href="{{ route('create-photo-linkage', $row->id) }}">
+            <a href="{{ route('create-photos-linkage', $row->id) }}">
                 <img src="{{ asset('app-assets') }}/images/icons/plus.png" alt="Avatar" height="35" width="35" />
             </a>
         </div>

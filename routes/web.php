@@ -73,7 +73,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::prefix('photos')->group(function (){
         Route::resource('photos', PhotosController::class);
         Route::resource('photos-content', PhotoContentController::class);
-        Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-pthoto-linkage');
+        Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-photos-linkage');
     });
 
     Route::prefix('offices')->group(function (){
