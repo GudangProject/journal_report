@@ -20,6 +20,9 @@ class CreatePhotosTable extends Migration
             $table->string('image');
             $table->longText('caption');
             $table->longText('content');
+            $table->integer('status', 2);
+            $table->timestamp('created_by')->nullable();
+            $table->timestamp('updated_by')->nullable();
             $table->timestamps();
         });
     }

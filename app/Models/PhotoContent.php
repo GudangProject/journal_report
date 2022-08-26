@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class PhotoContent extends Model
 {
     use HasFactory;
+
+    use HasFactory;
+    protected $table = 'photo_contents';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
+
+    public function getParent()
+    {
+        return $this->belongsTo(Photos::class, 'photo_id');
+    }
+
 }

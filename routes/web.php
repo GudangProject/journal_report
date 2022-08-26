@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\OfficersController;
+use App\Http\Controllers\Admin\PhotosController;
 use App\Http\Controllers\Admin\PostLinkageController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
@@ -67,6 +68,11 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         Route::resource('images', ImageController::class);
         Route::resource('imagecategories', ImageCategoryController::class);
     });
+
+    Route::prefix('photos')->group(function (){
+        Route::resource('photos', PhotosController::class);
+    });
+
     Route::prefix('offices')->group(function (){
         Route::resource('offices', OfficeController::class);
         Route::resource('officecategories', OfficeCategoryController::class);
