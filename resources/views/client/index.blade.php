@@ -11,11 +11,11 @@
                     @include('client.widget.banner-home', ['data'=>$banner_home])
                     @include('client.widget.list-row2', ['title'=>'BERITA TERBARU', 'data'=>$terbaru, 'limit'=>8])
                     @include('client.widget.slide-video', ['title'=>'VIDEO', 'data'=>$video])
-                    {{-- @include('client.widget.list-row2', ['title'=> "BERITA DAERAH", 'data'=> $wilayah, 'limit'=>8]) --}}
+                    @include('client.widget.list-row2', ['title'=> "BERITA DAERAH", 'data'=> $wilayah, 'limit'=>8])
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="theiaStickySidebar">
-                    {{-- @include('client.widget.list-icon', ['title'=>'TERPOPULER','data'=>$wilayah, 'limit'=>4]) --}}
+                    @include('client.widget.list-icon', ['title'=>'TERPOPULER','data'=>$wilayah, 'limit'=>4])
                     @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=>3])
                     @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                     <hr>

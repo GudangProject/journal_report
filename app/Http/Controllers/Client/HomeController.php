@@ -26,7 +26,7 @@ class HomeController extends Controller
             'infografis' => $data->images(4),
             'video' => $data->videos('video'),
             'terbaru' => $data->posts(),
-            // 'wilayah' => $data->posts('wilayah'),
+            'wilayah' => $data->posts('wilayah'),
             'daerah' => $data->posts('daerah'),
             'article' => $data->posts('article'),
         ]);
