@@ -9,11 +9,13 @@
 <x-livewire-tables::table.cell>
     <div class="avatar-group">
         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="">
-            <img src="{{ $row->image }}" alt="Avatar" height="35" width="35" />
+            <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $row->image }}" data-caption="{{ $row->caption }}">
+                <img src={{ $row->image }} alt="Avatar" height="35" width="35" />
+            </a>
         </div>
-        @foreach (\App\Models\PhotoContent::where('photo_id', $row->id)->orderByDesc('created_at')->limit(4)->get() as $item)
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Klik untuk melihat detail">
-                <a data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
+        @foreach (\App\Models\PhotoContent::where('photo_id', $row->id)->orderByDesc('created_at')->limit(4)->get() as $key => $item)
+            <div style="display:{{ $key > 2 ? 'none' : 'block' }}" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Klik untuk melihat detail">
+                <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
                     <img src={{ $item->image }} alt="Avatar" height="35" width="35" />
                 </a>
             </div>

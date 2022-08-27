@@ -43,13 +43,13 @@
                                                         <div class="media-list">
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a data-fancybox data-type="image" href="{{ $dataParent->image }}" data-caption="{{ $dataParent->caption }}">
+                                                                    <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $dataParent->image }}" data-caption="{{ $dataParent->caption }}">
                                                                         <img src="{{ $dataParent->image }}" alt="avatar" height="94" width="94" class="cursor-pointer rounded" />
                                                                     </a>
                                                                 </div>
                                                                 @foreach ($photoLinkage as $item)
                                                                     <div class="media-left">
-                                                                        <a data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
+                                                                        <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
                                                                             <img src="{{ $item->image }}" alt="avatar" height="94" width="94" class="cursor-pointer rounded" />
                                                                         </a>
                                                                     </div>

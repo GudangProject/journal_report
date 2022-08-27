@@ -16,8 +16,13 @@ class MenuIndex extends Component
     public $data;
     public $search;
     public $showEditModal = false;
-
+    public $categories, $row_category;
     public $category_id = 1;
+
+    public function mount(){
+        $this->categories = MenuCategory::where('status', 1)->get();
+        $this->row_category = Menu::where('parent_id', 0)->where('id', '!=', 1)->orderBy('order', 'ASC')->get();
+    }
 
     public function create()
     {

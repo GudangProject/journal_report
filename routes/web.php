@@ -131,6 +131,8 @@ Route::get('podcasts', [ScreensController::class, 'podcasts']);
 Route::get('video/{slug}', [ScreenController::class, 'video']);
 Route::get('videos/{category?}', [ScreensController::class, 'videos']);
 Route::get('pages/{category}', [ScreensController::class, 'pages']);
+Route::get('photos', [ScreensController::class, 'photos']);
+Route::get('photo/{slug}', [ScreenController::class, 'photo']);
 
 Route::get('berita/{category?}/{slug}', [ScreenController::class, 'redirect']);
 

@@ -13,6 +13,8 @@ use App\Models\Officer;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\PageCategory;
+use App\Models\PhotoContent;
+use App\Models\Photos;
 use App\Models\Point;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -268,6 +270,26 @@ class DataController extends Controller
     {
         $data = Cache::rememberForever("images-$id", function () use($id) {
             $row = Image::where('status', 1)->where('category_id', $id)->paginate(10);
+            return $row;
+        });
+        return $data;
+    }
+
+    public static function photos()
+    {
+        $data = Cache::rememberForever("photos", function () {
+            $row = Photos::where('status', 1)->paginate(10);
+            return $row;
+        });
+        return $data;
+    }
+
+
+    public static function photoDetail($slug)
+    {
+        $data = Cache::rememberForever("photos-$slug", function () use($slug) {
+            $row['parent']      = Photos::where('status', 1)->where('slug', $slug)->first();
+            $row['data_photo']  = PhotoContent::where('photo_id', $row['parent']->id)->get();
             return $row;
         });
         return $data;

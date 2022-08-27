@@ -32,4 +32,10 @@ class Photos extends Model
     {
         return '/storage/photos/' . $value;
     }
+
+    public function getUrlAttribute()
+    {
+        $url = url('photo/'.$this->slug);
+        return $url;
+    }
 }

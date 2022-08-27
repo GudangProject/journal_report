@@ -121,4 +121,22 @@ class ScreenController extends Controller
             'popular'       => $data->popular()
         ]);
     }
+
+    public function photo($slug, DataController $data)
+    {
+        // dd($data->photoDetail($slug));
+        return view('client.screen.photo',[
+            'meta'          => $data->video($slug),
+            'banner_header' => $data->images(1),
+            'banner_home'   => $data->images(2),
+            'banner_footer' => $data->images(3),
+            'menu'          => $data->menu(),
+            'menu_office'   => $data->offices(),
+            'data'          => $data->photoDetail($slug),
+            // 'files'         => $data->files(1),
+            'infografis'    => $data->images(4),
+            'video'         => $data->videos(),
+            'popular'       => $data->popular()
+        ]);
+    }
 }

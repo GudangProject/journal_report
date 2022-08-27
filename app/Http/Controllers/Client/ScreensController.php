@@ -183,13 +183,28 @@ class ScreensController extends Controller
     public function officers(DataController $data){
         return view('client.screens.officers',[
             'banner_header' =>$data->images(1),
-            'banner_home' =>$data->images(2),
+            'banner_home'   =>$data->images(2),
             'banner_footer' =>$data->images(3),
             'menu'          => $data->menu(),
             'menu_office'   => $data->offices(),
             'title'         => 'Struktur Organisasi',
             'data'          => $data->officers(),
-            'popular'      => $data->popular()
+            'popular'       => $data->popular()
+        ]);
+    }
+
+    public function photos(DataController $data){
+        // dd($data->photos());
+        return view('client.screens.photos',[
+            'banner_header' =>$data->images(1),
+            'banner_home'   =>$data->images(2),
+            'banner_footer' =>$data->images(3),
+            'files'         => $data->files(1),
+            'menu'          => $data->menu(),
+            'menu_office'   => $data->offices(),
+            // 'title'         => 'Struktur Organisasi',
+            'data'          => $data->photos(),
+            'popular'       => $data->popular()
         ]);
     }
 }
