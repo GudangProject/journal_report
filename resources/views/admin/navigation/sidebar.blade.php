@@ -67,7 +67,7 @@
             <li class="nav-item {{ (request()->segment(2) == 'photos' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('photos.index') }}">
                     <i data-feather="image"></i>
-                    <span class="menu-title text-truncate" data-i18n="Image">Photo</span>
+                    <span class="menu-title text-truncate" data-i18n="Image">Photos</span>
                 </a>
             </li>
 

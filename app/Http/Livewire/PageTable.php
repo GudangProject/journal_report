@@ -75,6 +75,6 @@ class PageTable extends DataTableComponent
 
     public function modalsView(): string
     {
-        return 'admin.pages.modal';
+        return 'admin.images.modal';
     }
 }

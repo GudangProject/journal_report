@@ -33,30 +33,22 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-8 col-12">
-
                                                 <div class="card">
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">{{ $dataParent->title }}</h4>
-                                                        <p class="card-text mt-1"><span class="badge badge-light-primary">Klik gambar untuk melihat lebih detail</span></p>
-                                                    </div>
                                                     <div class="card-body">
-                                                        <div class="media-list">
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $dataParent->image }}" data-caption="{{ $dataParent->caption }}">
-                                                                        <img src="{{ $dataParent->image }}" alt="avatar" height="94" width="94" class="cursor-pointer rounded" />
-                                                                    </a>
-                                                                </div>
-                                                                @foreach ($photoLinkage as $item)
-                                                                    <div class="media-left">
-                                                                        <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
-                                                                            <img src="{{ $item->image }}" alt="avatar" height="94" width="94" class="cursor-pointer rounded" />
-                                                                        </a>
-                                                                    </div>
-                                                                @endforeach
+                                                        <h4 class="mb-0">{{ $dataParent->title }}</h5>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-4 col-6 mb-1 profile-latest-img">
+                                                                <a href="{{ $dataParent->image }}" data-fancybox="gallery-a" data-fancybox data-type="image" data-caption="{{ $dataParent->caption }}">
+                                                                    <img src="{{ $dataParent->image }}" class="img-fluid rounded" alt="avatar img" />
+                                                                </a>
                                                             </div>
-
-                                                            {{ $photoLinkage->links() }}
+                                                            @foreach ($photoLinkage as $item)
+                                                            <div class="col-md-4 col-6 profile-latest-img">
+                                                                <a href="{{ $item->image }}" data-fancybox="gallery-a" data-fancybox data-type="image" data-caption="{{ $item->caption }}">
+                                                                    <img src="{{ $item->image }}" class="img-fluid rounded" alt="avatar img" />
+                                                                </a>
+                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,7 +133,6 @@
     </script>
 
     {{-- fancy Box --}}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" type="text/css" media="screen" />
     @endpush

@@ -67,7 +67,7 @@
                     <i class="mr-1 fas fa-edit"></i>
                     <span class="align-middle">Edit</span>
                 </a>
-                <a type="button" class="dropdown-item" wire:click="showModalDetail({{ $row->id }})">
+                <a type="button" class="dropdown-item" href="{{ route('photos.show', $row->id) }}">
                     <i class="mr-1 fas fa-desktop"></i>
                     <span class="align-middle">Detail</span>
                 </a>

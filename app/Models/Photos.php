@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Services\DateServices;
 
 class Photos extends Model
 {
@@ -38,4 +39,10 @@ class Photos extends Model
         $url = url('photo/'.$this->slug);
         return $url;
     }
+
+    public function getDateAttribute()
+    {
+        return DateServices::dateHome($this->created_at);
+    }
+
 }

@@ -61,7 +61,7 @@ class PhotoContentController extends Controller
 
             Cache::flush("photo-content");
 
-            return redirect()->route('photos.index')->with('message', "Photo berhasil ditambahkan");
+            return redirect()->route('photos.')->with('message', "Photo berhasil ditambahkan");
         }catch(Exception $error){
             return redirect()->route('photos.index')->with('message', $error->getMessage());
         }
@@ -116,7 +116,7 @@ class PhotoContentController extends Controller
     {
         return view('admin.photos.linkage.create', [
             'dataParent'     => Photos::findOrFail($parent),
-            'photoLinkage'   => PhotoContent::where('photo_id', $parent)->orderByDesc('created_at')->paginate(5)
+            'photoLinkage'   => PhotoContent::where('photo_id', $parent)->orderBy('created_at')->paginate(5)
         ]);
     }
 }

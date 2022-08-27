@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PhotoContent;
 use App\Models\Photos;
 use App\Services\ImageServices;
 use Exception;
@@ -15,7 +16,6 @@ class PhotosController extends Controller
 
     public function index()
     {
-        // dd('test');
         return view('admin.photos.index');
     }
 
@@ -73,7 +73,10 @@ class PhotosController extends Controller
 
     public function show($id)
     {
-        //
+        return view('admin.photos.detail', [
+            'data' => Photos::findOrFail($id),
+            'photoContent' => PhotoContent::where('photo_id', $id)->orderBy('created_at')->get()
+        ]);
     }
 
     public function edit($id)
