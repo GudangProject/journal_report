@@ -61,7 +61,7 @@ class PhotoContentController extends Controller
 
             Cache::flush("photo-content");
 
-            return redirect()->route('photos.')->with('message', "Photo berhasil ditambahkan");
+            return redirect()->route('photos.index')->with('message', "Photo berhasil ditambahkan");
         }catch(Exception $error){
             return redirect()->route('photos.index')->with('message', $error->getMessage());
         }
