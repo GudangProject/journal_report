@@ -13,7 +13,7 @@
                 <img src={{ $row->image }} alt="Avatar" height="35" width="35" />
             </a>
         </div>
-        @foreach (\App\Models\PhotoContent::where('photo_id', $row->id)->orderByDesc('created_at')->limit(4)->get() as $key => $item)
+        @foreach (\App\Models\PhotoContent::where('photo_id', $row->id)->orderBy('created_at')->limit(4)->get() as $key => $item)
             <div style="display:{{ $key > 2 ? 'none' : 'block' }}" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Klik untuk melihat detail">
                 <a data-fancybox="gallery-a" data-fancybox data-type="image" href="{{ $item->image }}" data-caption="{{ $item->caption }}">
                     <img src={{ $item->image }} alt="Avatar" height="35" width="35" />
