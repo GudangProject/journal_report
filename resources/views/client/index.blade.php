@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-12">
-                    @include('client.widget.sholat')
-                    @include('client.widget.slide', ['data'=>$headline, 'limit'=>4])
                     @include('client.widget.banner-small', ['data'=>$main_services])
+                    @include('client.widget.slide', ['data'=>$headline, 'limit'=>4])
+                    @include('client.widget.sholat')
                     @include('client.widget.banner-home', ['data'=>$banner_home])
                     @include('client.widget.list-row2', ['title'=>'BERITA TERBARU', 'data'=>$terbaru, 'limit'=>8])
                     @include('client.widget.slide-video', ['title'=>'VIDEO', 'data'=>$video])
@@ -20,7 +20,7 @@
                     @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                     <hr>
                     @include('client.widget.list', ['title'=>'INFO KEPEGAWAIAN', 'data'=> $data_kepegawaian, 'category_id' => 3, 'limit'=>2])
-                    @include('client.widget.embed', ['title'=> "FANSPAGE"])
+                    @include('client.widget.embed', ['title'=> "FANPAGE"])
                     </div>
                 </div>
             </div>
