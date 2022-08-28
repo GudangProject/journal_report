@@ -5,7 +5,7 @@
 <div class="row mb-4">
 @foreach ($data as $item)
     <div class="col-md-4">
-        <div class="card p-0 shadow-sm" style="margin-bottom: 10px;">
+        <div class="cardx p-0 shadow-none style="margin-bottom: 10px;">
             <div class="card-body p-1">
                 <div class="row align-items-center">
                     <div class="col-3 p-0  pl-3">

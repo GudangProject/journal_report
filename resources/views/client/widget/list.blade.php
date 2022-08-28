@@ -3,7 +3,7 @@
         <h1 class="text-uppercase"><a href="{{ $slug ?? '/informasi' }}">{{ $title }}</a></h1>
     </div>
     @foreach ($data as $item)
-        <div class="card p-0 shadow-sm" style="margin-bottom: 10px;">
+        <div class="cardx p-0 shadow-none" style="margin-bottom: 10px;">
             <div class="card-body p-1">
                 <h3 class="title-card">
                     <a href="{{ $item->url }}" tabindex="-1">{{ $item->judul }}</a>
