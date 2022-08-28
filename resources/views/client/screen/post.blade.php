@@ -84,7 +84,7 @@
                             <span class="text-secondary">{{$data['caption']}}</span>
                             <div class="post_content_w mt-4">
                                 @include('client.widget.share')
-                                <div class="post_content jl_content">
+                                <div class="post_content jl_content text-justify">
                                     {!!$data['content']!!}
                                     <hr>
                                     <div class="single_post_entry_content single_bellow_left_align jl_top_single_title jl_top_title_feature">
@@ -135,12 +135,13 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 sidebar">
-                @include('client.widget.list-icon', ['title'=>'TERPOPULER','data'=>$popular, 'limit'=>4])
-                @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=>4])
+                @include('client.widget.list-icon', ['title'=>'TERPOPULER','data'=>$popular, 'limit'=> 4])
+                @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=> 4])
                 @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                 <hr>
+                @include('client.widget.list', ['title'=>'INFO KEPEGAWAIAN', 'data'=> $data_kepegawaian, 'limit'=> 5])
                 @include('client.widget.embed', ['title'=> "FANPAGE"])
-                {{-- @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4]) --}}
+                    {{-- @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4]) --}}
             </div>
         </div>
         @include('client.widget.list-image-rows', ['data'=> $posts, 'limit'=>8, 'title'=>$data->getCategory->name.' LAINNYA'])

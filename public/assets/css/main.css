@@ -130,7 +130,9 @@
      letter-spacing: -0.025em !important;
 }
  .content_single_page p, .single_section_content .post_content, .single_section_content .post_content p{
-     font-size: 20px;
+     font-size: 15px;
+     text-align: justify;
+     text-justify: inter-word;
 }
  body, p, .date_post_large_display, #search_block_top #search_query_top, .tagcloud a, .format-quote a p.quote_source, .blog_large_post_style .large_post_content .jelly_read_more_wrapper a, .blog_grid_post_style .jelly_read_more_wrapper a, .blog_list_post_style .jelly_read_more_wrapper a, .pagination-more div a, .meta-category-small-builder a, .full-slider-wrapper .banner-carousel-item .banner-container .more_btn a, .single-item-slider .banner-carousel-item .banner-container .more_btn a{
      font-family:var(--font-body) !important;
@@ -294,7 +296,7 @@ div.scrolloffice a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500 !important;
   }
 
