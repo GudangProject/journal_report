@@ -5,9 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 :root{
     --main-color:#305b90;
-    --font-heading:PT Sans;
+    --font-heading:Poppins;
+    --font-navbar:sans-serif;
     --font-sub:Poppins;
-    --font-body:Amiri;
+    --font-body:Poppins;
 }
 .home_section1{
      margin-top: 30px;
@@ -104,7 +105,7 @@
 
  #mainmenu > li > a, #content_nav .menu_moble_slide > li a, .header_layout_style3_custom .navigation_wrapper > ul > li > a, .header_magazine_full_screen .navigation_wrapper .jl_main_menu > li > a{
      font-family: var(--font-heading);
-     font-size:16px;
+     font-size:15px !important;
      font-weight:700 !important;
      color: #ffffff;
      text-transform: none !important;
@@ -293,7 +294,7 @@ div.scrolloffice a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500 !important;
   }
 

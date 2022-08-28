@@ -60,7 +60,7 @@ class Post extends Model
     public function getImagesAttribute()
     {
         return [
-            'thumbnail' => '/storage/posts/thumb/' . $this->image,
+            'thumbnail' => '/storage/posts/4_3/thumb/' . $this->image,
             'medium' => '/storage/posts/mid/' . $this->image,
             'full' => '/storage/posts/big/' . $this->image,
         ];

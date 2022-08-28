@@ -1,16 +1,18 @@
 /* CSS KEMENAG DALAM ANGKA */
 .kemenag-angka{
+    font-family: Poppins;
     max-width: 100px;
 }
 .custom-tabs {
 	display: flex;
 	flex-wrap: wrap;
-    font-family: sans-serif;
+    font-family: Poppins;
 
 }
 .custom-tabs label {
 	order: 1;
 	display: block;
+    font-family: Poppins;
 	padding: 1rem;
     /* max-width: 285px; */
 	margin-right: 0.2rem;
