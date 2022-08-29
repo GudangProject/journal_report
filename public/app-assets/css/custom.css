@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
 /* CSS KEMENAG DALAM ANGKA */
 .kemenag-angka{
     font-family: Poppins;
@@ -60,4 +62,52 @@
 
 }
 
+
+/* VIDEO PROFILE HOME */
+.bg-videos{
+    height: 60px;
+    background-color: #2f5596;
+}
+.video-card{
+    margin: 10px;
+}
+.video-title{
+    background-color: #2f5596;
+    color: #fff;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 0 30px 30px 30px;
+    z-index: 9;
+    position: relative;
+    left: 30%;
+    top: 10px;
+}
+.video-card img{
+    display: block;
+    border: none;
+    border-radius: 8px;
+    width: 640px;
+    height: 400px;
+
+}
+.video-card .video-icon-play{
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.video-thumbnail{
+background-color: #333;
+opacity: 1;
+}
+
+.video-thumbnail:hover{
+    opacity: 0.8;
+}
 
