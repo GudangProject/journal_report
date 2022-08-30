@@ -14,7 +14,7 @@
 
 <x-livewire-tables::table.cell class="text-center">
     <div class="btn-group btn-group-sm" role="group" aria-label="Action">
-        {{-- <a href="{{ route('officers.edit', $row->id) }}" class="btn btn-primary" title="Edit"><i class="fas fa-pen"></i></a> --}}
+        <a href="{{ route('photos-content.edit', $row->id) }}" class="btn btn-primary" title="Edit"><i class="fas fa-pen"></i></a>
         <button wire:click.prevent="deleteModal({{ $row->id }})" class="btn btn-primary" title="Delete"><i class="fas fa-trash"></i></button>
     </div>
 </x-livewire-tables::table.cell>

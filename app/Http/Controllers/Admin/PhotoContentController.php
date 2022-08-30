@@ -86,7 +86,12 @@ class PhotoContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $row = PhotoContent::findOrFail($id);
+        return view('admin.photos.linkage.edit', [
+            'dataParent'     => Photos::findOrFail($row->photo_id),
+            'photoLinkage'   => PhotoContent::where('photo_id', $row->photo_id)->orderBy('created_at')->paginate(5),
+            'curent'         => $row
+        ]);
     }
 
     /**
@@ -98,7 +103,49 @@ class PhotoContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->image != null){
+
+            $request->validate([
+                'parent_id'=>'required',
+                'caption'=>'required',
+                'image'=>'required|image|mimes:jpeg,png,jpg,gif',
+            ]);
+
+            $image = '';
+            if($request->file('image')){
+                $data = [
+                'file'=>$request->file('image'),
+                'path'=>public_path('storage/photos/linkages/'),
+                'modul'=>'image'
+                ];
+                $upload = ImageServices::uploadImage($data);
+                if($upload['status'] == true){
+                    $image = $upload['name'];
+                }else{
+                    Alert::error('Failed', 'Gagal upload file');
+                    return back();
+                }
+            }
+        }
+
+        try{
+            $save = PhotoContent::findOrFail($id);
+            $save->caption = $request->caption;
+
+            if($request->image != null){
+                $save->image = $image;
+            }
+
+            $save->save();
+
+            Cache::flush("photo-content-$save->id");
+
+            Alert::success('success', 'Data berhasil ditambahkan');
+            return redirect()->route('photos.show', $save->photo_id)->with('message', "Photo berhasil ditambahkan");
+        }catch(Exception $error){
+            Alert::error('Error', $error->getMessage());
+            return redirect()->back()->with('message', $error->getMessage());
+        }
     }
 
     /**

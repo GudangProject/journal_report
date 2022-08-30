@@ -48,7 +48,7 @@
         @stack('style-components')
     </head>
     <body class="vertical-layout vertical-menu-modern navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
-        {{-- @include('sweetalert::alert') --}}
+        @include('sweetalert::alert')
         @include('admin.navigation.header')
         @include('admin.navigation.sidebar')
 
