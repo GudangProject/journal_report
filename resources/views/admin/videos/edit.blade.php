@@ -57,7 +57,27 @@
                                                     </span>
                                                     @if ($errors->has('slug'))<span class="text-danger">{{$errors->first('slug')}}</span>@endif
                                                 </div>
-
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">KATEGORI</h5>
+                                                    <select name="category_id" class="form-control" id="basicSelect">
+                                                        <option value="">-- Pilih Kategori --</option>
+                                                        @foreach ($categories as $item)
+                                                            @if ($item->parent_id == 0)
+                                                            <option value="{{ $item->id }}" {{ ($item->id == $data->category_id ? 'selected' : '') }}>-- {{ $item->name }} --</option>
+                                                                @foreach ($categories as $value)
+                                                                    @if ($value->parent_id == $item->id)
+                                                                    <option value="{{ $value->id }}" {{ ($value->id == $data->category_id ? 'selected' : '') }}>{{ $value->name }}</option>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->has('category_id'))
+                                                    <span class="text-danger">
+                                                        {{ $errors->first('category_id') }}
+                                                    </span>
+                                                    @endif
+                                                </div>
                                                 <div class="form-group">
                                                     <h5 class="text-primary">CONTENT</h5>
                                                     <textarea name="content" id="content" class="form-control">{{ $data->content }}</textarea>

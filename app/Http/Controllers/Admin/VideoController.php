@@ -129,8 +129,9 @@ class VideoController extends Controller
         }
 
         return view('admin.videos.edit',[
-            'data'=>Video::findOrFail($id),
-            'authors'=>$authors
+            'data'          => Video::findOrFail($id),
+            'authors'       => $authors,
+            'categories'    => VideoCategory::where('status', true)->get()
         ]);
     }
 

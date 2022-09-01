@@ -8,6 +8,10 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    <div class="badge badge-primary">{{ $row->getCategory->name }}</div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     <div class="badge  {{ ($row->published_at > date(now()) ? 'badge-light-danger' : 'badge-light-primary') }}">{{ $row->published_at->format('d, M-Y | H:i') }}</div>
 </x-livewire-tables::table.cell>
 

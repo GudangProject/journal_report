@@ -16,6 +16,11 @@ class Video extends Model
 
     protected $dates = ['published_at'];
 
+    public function getCategory()
+    {
+        return $this->belongsTo(VideoCategory::class, 'category_id');
+    }
+
     public function getAuthor($id)
     {
         $getUserPoint = Point::where('modul','video')->where('post_id',$id)->get();

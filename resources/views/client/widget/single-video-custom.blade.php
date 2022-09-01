@@ -10,8 +10,8 @@
         <div class="bg-video">
             <div class="video-card">
                 <span class="video-title"><strong>Profil Sulbar Kemenag</strong></span>
-                <a data-fancybox="video-gallery" href="https://www.youtube.com/watch?v=TboWOSW7qCI">
-                    <img src="https://img.youtube.com/vi/TboWOSW7qCI/maxresdefault.jpg" class="video-thumbnail" alt="">
+                <a data-fancybox="video-gallery" href="https://www.youtube.com/watch?v={{ $data[0]->youtube_id }}">
+                    <img src="https://img.youtube.com/vi/{{ $data[0]->youtube_id }}/maxresdefault.jpg" class="video-thumbnail" alt="">
                     <div class="video-overlay">
                         <b class="video-icon-play" title="Video">
                             <i class="fa fa-play-circle"></i>

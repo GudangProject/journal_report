@@ -42,6 +42,7 @@ class VideoTable extends DataTableComponent
     {
         return [
             Column::make('Title'),
+            Column::make('Category'),
             Column::make('Publish','published_at')->sortable(),
             Column::make('Author'),
             Column::make('Status'),
