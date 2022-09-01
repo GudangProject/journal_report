@@ -171,6 +171,98 @@ class ImageServices {
             return ['status'=>false,'namaImage'=>''];
         }
     }
+
+    public static function imageUser($dataImage){
+
+        $image = $dataImage['file'];
+        $imageExtension     = $image->getClientOriginalExtension();
+        $destinationPath    = $dataImage['path'];
+        $path_big           = $destinationPath.'big';
+        $path_mid           = $destinationPath.'mid';
+        $path_thumb         = $destinationPath.'thumb';
+        $settingSize        = $dataImage['setting'];
+        // dd($settingSize);
+        $modul              = $dataImage['modul'];
+        $imageName          = time().'.'.$image->getClientOriginalExtension();
+
+        // $watermark          = $dataImage['watermark']['status'];
+        // $txt_watermark      = $dataImage['watermark']['text'];
+        // $font_watermark     = $dataImage['watermark']['font'];
+        //echo $dataImage['watermark']['font'];
+
+        $width_1_1      = ceil($dataImage['data']['skala11']['width']);
+        $height_1_1     = ceil($dataImage['data']['skala11']['height']);
+        $x_1_1          = ceil($dataImage['data']['skala11']['x']);
+        $y_1_1          = ceil($dataImage['data']['skala11']['y']);
+
+        self::cekFolder2($destinationPath);
+
+        $img = Image::make($image->getRealPath());
+
+        try{
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_big.'/'.$imageName)->destroy();
+
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_mid.'/'.$imageName)->destroy();
+
+            $img = Image::make($image->getRealPath());
+            $img->crop($width_1_1, $height_1_1, $x_1_1, $y_1_1)->save($path_thumb.'/'.$imageName)->destroy();
+
+            Image::make($path_big.'/'.$imageName)->resize($settingSize['mid_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_big.'/'.$imageName)->destroy();
+
+            Image::make($path_mid.'/'.$imageName)->resize($settingSize['mid_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_mid.'/'.$imageName)->destroy();
+
+            Image::make($path_thumb.'/'.$imageName)->resize($settingSize['thumb_width'], null, function ($constraint) { $constraint->aspectRatio(); })->save($path_thumb.'/'.$imageName)->destroy();
+
+            /*if($watermark == 1){
+                $img_big = Image::make($pathBig.'/'.$imageName);
+                //$img_big->text('The quick brown fox jumps over the lazy dog.');
+                $img_big->text($txt_watermark, 0, 0, function($font) {
+                    //$font->file('fonts/glyphicons-halflings-regular.ttf');
+                    $font->size('40');
+                    $font->color('#ffffff');
+                    $font->align('left');
+                    $font->valign('bottom');
+                    $font->angle(45);
+                });
+                $img_big->destroy();
+
+                $img_mid = Image::make($pathMid.'/'.$imageName);
+                $img_mid->text($txt_watermark, 0, 0, function($font) {
+                    //$font->file('fonts/glyphicons-halflings-regular.ttf');
+                    $font->size('40');
+                    $font->color('#ffffff');
+                    $font->align('left');
+                    $font->valign('bottom');
+                    $font->angle(45);
+                });
+                $img_mid->destroy();
+
+                $img_thumb = Image::make($pathThumb.'/'.$imageName);
+                $img_thumb->text($txt_watermark, 0, 0, function($font) {
+                    //$font->file('fonts/glyphicons-halflings-regular.ttf');
+                    $font->size('40');
+                    $font->color('#ffffff');
+                    $font->align('left');
+                    $font->valign('bottom');
+                    $font->angle(45);
+                });
+                $img_thumb->destroy();
+            }*/
+            $img->destroy();
+
+            chmod($path_big.'/'.$imageName, 0777);
+            chmod($path_mid.'/'.$imageName, 0777);
+            chmod($path_thumb.'/'.$imageName, 0777);
+
+            self::uploadToStorage($modul,$imageName);
+            return ['status'=>true,'namaImage'=>$imageName];
+        }catch(Exception $e){
+            return ['status'=>false,'namaImage'=>''];
+        }
+    }
+
     public static function cekFolder2($parentPath){
         if(!file_exists(public_path('storage'))){
             mkdir(public_path('storage'), 0777);

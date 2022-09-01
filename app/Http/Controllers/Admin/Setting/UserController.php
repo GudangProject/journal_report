@@ -35,13 +35,47 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $password = Str::random(8);
-        $user_type = json_encode($request->user_type);
-
         $validate = $request->validate([
             'name'  => 'required',
             'email' => 'required|unique:users',
+            'image' =>'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
         ]);
+
+        $image_setting = [
+            'ori_width'=>config('app.img_size.ori_width'),
+            'ori_height'=>config('app.img_size.ori_height'),
+            'mid_width'=>config('app.img_size.mid_width'),
+            'mid_height'=>config('app.img_size.mid_height'),
+            'thumb_width'=>config('app.img_size.thumb_width'),
+            'thumb_height'=>config('app.img_size.thumb_height')
+        ];
+
+        $imageName = '';
+        if($request->file('image') != null){
+            $data = array(
+                'skala11' => array(
+                    'width'=>$request->input('1_1_width'),
+                    'height'=>$request->input('1_1_height'),
+                    'x'=>$request->input('1_1_x'),
+                    'y'=>$request->input('1_1_y')
+                )
+            );
+
+            $image_data = [
+                'file'=>$request->file('image'),
+                'setting'=>$image_setting,
+                'path'=>public_path('storage/pictures/users/'),
+                'modul'=>'user',
+                'data'=>$data
+            ];
+            $image_service = ImageServices::imageUser($image_data);
+            if($image_service['status'] == true){
+                $imageName = $image_service['namaImage'];
+            }
+        }
+
+        $password = Str::random(8);
+        $user_type = json_encode($request->user_type);
 
         if($validate){
             try{
@@ -49,7 +83,8 @@ class UserController extends Controller
                     'name'          => $request->name,
                     'slug'          => Str::slug($request->name),
                     'email'         => $request->email,
-                    'kota'         => $request->kota,
+                    'image'         => $imageName,
+                    'kota'          => $request->kota,
                     'password'      => Hash::make($password),
                     'status'        => 1,
                     'user_type'     => str_replace(array('[', ']', '"'), '', $user_type),
@@ -64,13 +99,13 @@ class UserController extends Controller
                     'password' => $password,
                 );
 
-                if($request->name != 'author'){
-                    Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
-                        $message->to($email_data['email'], $email_data['name'])
-                            ->subject('Konfirmasi Akun Sulsel Pendis')
-                            ->from(config('app.email'), config('app.name'));
-                    });
-                }
+                // if($request->name != 'author'){
+                //     Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
+                //         $message->to($email_data['email'], $email_data['name'])
+                //             ->subject('Konfirmasi Akun Sulsel Pendis')
+                //             ->from(config('app.email'), config('app.name'));
+                //     });
+                // }
 
 
                 return redirect()->route('users.index')->with('message', ucwords($request->name).' | Berhasil ditambahkan!');
@@ -107,14 +142,57 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $imageName = '';
+
+        if($request->image != null){
+            $validate = $request->validate([
+                'name'  => 'required',
+                'email' => 'required',
+                'image' =>'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
+            ]);
+
+            $image_setting = [
+                'ori_width'=>config('app.img_size.ori_width'),
+                'ori_height'=>config('app.img_size.ori_height'),
+                'mid_width'=>config('app.img_size.mid_width'),
+                'mid_height'=>config('app.img_size.mid_height'),
+                'thumb_width'=>config('app.img_size.thumb_width'),
+                'thumb_height'=>config('app.img_size.thumb_height')
+            ];
+
+            if($request->file('image') != null){
+                $data = array(
+                    'skala11' => array(
+                        'width'=>$request->input('1_1_width'),
+                        'height'=>$request->input('1_1_height'),
+                        'x'=>$request->input('1_1_x'),
+                        'y'=>$request->input('1_1_y')
+                    )
+                );
+
+                $image_data = [
+                    'file'=>$request->file('image'),
+                    'setting'=>$image_setting,
+                    'path'=>public_path('storage/pictures/users/'),
+                    'modul'=>'user',
+                    'data'=>$data
+                ];
+                $image_service = ImageServices::imageUser($image_data);
+                if($image_service['status'] == true){
+                    $imageName = $image_service['namaImage'];
+                }
+            }
+        }
+
         $user_type = json_encode($request->user_type);
         try{
             $user   = User::findOrFail($id);
             $update = User::where('id', $id)->update([
                 'name'          => $request->name,
                 'slug'          => Str::slug($request->name),
+                'image'         => $imageName ? $imageName : $user->image,
                 'email'         => $request->email,
-                'kota'         => $request->kota,
+                'kota'          => $request->kota,
                 'user_type'     => $user_type ? str_replace(array('[', ']', '"'), '', $user_type) : '',
                 'updated_by'    => auth()->user()->id,
             ]);

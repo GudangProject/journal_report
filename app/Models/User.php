@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
-
+    protected $appends = ['imagePath'];
     protected $dates = ['created_at'];
 
     /**
@@ -50,5 +50,9 @@ class User extends Authenticatable
         return User::where('user_type', 'LIKE', '%k%')->get();
     }
 
+    public function getImagePathAttribute()
+    {
+        return '/storage/pictures/users/thumb/' . $this->image;
+    }
 
 }
