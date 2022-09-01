@@ -94,18 +94,18 @@ class UserController extends Controller
                 $user->assignRole($request->roles);
 
                 $email_data = array(
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => $password,
+                    'name'      => $request->name,
+                    'email'     => $request->email,
+                    'password'  => $password,
                 );
 
-                // if($request->name != 'author'){
-                //     Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
-                //         $message->to($email_data['email'], $email_data['name'])
-                //             ->subject('Konfirmasi Akun Sulsel Pendis')
-                //             ->from(config('app.email'), config('app.name'));
-                //     });
-                // }
+                if($request->name != 'author'){
+                    Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
+                        $message->to($email_data['email'], $email_data['name'])
+                            ->subject('Konfirmasi Akun Sulbar Kemenag')
+                            ->from(config('app.email'), config('app.name'));
+                    });
+                }
 
 
                 return redirect()->route('users.index')->with('message', ucwords($request->name).' | Berhasil ditambahkan!');
