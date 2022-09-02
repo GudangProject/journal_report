@@ -14,6 +14,7 @@ class OfficeTable extends DataTableComponent
     public string $defaultSortDirection = 'desc';
 
     public $selected_id;
+    public $name, $title, $content, $image;
 
     public function showModalDetail($id)
     {
