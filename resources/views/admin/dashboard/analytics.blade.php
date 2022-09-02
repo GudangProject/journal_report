@@ -14,7 +14,9 @@
                                             <h4 class="card-title mb-50 mb-sm-0">Top Post</h4>
                                         </div>
                                         <div>
-                                            {!! $chartPost->container() !!}
+                                            @if (!empty($chartPost))
+                                                {!! $chartPost->container() !!}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -28,7 +30,9 @@
                                             <h4 class="card-title mb-50 mb-sm-0">Top Point</h4>
                                         </div>
                                         <div>
-                                            {!! $chart->container() !!}
+                                            @if (!empty($chart))
+                                                {!! $chart->container() !!}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -39,10 +43,12 @@
             </div>
         </div>
     </div>
-    <script src="{{ $chart->cdn() }}"></script>
+    <script src="{{ $chart ? $chart->cdn() : null }}"></script>
 
-    {{ $chart->script() }}
-    {{ $chartPost->script() }}
+    @if (!empty($chart) && !empty($chartPost))
+        {{ $chart->script() }}
+        {{ $chartPost->script() }}
+    @endif
     @push('scripts')
 
     @endpush

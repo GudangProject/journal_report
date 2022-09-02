@@ -35,11 +35,16 @@ class MonthlyUsersChart
         $title  = DashboardController::Posts(10)['title'];
         $views  = DashboardController::Posts(10)['views'];
 
-        return $this->chart->horizontalBarChart()
-            ->addData('Views', json_decode($views))
-            ->setXAxis(json_decode($title))
-            ->setColors(['#303F9F'])
-            ->setMarkers(['#FF5722', '#E040FB'], 7, 10);
+        if(!empty($title) && !empty($views)){
+            return $this->chart->horizontalBarChart()
+                ->addData('Views', json_decode($views))
+                ->setXAxis(json_decode($title))
+                ->setColors(['#303F9F'])
+                ->setMarkers(['#FF5722', '#E040FB'], 7, 10);
+
+        }else{
+            return [];
+        }
 
 
     }

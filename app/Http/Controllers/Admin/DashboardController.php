@@ -115,9 +115,15 @@ class DashboardController extends Controller
 
     public static function Posts($limit){
         $rows = Post::where('status', 1)
-                // ->where('created_at', '>', Carbon::now()->subDays(30))
+                ->where('published_at', '>', Carbon::now()->subDays(30))
                 ->orderBy('counter', 'DESC')
                 ->paginate($limit);
+
+        $data = array();
+        // $title = array();
+        // $views = array();
+        $title_json = array();
+        $views_json = array();
 
         if($rows->count() > 0){
             foreach ($rows as $k => $v) {
@@ -126,16 +132,17 @@ class DashboardController extends Controller
                 $data['data'][$k]['counter'] = $v->counter;
             }
 
-            for($i=0; $i < $limit; $i++){
-                $title[$i] = $data['data'][$i]['title'];
-                $views[$i] = $data['data'][$i]['counter'];
+            for($i=0; $i < $rows->count(); $i++){
+                if($rows->count() < $limit){
+                    $title[$i] = $data['data'][$i]['title'];
+                    $views[$i] = $data['data'][$i]['counter'];
+                }
             }
 
             $title_json    = json_encode($title);
             $views_json    = json_encode($views);
 
         }
-
         // dd($title_json);
         return [
             'data' => $data,
