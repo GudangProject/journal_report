@@ -15,6 +15,7 @@ class Officers extends DataTableComponent
     public string $defaultSortDirection = 'asc';
 
     public $selected_id;
+    public $name, $content, $image;
 
     public function showModalDetail($id)
     {
