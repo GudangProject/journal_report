@@ -70,49 +70,56 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($data['data'] as $k=>$v)
-                                    <tr>
-                                        <td>
-                                            {{ $k+1 }}
-                                        </td>
-                                        <td>
-                                            <span class="font-weight-bold">{!! $v['name'] !!}</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="badge badge-primary">
-                                                <span>{{ $v['total_post'] }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="badge badge-primary">
-                                                <span>{{ $v['total_view']}}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="badge badge-primary">
-                                                <span>{{ $v['total_point']}}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="content-header-right">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a type="button" class="dropdown-item" href="#">
-                                                            <i class="mr-1 fas fa-desktop"></i>
-                                                            <span class="align-middle">Detail</span>
-                                                        </a>
-                                                        <a class="dropdown-item" target="_blank" href="#">
-                                                            <i class="mr-1 fas fa-eye"></i>
-                                                            <span class="align-middle">Web</span>
-                                                        </a>
+                                    @if (isset($data['data']))
+
+                                        @foreach ($data['data'] as $k=>$v)
+                                        <tr>
+                                            <td>
+                                                {{ $k+1 }}
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-bold">{!! $v['name'] !!}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-primary">
+                                                    <span>{{ $v['total_post'] }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-primary">
+                                                    <span>{{ $v['total_view']}}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-primary">
+                                                    <span>{{ $v['total_point']}}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="content-header-right">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a type="button" class="dropdown-item" href="#">
+                                                                <i class="mr-1 fas fa-desktop"></i>
+                                                                <span class="align-middle">Detail</span>
+                                                            </a>
+                                                            <a class="dropdown-item" target="_blank" href="#">
+                                                                <i class="mr-1 fas fa-eye"></i>
+                                                                <span class="align-middle">Web</span>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    @else
+                                    <tr>
+                                        <td colspan="6"> Data Point tidak ditemukan !</td>
                                     </tr>
-                                    @endforeach
-                                    </tbody>
+                                    @endif
                                 </table>
                             </div>
                         </div>

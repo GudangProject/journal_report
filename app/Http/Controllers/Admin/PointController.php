@@ -34,7 +34,7 @@ class PointController extends Controller
                         ->orderBy('totalPoint', 'desc')
                         ->get();
 
-
+        // dd($points);
 
         foreach ($points as $k => $v) {
             $row_view = Point::whereMonth('created_at',$month)
@@ -59,7 +59,7 @@ class PointController extends Controller
             'month' => $month,
             'year' => $year,
         ];
-
+        // dd($data);
         return view('admin.points.index', [
             'data' => $data,
         ]);
