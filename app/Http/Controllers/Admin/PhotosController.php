@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PhotoContent;
 use App\Models\Photos;
+use App\Models\Point;
+use App\Models\PointSetting;
+use App\Models\User;
 use App\Services\ImageServices;
 use Exception;
 use Illuminate\Http\Request;
@@ -21,17 +24,41 @@ class PhotosController extends Controller
 
     public function create()
     {
-        return view('admin.photos.create');
+        $user = auth()->user();
+
+        foreach(config('app.user_type') as $k=>$v){
+            $row_author = User::where('status', 1)->orderBy('name','asc')->get();
+
+            $authors[$k]['name'] = $v;
+            if(count($row_author) > 0){
+                foreach($row_author as $a=>$b){
+                    $user_type = explode(',', $b->user_type);
+                    if(in_array($k, $user_type)){
+                        $authors[$k]['data'][$a]['id'] = $b->id;
+                        $authors[$k]['data'][$a]['name'] = $b->name;
+                        $authors[$k]['data'][$a]['type'] = $b->user_type;
+                    }
+                }
+            }
+        }
+
+        return view('admin.photos.create', [
+            'authors'=>$authors
+        ]);
     }
 
     public function store(Request $request)
     {
+        // dd($request);
+        $image = '';
+        $author = array_filter($request->author);
+
         $request->validate([
             'caption'=>'required',
             'image'=>'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        $image = '';
+
         if($request->file('image')){
             $data = [
             'file'=>$request->file('image'),
@@ -62,6 +89,23 @@ class PhotosController extends Controller
 
             $save->save();
 
+            foreach($author as $k=>$v){
+                $point = PointSetting::where('modul','photo')
+                        ->where('user_type', $k)
+                        ->first();
+
+                if($point){
+                    $save_point = new Point();
+                    $save_point->modul = 'photo';
+                    $save_point->user_type = $k;
+                    $save_point->user_id = $v;
+                    $save_point->category_id = 0;
+                    $save_point->post_id = $save->id;
+                    $save_point->point = $point->point;
+                    $save_point->save();
+                }
+            }
+
             Cache::flush("photos");
 
             return redirect()->route('photos.index')->with('message', "$save->title berhasil ditambahkan");
@@ -82,14 +126,37 @@ class PhotosController extends Controller
     public function edit($id)
     {
         // dd(Photos::findOrFail($id));
+        foreach(config('app.user_type') as $k=>$v){
+            $row_author = User::where('status', 1)->orderBy('name','asc')->get();
+
+            $authors[$k]['name'] = $v;
+            if(count($row_author) > 0){
+                foreach($row_author as $a=>$b){
+                    $user_type = explode(',', $b->user_type);
+                    if(in_array($k, $user_type)){
+                        $authors[$k]['data'][$a]['id'] = $b->id;
+                        $authors[$k]['data'][$a]['name'] = $b->name;
+                        $authors[$k]['data'][$a]['type'] = $b->user_type;
+                    }
+                }
+                $user_point = Point::where('modul', 'photo')->where('user_type', $k)->where('post_id', $id)->first();
+                if($user_point){
+                    $authors[$k]['id'] = $user_point->user_id;
+                }else {
+                    $authors[$k]['id'] = '';
+                }
+            }
+        }
         return view('admin.photos.edit', [
             'data' => Photos::findOrFail($id),
+            'authors' => $authors
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        // dd($request);
+        $author = array_filter($request->author);
+
         $request->validate([
             'image'=>'image|mimes:jpeg,png,jpg,gif',
         ]);
@@ -125,6 +192,29 @@ class PhotosController extends Controller
             }
 
             $save->save();
+
+            $points = Point::where('modul', 'photo')->where('post_id', $id)->count();
+            if($points > 0){
+                Point::where('modul', 'photo')->where('post_id', $id)->delete();
+            }
+
+            foreach($author as $k=>$v){
+                $point = PointSetting::where('modul','photo')
+                        ->where('user_type', $k)
+                        ->first();
+
+                if($point){
+                    $save_point = new Point();
+                    $save_point->modul = 'photo';
+                    $save_point->user_type = $k;
+                    $save_point->user_id = $v;
+                    $save_point->category_id = 0;
+                    $save_point->post_id = $id;
+                    $save_point->point = $point->point;
+                    $save_point->save();
+                }
+            }
+
 
             Cache::flush("images-$request->slug");
 

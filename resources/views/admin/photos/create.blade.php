@@ -84,6 +84,23 @@
                                                     <textarea name="caption" class="form-control">{{ old('caption') }}</textarea>
                                                     @if ($errors->has('caption'))<span class="text-danger">{{$errors->first('caption')}}</span>@endif
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">AUTHOR</h5>
+                                                    @foreach($authors as $k=>$v)
+                                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                                            <label for="{{$k}}">{{$v['name']}}</label>
+                                                            <select name="author[{{$k}}]" class="form-control form-control-sm" style="width: 65%" @if($k == 'e') @endif>
+                                                                <option value="">Pilih {{$v['name']}}</option>
+                                                                @foreach($v['data'] as $a=>$b)
+                                                                    <option op="{{$k}}" value="{{$b['id']}}" {{ ($b['id'] == auth()->user()->id ? 'selected' : '') }}
+                                                                    >{{$b['name']}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
                                                 <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
                                                     <button type="reset" class="btn btn-outline-secondary">Reset</button>
