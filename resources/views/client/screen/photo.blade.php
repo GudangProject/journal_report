@@ -40,6 +40,32 @@
                                     <h1 class="single_post_title_main">{{$data['parent']->title}}</h1>
                                     <span class="jl_post_meta">
                                         <div class="row align-items-center">
+                                            <div class="col-md-8 col-6">
+                                                <ul class="entry__meta" style="padding: 0px;">
+                                                    @if ($data['parent']->getAuthor($data['parent']->id))
+                                                        @foreach($data['parent']->getAuthor($data['parent']->id) as $a=>$b)
+                                                            @if($b['code'] === 'f')
+                                                            <li class="author-avatar penulis-info">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <img class="pic alignnone photo" alt="" src="{{$b['image'] ?? $b['avatar']}}" style="max-width: 30px">
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <a href="{{$b['url']}}">
+                                                                            <span class="entry-author__name">{!!$b['name']!!}
+                                                                                <i class="fa fa-check-circle" style="color:#305b90;"></i>
+                                                                            </span>
+                                                                        </a>
+                                                                        <br>
+                                                                        <span style="font-size: 12px">{{ $b['type'] }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </ul>
+                                            </div>
                                             <div class="col-md-4 col-6">
                                                 <span style="color:#305b90;font-style:italic;">{{\Carbon\Carbon::parse($data['parent']->created_at)->isoFormat('dddd, d MMMM Y');}} {{\Carbon\Carbon::parse($data['parent']->created_at)->format('H:i');}} WIB</span>
                                             </div>
@@ -62,7 +88,7 @@
                                                                     <i class="jli-gallery"></i>
                                                                 </span>
                                                                 <div class="text-box">
-                                                                    <span class="jl_f_cat"><a class="post-category-color-text" style="background: #305b90;" href="#">Foto 1</a></span>
+                                                                    <span class="jl_f_cat"><a class="post-category-color-text" style="background: #305b90;" href="#">Foto</a></span>
                                                                     <h3>
                                                                         <a data-fancybox="gallery-a" data-fancybox data-type="image" data-caption="{{ $data['parent']->caption }}" href="#">{{ $data['parent']->caption }}</a>
                                                                     </h3>
@@ -129,7 +155,28 @@
                                     <div class="single_post_entry_content single_bellow_left_align jl_top_single_title jl_top_title_feature">
                                         <span class="jl_post_meta">
                                             <ul class="entry__meta" style="padding: 0px;">
-
+                                                @if ($data['parent']->getAuthor($data['parent']->id))
+                                                @foreach($data['parent']->getAuthor($data['parent']->id) as $a=>$b)
+                                                    @if($b['code'] != 'f')
+                                                    <li class="author-avatar penulis-info">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="pic alignnone photo" alt="" src="{{$b['avatar']}}" style="max-width: 30px">
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <a href="{{$b['url']}}" style="text-decoration: none !important;">
+                                                                    <span class="entry-author__name">{!!$b['name']!!}
+                                                                        <i class="fa fa-check-circle" style="color:#305b90;"></i>
+                                                                    </span>
+                                                                </a>
+                                                                <br>
+                                                                <span style="font-size: 12px">{{ $b['type'] }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    @endif
+                                                @endforeach
+                                                @endif
                                             </ul>
                                         </span>
                                     </div>
@@ -145,9 +192,11 @@
             <div class="col-md-4 col-sm-12 sidebar">
                 @include('client.widget.list-icon', ['title'=>'TERPOPULER','data'=>$popular, 'limit'=>4])
                 {{-- @include('client.widget.list', ['title'=>'INFORMASI PENTING','data'=>$files, 'limit'=>4]) --}}
-                {{-- @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4]) --}}
+                @include('client.widget.slide-small', ['title'=>'INFOGRAFIS', 'data'=>$infografis, 'limit'=>4])
                 <hr>
-                {{-- @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4]) --}}
+
+                @include('client.widget.list', ['title'=>'INFO KEPEGAWAIAN', 'data'=> $data_kepegawaian, 'category_id' => 3, 'limit'=>2])
+                @include('client.widget.embed', ['title'=> "FANPAGE"])
             </div>
         </div>
         {{-- @include('client.widget.list-image-rows', ['data'=> $posts, 'limit'=>8, 'title'=>$data['parent']->getCategory->name.' LAINNYA']) --}}

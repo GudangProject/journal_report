@@ -194,7 +194,6 @@ class ScreensController extends Controller
     }
 
     public function photos(DataController $data){
-        // dd($data->photos());
         return view('client.screens.photos',[
             'banner_header' =>$data->images(1),
             'banner_home'   =>$data->images(2),

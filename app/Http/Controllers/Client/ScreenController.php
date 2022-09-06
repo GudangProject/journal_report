@@ -125,6 +125,7 @@ class ScreenController extends Controller
 
     public function photo($slug, DataController $data)
     {
+        // dd($data->photoDetail($slug));
         return view('client.screen.photo',[
             'meta'          => $data->video($slug),
             'banner_header' => $data->images(1),

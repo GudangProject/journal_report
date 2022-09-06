@@ -51,7 +51,7 @@ class DataController extends Controller
     public static function popular()
     {
         $data = Cache::remember('popular', 60 * 60 * 12, function(){
-            $row = Post::where('status', 1)->where('published_at','>=', today()->subDays(10))->orderBy('counter', 'DESC')->paginate(10);
+            $row = Post::where('status', 1)->where('published_at','>=', today()->subDays(30))->orderBy('counter', 'DESC')->paginate(10);
             return $row;
         });
         return $data;
@@ -290,6 +290,7 @@ class DataController extends Controller
         $data = Cache::rememberForever("photos-$slug", function () use($slug) {
             $row['parent']      = Photos::where('status', 1)->where('slug', $slug)->first();
             $row['data_photo']  = PhotoContent::where('photo_id', $row['parent']->id)->get();
+            $row['author']      = Point::where('modul', 'photo')->where('post_id', $row['parent']->id)->get();
             return $row;
         });
         return $data;

@@ -95,20 +95,22 @@
                                     @break
                                 @endif
                             @endforeach
-                            <li class="menu-item current-menu-item current_page_item">
-                                <a href="#">Lainnya<span> <i class="fas fa-chevron-down"></i></span></a>
-                                <ul class="sub-menu">
-                                @foreach ($menu_office as $value)
-                                    @if($loop->index < 11)
-                                        @continue
-                                    @endif
-                                    <li class="menu-item">
-                                        <a href="{{ $value->url }}">{{ $value->title }}<span class="border-menu"></span></a>
-                                   </li>
+                            @if ($menu_office->count() > 10)
+                                <li class="menu-item current-menu-item current_page_item">
+                                    <a href="#">Lainnya<span> <i class="fas fa-chevron-down"></i></span></a>
+                                    <ul class="sub-menu">
+                                    @foreach ($menu_office as $value)
+                                        @if($loop->index < 11)
+                                            @continue
+                                        @endif
+                                        <li class="menu-item">
+                                            <a href="{{ $value->url }}">{{ $value->title }}<span class="border-menu"></span></a>
+                                    </li>
 
-                                @endforeach
-                                </ul>
-                            </li>
+                                    @endforeach
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
