@@ -54,8 +54,9 @@ class PhotosController extends Controller
         $author = array_filter($request->author);
 
         $request->validate([
-            'caption'=>'required',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif',
+            'status'    => 'required',
+            'caption'   => 'required',
+            'image'     => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
 
@@ -80,7 +81,7 @@ class PhotosController extends Controller
             $save->slug = $request->slug;
             $save->caption = $request->caption;
             $save->content = $request->content;
-            $save->status = 1;
+            $save->status = $request->status;
             $save->created_by = auth()->user()->id;
 
             if($image){
@@ -186,6 +187,7 @@ class PhotosController extends Controller
             $save->caption = $request->caption;
             $save->content = $request->content;
             $save->updated_by = auth()->user()->id;
+            $save->status = $request->status;
 
             if($request->image != null){
                 $save->image = $image;

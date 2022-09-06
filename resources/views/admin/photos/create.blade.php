@@ -102,6 +102,21 @@
                                                 </div>
 
                                                 <div class="form-group border rounded p-1">
+                                                    <h5 class="text-primary">STATUS</h5>
+                                                    <div class="d-flex flex-row">
+                                                        <div class="custom-control custom-radio">
+                                                            <input name="status" type="radio" id="customRadio4" class="custom-control-input" value="1" checked/>
+                                                            <label class="custom-control-label" for="customRadio4">Terbit</label>
+                                                        </div>
+                                                        <div class="custom-control custom-control-danger custom-radio ml-2">
+                                                            <input name="status" type="radio" id="customRadio5" class="custom-control-input" value="2"/>
+                                                            <label class="custom-control-label" for="customRadio5">Tidak</label>
+                                                        </div>
+                                                    </div>
+                                                    @if ($errors->has('status'))<span class="text-danger">{{$errors->first('status')}}</span>@endif
+                                                </div>
+
+                                                <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
                                                     <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                                 </div>
