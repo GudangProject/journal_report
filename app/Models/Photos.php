@@ -19,7 +19,7 @@ class Photos extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function getEdit()
+    public function editBy()
     {
         return $this->belongsTo(User::class, 'updated_by');
     }

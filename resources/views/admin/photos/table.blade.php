@@ -30,11 +30,20 @@
 
 <x-livewire-tables::table.cell>
     <div class="avatar-group text-center">
+        @foreach ($row->getAuthor($row->id) as $item)
+            <a href="#">
+                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="{!! $item['type'].': '.$item['name'] !!}">
+                    <img src="{{ $item['avatar'] }}" alt="Avatar" height="32" width="32" />
+                </div>
+            </a>
+        @endforeach
+        @if($row->editBy->id)
         <a href="#">
-            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="{!! 'Ditambahkan: '.$row->getAdd->name !!}">
-                <img src="{{ $row->getAvatar($row->getAdd->name) }}" alt="Avatar" height="32" width="32" />
+            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="{!! 'Terakhir Edit: '.$row->editBy->name !!}">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode($row->editBy->name) }}&color=c3352b&background=f2bab6" alt="Avatar" height="32" width="32" />
             </div>
         </a>
+        @endif
     </div>
 </x-livewire-tables::table.cell>
 
