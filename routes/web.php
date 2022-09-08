@@ -128,6 +128,7 @@ Route::get('arsip', [ScreensController::class, 'archives']);
 Route::get('infografis', [ScreensController::class, 'infografis']);
 Route::get('infografis/{slug}', [ScreenController::class, 'infografis']);
 Route::get('podcasts', [ScreensController::class, 'podcasts']);
+Route::get('video', [ScreensController::class, 'videos']);
 Route::get('video/{slug}', [ScreenController::class, 'video']);
 Route::get('videos/{category?}', [ScreensController::class, 'videos']);
 Route::get('pages/{category}', [ScreensController::class, 'pages']);

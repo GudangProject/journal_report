@@ -91,16 +91,17 @@ class ScreensController extends Controller
     {
         return view('client.screens.videos', [
             'banner_header' =>$data->images(1),
-            'banner_home' =>$data->images(2),
+            'banner_home'   =>$data->images(2),
             'banner_footer' =>$data->images(3),
             'menu'          => $data->menu(),
             'menu_office'   => $data->offices(),
-            'popular'      => $data->popular(),
+            'popular'       => $data->popular(),
             'infografis'    => $data->images(4),
             'video'         => $data->videos(),
             'files'         => $data->files(1),
             'data'          => $data->videos($category, $request->page),
             'title'         => Str::upper($category),
+            'data_kepegawaian' => $data->files(3),
         ]);
     }
 

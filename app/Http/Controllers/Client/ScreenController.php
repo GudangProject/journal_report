@@ -101,7 +101,8 @@ class ScreenController extends Controller
             'files'         => $data->files(1),
             'infografis'    => $data->images(4),
             'video'         => $data->videos(),
-            'popular'       => $data->popular()
+            'popular'       => $data->popular(),
+            'data_kepegawaian' => $data->files(3),
         ]);
     }
 

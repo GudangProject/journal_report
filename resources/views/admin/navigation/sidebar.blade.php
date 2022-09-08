@@ -57,12 +57,12 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item {{ (request()->segment(2) == 'images' ? 'active' : '') }}">
+            <li class="nav-item {{ (request()->segment(2) == 'images' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('images.index') }}">
-                    <i data-feather="image"></i>
-                    <span class="menu-title text-truncate" data-i18n="Image">Image</span>
+                    <i data-feather="layout"></i>
+                    <span class="menu-title text-truncate" data-i18n="Image">Banner & Infografis</span>
                 </a>
-            </li> --}}
+            </li>
 
             <li class="nav-item {{ (request()->segment(2) == 'photos' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('photos.index') }}">

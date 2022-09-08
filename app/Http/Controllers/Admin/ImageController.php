@@ -62,7 +62,7 @@ class ImageController extends Controller
 
             $save->save();
 
-            Cache::flush("offices");
+            Cache::flush("images");
 
             return redirect()->route('images.index')->with('message', "$save->title berhasil ditambahkan");
         }catch(Exception $error){
@@ -114,7 +114,7 @@ class ImageController extends Controller
 
             $save->save();
 
-            Cache::flush("images-$data->slug");
+            Cache::flush("images-$save->slug");
 
             return redirect()->route('images.index')->with('message', "$save->title berhasil diupdate");
         }catch(Exception $error){
