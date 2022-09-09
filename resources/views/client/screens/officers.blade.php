@@ -20,7 +20,11 @@
 
                                     {!! $item->position !!}
                                     <div>
-                                        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal{{ $item->id }}">BIOGGRAFI</button>
+                                        <button class="btn btn-primary btn-block" data-fancybox="dialog" data-src="#dialog-content{{ $item->id }}">BIOGGRAFI</button>
+                                        <div id="dialog-content{{ $item->id }}" style="display:none;">
+                                            <img src="{{ $item->image }}" alt="{{ $item->name }}" class="rounded" style="width:150px;height:150px;">
+                                            {!! $item->description !!}
+                                        </div>
                                         <div class="modal fade" style="z-index: 9999;" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                               <div class="modal-content">
@@ -60,6 +64,11 @@
     </div>
 </section>
 @section('scripts')
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
             jQuery('.content, .sidebar').theiaStickySidebar({
