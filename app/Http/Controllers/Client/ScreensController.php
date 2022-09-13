@@ -24,19 +24,35 @@ class ScreensController extends Controller
         ]);
     }
 
+    // public function services(DataController $data)
+    // {
+    //     return view('client.screens.services', [
+    //         'banner_header' =>$data->images(1),
+    //         'banner_home' =>$data->images(2),
+    //         'banner_footer' =>$data->images(3),
+    //         'menu'      => $data->menu(),
+    //         'menu_office' => $data->offices(),
+    //         'popular'      => $data->popular(),
+    //         'infografis'    => $data->images(4),
+    //         'video'         => $data->videos(),
+    //         'files'         => $data->files(1),
+    //         'data'=>$data->services('layanan-wilayah'),
+    //     ]);
+    // }
+
     public function services(DataController $data)
     {
         return view('client.screens.services', [
-            'banner_header' =>$data->images(1),
-            'banner_home' =>$data->images(2),
-            'banner_footer' =>$data->images(3),
-            'menu'      => $data->menu(),
-            'menu_office' => $data->offices(),
-            'popular'      => $data->popular(),
+            'banner_header' => $data->images(1),
+            'banner_home'   => $data->images(2),
+            'banner_footer' => $data->images(3),
+            'menu'          => $data->menu(),
+            'menu_office'   => $data->offices(),
+            'popular'       => $data->popular(),
             'infografis'    => $data->images(4),
             'video'         => $data->videos(),
             'files'         => $data->files(1),
-            'data'=>$data->services('layanan-wilayah'),
+            'data'          => $data->services(),
         ]);
     }
 

@@ -44,7 +44,7 @@
      background: var(--main-color) !important;
 }
  .content_single_page a:hover, a:hover, #nextpost:hover, #prepost:hover, .blog_large_post_style .large_post_content a:hover, .loop-large-post .post_content a:hover, .loop-large-post .post_content a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .post-meta a:hover, .large_post_share_icons li a:hover, .post_large_footer_meta .post_tag_footer a:hover, .post_large_footer_meta .post_comment_footer a:hover, .post_large_footer_meta .post_love_footer a:hover, .comment-meta .comment-author-date:hover, .comment-meta .comment-author-date:hover time, .post-meta-bot .love_post_view a:hover, .post-meta-bot .meta-comment a:hover, .meta_category_text_small a, .logged-in-as a:hover, .single-post-meta-wrapper span a:hover, .header_layout_style5_custom .jl_random_post_link:hover, .header_layout_style5_custom #mainmenu > li > a:hover, .home_slider_post_tab_nav .slick-list .item.slick-current h5, .builder_cat_title_list_style li.current_cat_post, li.woocommerce-mini-cart-item a:not(.remove):hover{
-     color: var(--main-color) !important;
+     /* color: var(--main-color) !important; */
 }
  .breadcrumbs_options a{
      color: #000 !important;
@@ -132,7 +132,7 @@
  .content_single_page p, .single_section_content .post_content, .single_section_content .post_content p{
      font-size: 15px;
      text-align: justify;
-     text-justify: inter-word;
+     text-justify: inter-word;a
 }
  body, p, .date_post_large_display, #search_block_top #search_query_top, .tagcloud a, .format-quote a p.quote_source, .blog_large_post_style .large_post_content .jelly_read_more_wrapper a, .blog_grid_post_style .jelly_read_more_wrapper a, .blog_list_post_style .jelly_read_more_wrapper a, .pagination-more div a, .meta-category-small-builder a, .full-slider-wrapper .banner-carousel-item .banner-container .more_btn a, .single-item-slider .banner-carousel-item .banner-container .more_btn a{
      font-family:var(--font-body) !important;
@@ -206,7 +206,7 @@ div.scrollmenu a {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
-    font-family: "PT Sans", "Open Sans", Serif;
+    font-family: "Poppins", "Open Sans", Serif;
 }
 div.scrollmenu a:hover {
     background-color: #1d4169;
@@ -301,13 +301,13 @@ div.scrolloffice a {
   }
 
   span{
-      font-family: 'PT Sans';
+      font-family: 'Poppins';
       line-height: normal;
   }
 
   .font-small span{
       font-size: 14px;
-      font-family: 'PT Sans';
+      font-family: 'Poppins';
   }
 
   .post_content p{

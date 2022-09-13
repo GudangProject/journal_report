@@ -18,7 +18,10 @@ use App\Models\Photos;
 use App\Models\Point;
 use App\Models\Post;
 use App\Models\PostCategory;
-use App\Models\Service;
+use App\Models\Service\Service;
+use App\Models\Service\Service as ServiceService;
+use App\Models\Service\ServiceDetail;
+use App\Models\Service\ServiceRequest;
 use App\Models\ServiceCategory;
 use App\Models\Video;
 use App\Models\VideoCategory;
@@ -175,14 +178,23 @@ class DataController extends Controller
         }
     }
 
-    public static function services($category)
+    // public static function services($category)
+    // {
+    //     $category_id = ServiceCategory ::where('slug', $category)->first()->id;
+    //     $data = Cache::rememberForever("services-$category_id", function() use($category_id){
+    //         $row = Service::where('status', 1)->where('category_id', $category_id)->get();
+    //         return $row;
+    //     });
+    //     return $data;
+    // }
+
+    public static function services()
     {
-        $category_id = ServiceCategory ::where('slug', $category)->first()->id;
-        $data = Cache::rememberForever("services-$category_id", function() use($category_id){
-            $row = Service::where('status', 1)->where('category_id', $category_id)->get();
-            return $row;
-        });
-        return $data;
+        $rows = ServiceDetail::selectRaw('count(id_detail_layanan) as total_layanan, layanan_id')
+                ->groupBy('layanan_id')
+                ->get();
+
+        return $rows;
     }
 
     public static function file($slug)
