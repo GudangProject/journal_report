@@ -34,7 +34,7 @@
                                         <h5 class="modal-title" id="exampleModalLabel">Ajukan Permohonan Pelayanan</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            {{-- <form> --}}
                                                 <input hidden wire:model.defer='service_id' type="number" class="wpcf7-form-control-wrap">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Nomor Permohonan</label>
@@ -42,7 +42,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Layanan </label>
-                                                    <select wire:model='service_list' class="wpcf7-form-control-wrap">
+                                                    <select wire:model='service_list' class="wpcf7-form-control-wrap" style="padding: 8px 8px 8px 15px;">
                                                         <option value="" disabled selected>Pilih Layanan</option>
                                                         @foreach ($data as $service)
                                                             <option value="{{ $service->id_detail_layanan }}">{{ $service->nama_detail_layanan }}</option>
@@ -52,45 +52,44 @@
                                                 @if ($service_list != null)
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Persyaratan</label>
-                                                        <textarea class="u-full-width" rows="5" readonly>{{ $requirements }}</textarea>
+                                                        <textarea class="u-full-width" rows=10" readonly>{{ $requirements }}</textarea>
                                                     </div>
                                                 @endif
 
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email</label>
-                                                    <input type="email" placeholder="Email" class="wpcf7-form-control-wrap">
+                                                    <input type="email" wire:model='email' placeholder="Email" class="wpcf7-form-control-wrap">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Nama/Instansi</label>
-                                                    <input type="text" placeholder="Nama Permohonan/Nama Instansi" class="wpcf7-form-control-wrap">
+                                                    <input type="text" wire:model='name' placeholder="Nama Permohonan/Nama Instansi" class="wpcf7-form-control-wrap">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Telepon</label>
-                                                    <input type="number" placeholder="Diawali dengan +62" class="wpcf7-form-control-wrap">
+                                                    <input type="number" wire:model='phone' placeholder="Diawali dengan +62" class="wpcf7-form-control-wrap">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Alamat</label>
-                                                    <textarea class="u-full-width" placeholder="Alamat" rows="3"></textarea>
+                                                    <textarea class="u-full-width" wire:model='address' placeholder="Alamat" rows="3"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">File Persyaratan <i>(.pdf, .zip, .rar) Maks 9MB</i></label>
-                                                    <input type="file" class="wpcf7-form-control-wrap">
+                                                    <input type="file" wire:model='document' class="wpcf7-form-control-wrap">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Catatan</label>
-                                                    <textarea class="wpcf7-form-control-wrap" rows="3"></textarea>
-
+                                                    <textarea class="u-full-width" wire:model='note' placeholder="Catatan" rows="3"></textarea>
                                                 </div>
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="button">Ajukan</button>
+                                                <button type="submit" wire:click='saveServiceRequest()' class="button">Ajukan</button>
                                             </div>
-                                        </form>
+                                        {{-- </form> --}}
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +117,7 @@
             });
 
             window.addEventListener('closeModalServiceRequest', event => {
-                $("#status-modal").modal('show');
+                $("#service-modal").modal('hide');
             });
 
         </script>
