@@ -48,6 +48,7 @@
                                                             <option value="{{ $service->id_detail_layanan }}">{{ $service->nama_detail_layanan }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('service_list') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 @if ($service_list != null)
                                                     <div class="form-group">
@@ -59,30 +60,32 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email</label>
                                                     <input type="email" wire:model='email' placeholder="Email" class="wpcf7-form-control-wrap">
-
+                                                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Nama/Instansi</label>
                                                     <input type="text" wire:model='name' placeholder="Nama Permohonan/Nama Instansi" class="wpcf7-form-control-wrap">
-
+                                                    @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Telepon</label>
                                                     <input type="number" wire:model='phone' placeholder="Diawali dengan +62" class="wpcf7-form-control-wrap">
-
+                                                    @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Alamat</label>
                                                     <textarea class="u-full-width" wire:model='address' placeholder="Alamat" rows="3"></textarea>
+                                                    @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">File Persyaratan <i>(.pdf, .zip, .rar) Maks 9MB</i></label>
-                                                    <input type="file" wire:model='document' class="wpcf7-form-control-wrap">
-
+                                                    <input type="file" wire:model='document' accept=".zip,.rar,.pdf" class="wpcf7-form-control-wrap">
+                                                    @error('document') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Catatan</label>
                                                     <textarea class="u-full-width" wire:model='note' placeholder="Catatan" rows="3"></textarea>
+                                                    @error('note') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
 
                                             </div>

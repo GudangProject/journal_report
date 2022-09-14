@@ -30,6 +30,19 @@ class Service extends Component
         $service_list = null,
         $requirements;
 
+    public function updated($field)
+    {
+        $this->validateOnly($field, [
+            'service_list' => 'required',
+            'email' => 'required|email|unique:permohonan_layanan',
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'note' => 'required',
+            'document' => 'max:10024', // 10MB Max
+        ]);
+    }
+
     public function mount(){
         $this->requirements;
         $this->services = ServiceService::all();
@@ -70,9 +83,14 @@ class Service extends Component
     public function saveServiceRequest(){
         // dd($this->note);
         // dd($this->number_request.$this->service_list.$this->email.$this->email.$this->name.$this->service_list);
-        // $this->validate([
-        //     'document' => 'max:10024', // 10MB Max
-        // ]);
+        $this->validate([
+            'email' => 'required|email|unique:permohonan_layanan',
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'note' => 'required',
+            'document' => 'max:10024', // 10MB Max
+        ]);
 
         if($this->document != null){
             $filename = time().$this->document->getClientOriginalName();
@@ -99,7 +117,7 @@ class Service extends Component
 
             Alert::success('Berhasil', 'Permohonan berhasil dikirim');
             $this->dispatchBrowserEvent('closeModalServiceRequest');
-
+            $this->reset('email', 'name', 'phone', 'address', 'document', 'note');
 
         } catch (Exception $error) {
             dd($error->getMessage());
