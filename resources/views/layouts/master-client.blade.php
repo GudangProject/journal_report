@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/colors.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('app-assets/css/custom.css') }}" type="text/css" media="all">
     @yield('styles')
+    @livewireStyles
 </head>
 
 <body class="mobile_nav_class jl-has-sidebar">
@@ -60,7 +61,9 @@
 		</div>
 	</div>
 
-	<script src="{{asset('assets/js/jquery.js')}}"></script>
+
+	<script src="{{asset('app-assets/vendors/js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/popper/popper.min.js') }}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/js/fluidvids.js')}}"></script>
 	<script src="{{asset('assets/js/slick.js')}}"></script>
@@ -70,6 +73,8 @@
 
     @yield('scripts')
     @stack('custom-scripts')
+    @stack('scripts')
+    @livewireScripts
 </body>
 
 </html>

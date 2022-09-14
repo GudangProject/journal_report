@@ -7110,7 +7110,7 @@ Header
 .header-wraper{
     float: left;
     width: 100%;
-    z-index: 9999;
+    /* z-index: 9999; */
     position: relative;
 }
 .header-wraper:after{
