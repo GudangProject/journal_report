@@ -4,6 +4,7 @@ namespace App\Models\Service;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Service\Service;
 
 class ServiceRequest extends Model
 {
@@ -17,4 +18,5 @@ class ServiceRequest extends Model
     {
         return $this->belongsTo(ServiceDetail::class, 'detail_layanan_id');
     }
+
 }

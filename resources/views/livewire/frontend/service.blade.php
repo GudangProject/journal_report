@@ -14,10 +14,14 @@
                                     <div class="card-body p-3 text-left">
                                         <span class="title-card mb-3">
                                             <a href="#" tabindex="-1">{{ $item->nama_layanan }}</a>
+                                            {{-- <a href="#" tabindex="-1">{{ $item->serviceName }}</a> --}}
                                         </span>
-                                        <strong>{{ $item->total_layanan }}</strong>
+                                        @php
+                                            $count_layanan = \App\Models\Service\ServiceRequest::whereIn('detail_layanan_id', $item->serviceDetail->pluck('id_detail_layanan'))->get();
+                                        @endphp
+                                        <strong>{{ $count_layanan->count() }}</strong>
                                         <div class="progress progress-sm">
-                                            <div class="progress-bar" role="progressbar" style="width: {{ $item->total_layanan }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: {{ $count_layanan->count()/10 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
 
                                         <a wire:click="serviceRequest({{ $item->id_layanan }})" class="btn btn-sm btn-primary mt-4 p-2 btn-block">Ajukan Layanan Permohonan <i class="fas fa-arrow-right"></i></a>
