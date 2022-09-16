@@ -57,21 +57,11 @@ class Service extends Component
     public function mount(){
         $this->requirements;
         $this->services = ServiceService::all();
-
-        // $this->services = ServiceDetail::selectRaw('count(id_detail_layanan) as total_layanan, layanan_id')
-        //                     ->groupBy('layanan_id')
-        //                     ->get();
-
         $this->service_list;
     }
 
     public function render()
     {
-        $rows = ServiceDetail::selectRaw('count(id_detail_layanan) as total_layanan, layanan_id')
-                ->groupBy('layanan_id')
-                ->get();
-
-        $services = ServiceService::all();
 
         if($this->service_list != null){
             $require            = ServiceDetail::where('id_detail_layanan', $this->service_list)->first()->persyaratan_detail_layanan;

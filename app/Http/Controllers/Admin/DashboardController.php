@@ -166,7 +166,7 @@ class DashboardController extends Controller
                 ->selectRaw('sum(point) as point, user_id')
                 ->groupBy('user_id')
                 ->orderBy('point', 'desc')
-                ->paginate(10);;
+                ->paginate(10);
 
         foreach ($rows as $k => $v) {
             $data['data'][$k]['name']       = User::where('id', $v->user_id)->value('name');

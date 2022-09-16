@@ -19,7 +19,7 @@ class MonthlyUsersChart
     {
         $points_total   = DashboardController::Points()['point'];
         $points_name    = DashboardController::Points()['name'];
-
+        // dd($points_total);
         return $this->chart->horizontalBarChart()
             ->addData( 'Point', json_decode($points_total))
             ->setColors(['#7569f0'])
@@ -47,5 +47,18 @@ class MonthlyUsersChart
         }
 
 
+    }
+
+    public function dataRequestServiceDonut($data){
+
+        for($i = 0; $i < count($data); $i++){
+            $name[$i]   = $data[$i]['name'];
+            $counter[$i] = $data[$i]['counter_layanan'] != 0 ? round(($data[$i]['counter_layanan']/$data[$i]['total_request']) * 100) : 0;
+        }
+        // dd($counter);
+        // $name = $data-
+        return $this->chart->donutChart()
+                    ->addData($counter)
+                    ->setLabels($name);
     }
 }

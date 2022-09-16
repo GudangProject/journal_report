@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Charts\MonthlyUsersChart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -40,8 +41,9 @@ class ScreensController extends Controller
     //     ]);
     // }
 
-    public function services(DataController $data)
+    public function services(DataController $data, MonthlyUsersChart $charts)
     {
+
         return view('client.screens.services', [
             'banner_header' => $data->images(1),
             'banner_home'   => $data->images(2),
@@ -53,6 +55,7 @@ class ScreensController extends Controller
             'video'         => $data->videos(),
             'files'         => $data->files(1),
             'data'          => $data->services(),
+            'donut_data'    => $charts->dataRequestServiceDonut($data->services()),
         ]);
     }
 
