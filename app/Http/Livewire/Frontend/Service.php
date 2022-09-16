@@ -43,6 +43,17 @@ class Service extends Component
         ]);
     }
 
+    protected $messages = [
+        'email.unique' => 'Email telah digunakan.',
+        'service_list.required' => 'Pilih salah satu layanan.',
+        'email.required' => 'Email tidak boleh kosong.',
+        'name.required' => 'Nama tidak boleh kosong.',
+        'phone.required' => 'Nomor HP tidak boleh kosong.',
+        'address.required' => 'Alamat tidak boleh kosong.',
+        'note.required' => 'Catatan tidak boleh kosong.',
+        'document.required' => 'File dokumen tidak boleh kosong.',
+    ];
+
     public function mount(){
         $this->requirements;
         $this->services = ServiceService::all();
@@ -76,7 +87,6 @@ class Service extends Component
     public function serviceRequest($id){
         $this->service_id = $id;
         $this->number_request = time();
-
         $this->dispatchBrowserEvent('openModalServiceRequest');
     }
 
@@ -84,12 +94,13 @@ class Service extends Component
         // dd($this->note);
         // dd($this->number_request.$this->service_list.$this->email.$this->email.$this->name.$this->service_list);
         $this->validate([
+            'service_list' => 'required',
             'email' => 'required|email|unique:permohonan_layanan',
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',
             'note' => 'required',
-            'document' => 'max:10024', // 10MB Max
+            'document' => 'required|max:10024', // 10MB Max
         ]);
 
         if($this->document != null){
@@ -117,6 +128,7 @@ class Service extends Component
 
             Alert::success('Berhasil', 'Permohonan berhasil dikirim');
             $this->dispatchBrowserEvent('closeModalServiceRequest');
+            $this->dispatchBrowserEvent('openAlertModal');
             $this->reset('email', 'name', 'phone', 'address', 'document', 'note');
 
         } catch (Exception $error) {

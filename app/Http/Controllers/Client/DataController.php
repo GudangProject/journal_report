@@ -190,9 +190,17 @@ class DataController extends Controller
 
     public static function services()
     {
-        $rows = ServiceDetail::selectRaw('count(id_detail_layanan) as total_layanan, layanan_id')
+        $row = ServiceDetail::selectRaw('count(id_detail_layanan) as total_layanan, layanan_id')
                 ->groupBy('layanan_id')
                 ->get();
+        dd($row);
+        $rows = ServiceDetail::all();
+
+        foreach ($rows as $k => $v) {
+            $data[$k]['name'] = $v->nama_detail_layanan;
+        }
+
+        dd($data);
 
         return $rows;
     }
