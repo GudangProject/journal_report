@@ -25,5 +25,9 @@ class ServiceDetail extends Model
         return $this->getService->nama_layanan;
     }
 
+    public function serviceRequest(){
+        return $this->hasMany(ServiceRequest::class, 'detail_layanan_id');
+    }
+
 
 }

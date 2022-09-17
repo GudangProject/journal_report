@@ -194,11 +194,64 @@ class DataController extends Controller
         $rows = Service::all();
         // dd($rows[1]->serviceDetail->pluck('id_detail_layanan'));
         foreach ($rows as $k => $v) {
-            $data[$k]['name']               = $v->nama_layanan;
-            $data[$k]['counter_layanan']    = ServiceRequest::whereIn('detail_layanan_id', $v->serviceDetail->pluck('id_detail_layanan'))->get()->count();
-            $data[$k]['total_request']      = ServiceRequest::all()->count();
+            $data['data'][$k]['name']               = $v->nama_layanan;
+            $data['data'][$k]['counter_layanan']    = ServiceRequest::whereIn('detail_layanan_id', $v->serviceDetail->pluck('id_detail_layanan'))->get()->count();
+            $data['data'][$k]['total_request']      = ServiceRequest::all()->count();
         }
 
+        $tataUsaha = ServiceDetail::where('layanan_id', 1)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['tata_usaha'][$k]['name']             = $v->nama_detail_layanan;
+            $data['tata_usaha'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 3)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['pendidikan_agama'][$k]['name']             = $v->nama_detail_layanan;
+            $data['pendidikan_agama'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 8)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['pendidikan_madrasah'][$k]['name']             = $v->nama_detail_layanan;
+            $data['pendidikan_madrasah'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 9)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['hajidanumrah'][$k]['name']             = $v->nama_detail_layanan;
+            $data['hajidanumrah'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 10)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['masyarakat'][$k]['name']             = $v->nama_detail_layanan;
+            $data['masyarakat'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 11)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['masyarakat_kristen'][$k]['name']             = $v->nama_detail_layanan;
+            $data['masyarakat_kristen'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 12)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['masyarakat_katolik'][$k]['name']             = $v->nama_detail_layanan;
+            $data['masyarakat_katolik'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 13)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['masyarakat_hindu'][$k]['name']             = $v->nama_detail_layanan;
+            $data['masyarakat_hindu'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
+
+        $tataUsaha = ServiceDetail::where('layanan_id', 14)->get();
+        foreach ($tataUsaha as $k => $v) {
+            $data['masyarakat_budha'][$k]['name']             = $v->nama_detail_layanan;
+            $data['masyarakat_budha'][$k]['counter_request']  = ServiceRequest::where('detail_layanan_id', $v->id_detail_layanan)->get()->count();
+        }
         // dd($data);
 
         return $data;

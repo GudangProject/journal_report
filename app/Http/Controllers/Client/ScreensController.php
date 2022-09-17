@@ -55,7 +55,16 @@ class ScreensController extends Controller
             'video'         => $data->videos(),
             'files'         => $data->files(1),
             'data'          => $data->services(),
-            'donut_data'    => $charts->dataRequestServiceDonut($data->services()),
+            'donut_data'    => $charts->dataRequestServiceDonut($data->services()['data']),
+            'grafik_tatausaha'    => $charts->grafikTataUsaha($data->services()['tata_usaha']),
+            'grafik_pendidikan_agama' => $charts->grafikPendidikanAgama($data->services()['pendidikan_agama']),
+            'grafik_pendidikan_madrasah' => $charts->grafikPendidikanMadrasah($data->services()['pendidikan_madrasah']),
+            'grafik_hajidanumrah' => $charts->grafikHajidanumrah($data->services()['hajidanumrah']),
+            'grafik_masyarakat' => $charts->grafikBimbinganMasyarakat($data->services()['masyarakat']),
+            'grafik_masyarakat_kristen' => $charts->grafikBimbinganMasyarakatKristen($data->services()['masyarakat_kristen']),
+            'grafik_masyarakat_katolik' => $charts->grafikBimbinganMasyarakatKatolik($data->services()['masyarakat_katolik']),
+            'grafik_masyarakat_hindu' => $charts->grafikBimbinganMasyarakatHindu($data->services()['masyarakat_hindu']),
+            'grafik_masyarakat_budha' => $charts->grafikBimbinganMasyarakatBudha($data->services()['masyarakat_budha']),
         ]);
     }
 
