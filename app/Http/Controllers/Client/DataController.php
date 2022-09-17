@@ -19,7 +19,7 @@ use App\Models\Point;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\Service\Service;
-use App\Models\Service\Service as ServiceService;
+use App\Models\Service as ServiceService;
 use App\Models\Service\ServiceDetail;
 use App\Models\Service\ServiceRequest;
 use App\Models\ServiceCategory;
@@ -178,15 +178,15 @@ class DataController extends Controller
         }
     }
 
-    // public static function services($category)
-    // {
-    //     $category_id = ServiceCategory ::where('slug', $category)->first()->id;
-    //     $data = Cache::rememberForever("services-$category_id", function() use($category_id){
-    //         $row = Service::where('status', 1)->where('category_id', $category_id)->get();
-    //         return $row;
-    //     });
-    //     return $data;
-    // }
+    public static function service($category)
+    {
+        $category_id = ServiceCategory ::where('slug', $category)->first()->id;
+        $data = Cache::rememberForever("services-$category_id", function() use($category_id){
+            $row = ServiceService::where('status', 1)->where('category_id', $category_id)->get();
+            return $row;
+        });
+        return $data;
+    }
 
     public static function services()
     {
