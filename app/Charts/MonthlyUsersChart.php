@@ -173,7 +173,7 @@ class MonthlyUsersChart
             $name[$i]    = $data[$i]['name'];
             $counter[$i] = $data[$i]['counter_request'];
         }
-        dd($counter);
+        // dd($counter);
         return $this->chart->horizontalBarChart()
                     ->setTitle('Jumlah Pengajuan')
                     ->setColors(['#124324'])

@@ -1,5 +1,5 @@
 <section class="container home_section1">
-    <div class="row justify-content-center mb-5 mt-3">
+    <div class="row justify-content-center mb-5 mt-5">
         <div class="col-md-8">
             @include('client.widget.banner', ['data'=>$banner_footer])
         </div>

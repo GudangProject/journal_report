@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            @if($count == $limit)
+            @if($count == 4)
                 @break
             @endif
             @endforeach

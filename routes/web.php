@@ -122,6 +122,7 @@ Route::get('page/{slug}', [ScreenController::class, 'page']);
 Route::get('informasi', [ScreensController::class, 'files']);
 Route::get('informasi/{slug}', [ScreenController::class, 'file']);
 Route::get('layanan', [ScreensController::class, 'services']);
+Route::get('ptsp', [ScreensController::class, 'ptsp']);
 Route::get('kantor', [ScreensController::class, 'offices']);
 Route::get('kantor/{slug}', [ScreenController::class, 'office']);
 Route::get('arsip', [ScreensController::class, 'archives']);
