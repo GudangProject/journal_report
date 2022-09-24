@@ -85,6 +85,13 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ (request()->segment(2) == 'ptsp' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('ptsp.index') }}">
+                    <i data-feather="monitor"></i>
+                    <span class="menu-title text-truncate" data-i18n="monitor">PTSP</span>
+                </a>
+            </li>
+
             <li class="nav-item {{ (request()->segment(2) == 'officers' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('officers.index') }}">
                     <i data-feather="users"></i>

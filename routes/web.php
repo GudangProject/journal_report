@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\OfficersController;
 use App\Http\Controllers\Admin\PhotoContentController;
 use App\Http\Controllers\Admin\PhotosController;
 use App\Http\Controllers\Admin\PostLinkageController;
+use App\Http\Controllers\Admin\PtspController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\Setting\AuthorController;
@@ -84,9 +85,14 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         Route::resource('files', FilesController::class);
         Route::resource('filescategories', FilesCategoryController::class);
     });
+
     Route::prefix('services')->group(function (){
         Route::resource('services', ServiceController::class);
         Route::resource('servicecategories', ServiceCategoryController::class);
+    });
+
+    Route::prefix('ptsp')->group(function (){
+        Route::resource('ptsp', PtspController::class);
     });
 
     Route::resource('officers', OfficersController::class);
