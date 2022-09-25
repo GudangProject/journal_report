@@ -20,9 +20,9 @@
                     </div>
                 </div>
                 <div class="content-header-right text-md-right col-md-3 col-7">
-                    {{-- <div class="form-group breadcrumb-right">
-                        <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary">DATA PTSP</a>
-                    </div> --}}
+                    <div class="form-group breadcrumb-right">
+                        <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create-modal"><i data-feather="plus"></i> TAMBAH DATA PTSP</a>
+                    </div>
                 </div>
             </div>
             <div class="content-body">
@@ -51,6 +51,14 @@
                 })
             })
         });
+        window.addEventListener('openModalCreate', event => {
+            $("#create-modal").modal('show');
+        });
+
+        window.addEventListener('closeModalCreate', event => {
+            $("#create-modal").modal('hide');
+        });
+
         window.addEventListener('openModalStatus', event => {
             $("#status-modal").modal('show');
         });
@@ -58,6 +66,7 @@
         window.addEventListener('closeModalStatus', event => {
             $("#status-modal").modal('hide');
         });
+
         window.addEventListener('openModalDelete', event => {
             $("#delete-modal").modal('show');
         });

@@ -27,7 +27,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/storage/files/service/{{ $row->file_persyaratan }}">
                     <i class="mr-1 fas fa-download"></i>
-                    <span class="align-middle">Detail File Persyaratan</span>
+                    <span class="align-middle">File Persyaratan</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a type="button" class="dropdown-item" wire:click="deleteModal({{ $row->id_permohonan_layanan }})">
