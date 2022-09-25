@@ -7,12 +7,12 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Data Permohonan PTSP</h3>
+                            <h3 class="content-header-title float-left mb-0">Kategori PTSP</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">PTSP
+                                    <li class="breadcrumb-item active">Kategori PTSP
                                     </li>
                                 </ol>
                             </div>
@@ -35,7 +35,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('ptsp-table')
+                @livewire('ptsp-categories')
             </div>
         </div>
     </div>

@@ -1,5 +1,13 @@
 <x-livewire-tables::table.cell>
-    <span>{!! $row->nama_layanan !!}</span>
+    <span>{!! $row->nama_detail_layanan !!}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{!! $row->persyaratan_detail_layanan !!}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{!! $row->getService->nama_layanan !!}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
