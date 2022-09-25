@@ -78,4 +78,12 @@ class PtspController extends Controller
     {
         //
     }
+
+    public function dataPtsp(){
+        return view('admin.ptsp.data.index');
+    }
+
+    public function categoriesPtsp(){
+        return view('admin.ptsp.categories.index');
+    }
 }

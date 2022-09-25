@@ -85,11 +85,15 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ (request()->segment(2) == 'ptsp' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('ptsp.index') }}">
-                    <i data-feather="monitor"></i>
-                    <span class="menu-title text-truncate" data-i18n="monitor">PTSP</span>
-                </a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="server"></i><span class="menu-title text-truncate" data-i18n="Dashboards">PTSP</span></a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ request()->routeIs('ptsp.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('ptsp.index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Data Permohonan</span></a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('data-ptsp') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('data-ptsp') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Data PTSP</span></a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('categories-ptsp') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('categories-ptsp') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Kategori PTSP</span></a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item {{ (request()->segment(2) == 'officers' ? 'active' : '') }}">

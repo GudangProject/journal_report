@@ -7,12 +7,12 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Data Permohonan PTSP</h3>
+                            <h3 class="content-header-title float-left mb-0">Data Pelayanan Terpadu Satu Pintu</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">PTSP
+                                    <li class="breadcrumb-item active">Data PTSP
                                     </li>
                                 </ol>
                             </div>
@@ -22,7 +22,6 @@
                 <div class="content-header-right text-md-right col-md-3 col-7">
                     {{-- <div class="form-group breadcrumb-right">
                         <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary">DATA PTSP</a>
-                        <a href="{{ route('servicecategories.index') }}" class="btn btn-sm btn-outline-primary">KATEGORI PTSP</a>
                     </div> --}}
                 </div>
             </div>
@@ -35,7 +34,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('ptsp-table')
+                @livewire('ptsp-data')
             </div>
         </div>
     </div>

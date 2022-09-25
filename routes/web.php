@@ -92,6 +92,9 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     });
 
     Route::prefix('ptsp')->group(function (){
+        Route::get('data-ptsp', [PtspController::class, 'dataPtsp'])->name('data-ptsp');
+        Route::get('categories-ptsp', [PtspController::class, 'categoriesPtsp'])->name('categories-ptsp');
+
         Route::resource('ptsp', PtspController::class);
     });
 
