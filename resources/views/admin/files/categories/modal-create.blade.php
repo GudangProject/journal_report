@@ -23,9 +23,11 @@
                             <h5 class="text-primary">PARENT KATEGORI</h5>
                             <select name="parent_id" class="form-control">
                                 <option value="">--Pilih Parent Kategori--</option>
-                                @foreach ($category as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endforeach
+                                @if (isset($category))
+                                    @foreach ($category as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>

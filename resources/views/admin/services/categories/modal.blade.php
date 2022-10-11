@@ -69,7 +69,7 @@
                 Apakah anda yakin ingin hapus data tersebut!
             </div>
             <div class="modal-footer">
-                <button wire:click.prevent="updateStatus()" type="button" class="btn btn-primary">Ok</button>
+                <button wire:click.prevent="deleteStatus()" type="button" class="btn btn-primary">Ok</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>

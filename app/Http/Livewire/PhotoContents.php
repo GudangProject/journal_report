@@ -7,6 +7,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\PhotoContent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class PhotoContents extends DataTableComponent
 {
@@ -29,7 +30,9 @@ class PhotoContents extends DataTableComponent
     }
 
     public function deleteStatus(){
-        PhotoContent::findOrFail($this->selected_id)->delete(    );
+        PhotoContent::findOrFail($this->selected_id)->delete();
+        Cache::flush("photos");
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

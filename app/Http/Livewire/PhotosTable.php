@@ -6,6 +6,7 @@ use App\Models\Photos;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Cache;
 
 class PhotosTable extends DataTableComponent
 {
@@ -35,6 +36,8 @@ class PhotosTable extends DataTableComponent
     public function updateStatus(){
         $data = Photos::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2]) : $data->update(['status' => 1]));
+        Cache::flush("photos");
+
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -46,6 +49,8 @@ class PhotosTable extends DataTableComponent
 
     public function deleteStatus(){
         Photos::findOrFail($this->selected_id)->delete();
+        Cache::flush("photos");
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

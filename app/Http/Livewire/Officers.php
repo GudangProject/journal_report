@@ -46,7 +46,7 @@ class Officers extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Officer::findOrFail($this->selected_id)->delete(    );
+        Officer::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

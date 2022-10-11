@@ -6,6 +6,7 @@ use App\Models\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Cache;
 
 class PageTable extends DataTableComponent
 {
@@ -34,7 +35,9 @@ class PageTable extends DataTableComponent
     public function updateStatus(){
         $data = Page::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2]) : $data->update(['status' => 1]));
+        Cache::flush('pages');
         $this->dispatchBrowserEvent('closeModalStatus');
+
     }
 
     public function deleteModal($id)
@@ -45,6 +48,8 @@ class PageTable extends DataTableComponent
 
     public function deleteStatus(){
         Page::findOrFail($this->selected_id)->update(['status' => 3]);
+        Cache::flush('pages');
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

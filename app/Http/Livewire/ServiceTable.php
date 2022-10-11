@@ -6,6 +6,7 @@ use App\Models\Service;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceTable extends DataTableComponent
 {
@@ -23,6 +24,8 @@ class ServiceTable extends DataTableComponent
     public function updateStatus(){
         $data = Service::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2]) : $data->update(['status' => 1]));
+        Cache::flush("services");
+
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -33,7 +36,9 @@ class ServiceTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Service::findOrFail($this->selected_id)->update(['status' => 3]);
+        Service::findOrFail($this->selected_id)->delete();
+        Cache::flush("services");
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

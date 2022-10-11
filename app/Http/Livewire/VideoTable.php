@@ -7,6 +7,7 @@ use App\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Cache;
 
 class VideoTable extends DataTableComponent
 {
@@ -24,6 +25,9 @@ class VideoTable extends DataTableComponent
     public function updateStatus(){
         $data = Video::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2]) : $data->update(['status' => 1]));
+
+        Cache::flush("videos");
+
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -35,6 +39,9 @@ class VideoTable extends DataTableComponent
 
     public function deleteStatus(){
         $data = Video::findOrFail($this->selected_id)->update(['status' => 3]);
+
+        Cache::flush("videos");
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
@@ -47,7 +54,7 @@ class VideoTable extends DataTableComponent
             Column::make('Author'),
             Column::make('Status'),
             Column::make('View', 'counter')->sortable(),
-            Column::make('Linkage'),
+            // Column::make('Linkage'),
             Column::make('Action'),
         ];
     }

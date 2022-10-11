@@ -48,6 +48,17 @@ class OfficeCategoryTable extends DataTableComponent
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
+    public function deleteModal($id)
+    {
+        $this->selected_id = $id;
+        $this->dispatchBrowserEvent('openModalDelete');
+    }
+
+    public function deleteStatus(){
+        OfficeCategory::findOrFail($this->selected_id)->delete();
+        $this->dispatchBrowserEvent('closeModalDelete');
+    }
+
     public function columns(): array
     {
         return [

@@ -21,9 +21,11 @@
                         <h5 class="text-primary">PARENT KATEGORI</h5>
                         <select wire:model.defer="parent_id" class="form-control">
                             <option value="">--Pilih Parent Kategori--</option>
-                            @foreach ($category as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
+                            @if (isset($category))
+                                @foreach ($category as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
                 Apakah anda yakin ingin hapus data tersebut!
             </div>
             <div class="modal-footer">
-                <button wire:click.prevent="updateStatus()" type="button" class="btn btn-primary">Ok</button>
+                <button wire:click.prevent="deleteStatus()" type="button" class="btn btn-primary">Ok</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>

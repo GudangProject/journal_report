@@ -9,6 +9,7 @@ use App\Services\ImageServices;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceController extends Controller
 {
@@ -56,6 +57,7 @@ class ServiceController extends Controller
             }
 
             $save->save();
+            Cache::flush("services");
 
             return redirect()->route('services.index')->with('message', "$save->title berhasil ditambahkan");
         }catch(Exception $error){
@@ -102,6 +104,7 @@ class ServiceController extends Controller
             }
 
             $save->save();
+            Cache::flush("services");
 
             return redirect()->route('services.index')->with('message', "$save->title berhasil diupdate");
         }catch(Exception $error){

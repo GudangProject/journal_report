@@ -71,6 +71,14 @@
         window.addEventListener('closeModalEdit', event => {
             $("#edit-modal").modal('hide');
         });
+
+        window.addEventListener('openModalDelete', event => {
+            $("#delete-modal").modal('show');
+        });
+
+        window.addEventListener('closeModalDelete', event => {
+            $("#delete-modal").modal('hide');
+        });
     </script>
     @endpush
 

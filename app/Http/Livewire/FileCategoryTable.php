@@ -15,6 +15,10 @@ class FileCategoryTable extends DataTableComponent
     public $selected_id, $data, $category;
     public $name, $description, $parent_id;
 
+    public function mount(){
+        $this->category = FileCategory::all();
+    }
+
     public function editModal($id)
     {
         $this->selected_id = $id;
@@ -56,7 +60,7 @@ class FileCategoryTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        $data = FileCategory::findOrFail($this->selected_id)->update(['status' => 3]);
+        $data = FileCategory::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
@@ -82,7 +86,7 @@ class FileCategoryTable extends DataTableComponent
 
     public function rowView(): string
     {
-        $this->category = FileCategory::where('status', 1)->get();
+        $this->category = FileCategory::all();
         return 'admin.files.categories.table';
     }
 

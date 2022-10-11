@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Office;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -35,6 +36,7 @@ class OfficeTable extends DataTableComponent
     public function updateStatus(){
         $data = Office::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2]) : $data->update(['status' => 1]));
+        Cache::flush('offices');
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -46,6 +48,8 @@ class OfficeTable extends DataTableComponent
 
     public function deleteStatus(){
         Office::findOrFail($this->selected_id)->update(['status' => 3]);
+        Cache::flush('offices');
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

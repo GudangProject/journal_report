@@ -53,7 +53,7 @@
     </span>
 </x-livewire-tables::table.cell>
 
-<x-livewire-tables::table.cell>
+{{-- <x-livewire-tables::table.cell>
     <div class="avatar bg-light-secondary rounded">
         <a href="/admin/post/postlinkage/{{ $row->id }}">
             <div class="avatar-content">
@@ -61,7 +61,7 @@
             </div>
         </a>
     </div>
-</x-livewire-tables::table.cell>
+</x-livewire-tables::table.cell> --}}
 
 <x-livewire-tables::table.cell>
     <div class="content-header-right">

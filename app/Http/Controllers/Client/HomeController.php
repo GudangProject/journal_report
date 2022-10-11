@@ -24,6 +24,7 @@ class HomeController extends Controller
             'main_services' => $data->service('layanan-utama'),
             'services' => $data->service('layanan-wilayah'),
             'infografis' => $data->images(4),
+            'peristiwa' => $data->photos(),
             'video' => $data->videos('profile'),
             'terbaru' => $data->posts(),
             'wilayah' => $data->posts('wilayah'),
