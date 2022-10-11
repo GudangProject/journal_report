@@ -64,7 +64,7 @@
         </div>
 
         <input type="radio" name="custom-tabs" id="tabfour">
-        <label for="tabfour">JUMLAH FKUB, SEKBER DAN DESA SADAR KERUKUNAN</label>
+        <label for="tabfour">JUMLAH FKUB, DESA SADAR KERUKUNAN</label>
         <div class="tab">
             <div class="accordion" id="accordionExample">
                 <div class="p-0">
