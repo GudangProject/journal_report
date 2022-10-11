@@ -89,7 +89,7 @@
                         <ul id="officemenu" class="jl_main_menu_office">
                             @foreach ($menu_office as $item)
                                 <li class="menu-item current-menu-item current_page_item">
-                                    <a href="{{ $item->url }}">{{ $item->title }}<span class="border-menu"></span></a>
+                                    <a href="{{ $item->url }}"><span class="text-uppercase">{{ $item->title }}</span><span class="border-menu"></span></a>
                                 </li>
                                 @if ($loop->index == 10)
                                     @break
