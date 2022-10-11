@@ -102,7 +102,13 @@ class DataController extends Controller
 
     public static function postsCategory($category = null, $page = null)
     {
-        $category_id = PostCategory::where('slug', $category)->first()->id;
+        $category_post = PostCategory::where('slug', $category)->first();
+        if(empty($category_post)){
+            $category_id = null;
+        }else{
+            $category_id = $category_post->id;
+        }
+
         $id = PostCategory::where('parent_id', $category_id)->pluck('id')->toArray();
         array_push($id, $category_id);
 
