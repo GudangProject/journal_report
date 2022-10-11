@@ -55,6 +55,48 @@
                         </div>
                     </div>
                 </div>
+                <div class="tab mt-3">
+                    <div class="accordion" id="accordionExample">
+                        <div class="p-0">
+                          <div class="">
+                              <button class="btn btn-dark btn-block text-left mb-2" type="button" data-toggle="collapse" data-target="#collapseOne{{ $data->id }}" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-list"></i>  DETAIL WILAYAH {{ strtoupper($data->title) }}
+                              </button>
+                          </div>
+
+                          <div id="collapseOne{{ $data->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card">
+                                <div class="card-deck p-4">
+                                    <div class="card" id="card-height">
+                                      <div class="card-body text-center">
+                                        <h3 class="data-count">{{ $data->luas_wilayah }}</h3>
+                                        <h6>LUAS WILAYAH</h6>
+                                      </div>
+                                    </div>
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                          <h3 class="data-count">{{ $data->jumlah_kecamatan }}</h3>
+                                          <h6>JUMLAH KECAMATAN</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                          <h3 class="data-count">{{ $data->jumlah_kelurahan }}</h3>
+                                          <h6>JUMLAH KELURAHAN</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card" id="card-height">
+                                        <div class="card-body text-center">
+                                          <h3 class="data-count">{{ $data->jumlah_desa }}</h3>
+                                          <h6>JUMLAH DESA</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
                 @include('client.widget.list-row3', ['title'=> "BERITA DAERAH $data->title", 'data'=> $posts, 'limit'=> 12])
                 <div class="d-flex justify-content-center mt-4 mb-3">
                     {{ $posts->onEachSide(0)->links() }}

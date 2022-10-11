@@ -51,6 +51,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{ asset('assets/css/main.css')}} " type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('assets/css/colors.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('app-assets/css/custom.css') }}" type="text/css" media="all">
 	<!-- end head -->
 </head>
 
@@ -68,6 +69,9 @@
 			</div>
 		</div>
 	</div>
+	<script src="{{asset('app-assets/vendors/js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/popper/popper.min.js') }}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 	<script src="{{ asset('test/js/jquery.js') }}"></script>
 	<script src="{{ asset('test/js/fluidvids.js') }}"></script>
 	<script src="{{ asset('test/js/slick.js') }}"></script>
