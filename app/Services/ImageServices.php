@@ -15,6 +15,7 @@ class ImageServices {
         $imageName        = time().'.'.$image->getClientOriginalExtension();
         // dd($imageName);
         self::cekFolder($destinationPath);
+        
 
         // $path_big       = $destinationPath.'big';
         // $path_mid       = $destinationPath.'mid';
@@ -25,6 +26,10 @@ class ImageServices {
         $path_mid       = $destinationPath.'mid';
 
         $path_thumb     = $destinationPath.'thumb';
+
+        self::cekFolder($path_big);
+        self::cekFolder($path_mid);
+        self::cekFolder($path_thumb);
 
         $width_16_9     = ceil($dataImage['data']['skala169']['width']);
         $height_16_9    = ceil($dataImage['data']['skala169']['height']);
@@ -86,7 +91,7 @@ class ImageServices {
         self::cekFolderArchive($destinationPath);
         $file->move($destinationPath,$fileName);
 
-        chmod($destinationPath.$fileName, 0777);
+        chmod($destinationPath.$fileName, 0755);
 
         return ['status'=>true,'namaFile'=>$fileName];
     }
@@ -161,9 +166,9 @@ class ImageServices {
             }*/
             $img->destroy();
 
-            chmod($pathBig.'/'.$imageName, 0777);
-            chmod($pathMid.'/'.$imageName, 0777);
-            chmod($pathThumb.'/'.$imageName, 0777);
+            chmod($pathBig.'/'.$imageName, 0755);
+            chmod($pathMid.'/'.$imageName, 0755);
+            chmod($pathThumb.'/'.$imageName, 0755);
 
             self::uploadToStorage($modul,$imageName);
             return ['status'=>true,'namaImage'=>$imageName];
@@ -252,9 +257,9 @@ class ImageServices {
             }*/
             $img->destroy();
 
-            chmod($path_big.'/'.$imageName, 0777);
-            chmod($path_mid.'/'.$imageName, 0777);
-            chmod($path_thumb.'/'.$imageName, 0777);
+            chmod($path_big.'/'.$imageName, 0755);
+            chmod($path_mid.'/'.$imageName, 0755);
+            chmod($path_thumb.'/'.$imageName, 0755);
 
             self::uploadToStorage($modul,$imageName);
             return ['status'=>true,'namaImage'=>$imageName];
@@ -265,86 +270,86 @@ class ImageServices {
 
     public static function cekFolder2($parentPath){
         if(!file_exists(public_path('storage'))){
-            mkdir(public_path('storage'), 0777);
+            mkdir(public_path('storage'), 0755);
         }
         if(!file_exists(public_path('storage/pictures'))){
-            mkdir(public_path('storage/pictures'), 0777);
+            mkdir(public_path('storage/pictures'), 0755);
         }
         if(!file_exists(public_path('storage/pictures'))){
-            mkdir(public_path('storage/pictures'), 0777);
+            mkdir(public_path('storage/pictures'), 0755);
         }
         if(!file_exists($parentPath)){
-            mkdir($parentPath, 0777);
+            mkdir($parentPath, 0755);
         }
         if(!file_exists($parentPath.'big')){
-            mkdir($parentPath.'big', 0777);
+            mkdir($parentPath.'big', 0755);
         }
         if(!file_exists($parentPath.'mid')){
-            mkdir($parentPath.'mid', 0777);
+            mkdir($parentPath.'mid', 0755);
         }
         if(!file_exists($parentPath.'thumb')){
-            mkdir($parentPath.'thumb', 0777);
+            mkdir($parentPath.'thumb', 0755);
         }
     }
     public static function cekFolder($parentPath){
         if(!file_exists(public_path('storage'))){
-            mkdir(public_path('storage'), 0777);
+            mkdir(public_path('storage'), 0755);
         }
         if(!file_exists(public_path('storage/pictures'))){
-            mkdir(public_path('storage/pictures'), 0777);
+            mkdir(public_path('storage/pictures'), 0755);
         }
         if(!file_exists(public_path('storage/pictures'))){
-            mkdir(public_path('storage/pictures'), 0777);
+            mkdir(public_path('storage/pictures'), 0755);
         }
         if(!file_exists($parentPath)){
-            mkdir($parentPath, 0777);
+            mkdir($parentPath, 0755);
         }
         if(!file_exists($parentPath.'16_9')){
-            mkdir($parentPath.'16_9', 0777);
+            mkdir($parentPath.'16_9', 0755);
         }
         if(!file_exists($parentPath.'4_3')){
-            mkdir($parentPath.'4_3', 0777);
+            mkdir($parentPath.'4_3', 0755);
         }
         if(!file_exists($parentPath.'1_1')){
-            mkdir($parentPath.'1_1', 0777);
+            mkdir($parentPath.'1_1', 0755);
         }
 
         if(!file_exists($parentPath.'16_9/big')){
-            mkdir($parentPath.'16_9/big', 0777);
+            mkdir($parentPath.'16_9/big', 0755);
         }
         if(!file_exists($parentPath.'16_9/mid')){
-            mkdir($parentPath.'16_9/mid', 0777);
+            mkdir($parentPath.'16_9/mid', 0755);
         }
         if(!file_exists($parentPath.'16_9/thumb')){
-            mkdir($parentPath.'16_9/thumb', 0777);
+            mkdir($parentPath.'16_9/thumb', 0755);
         }
 
         if(!file_exists($parentPath.'4_3/big')){
-            mkdir($parentPath.'4_3/big', 0777);
+            mkdir($parentPath.'4_3/big', 0755);
         }
         if(!file_exists($parentPath.'4_3/mid')){
-            mkdir($parentPath.'4_3/mid', 0777);
+            mkdir($parentPath.'4_3/mid', 0755);
         }
         if(!file_exists($parentPath.'4_3/thumb')){
-            mkdir($parentPath.'4_3/thumb', 0777);
+            mkdir($parentPath.'4_3/thumb', 0755);
         }
 
         if(!file_exists($parentPath.'1_1/big')){
-            mkdir($parentPath.'1_1/big', 0777);
+            mkdir($parentPath.'1_1/big', 0755);
         }
         if(!file_exists($parentPath.'1_1/mid')){
-            mkdir($parentPath.'1_1/mid', 0777);
+            mkdir($parentPath.'1_1/mid', 0755);
         }
         if(!file_exists($parentPath.'1_1/thumb')){
-            mkdir($parentPath.'1_1/thumb', 0777);
+            mkdir($parentPath.'1_1/thumb', 0755);
         }
     }
     public static function cekFolderArchive($parentPath){
         if(!file_exists(public_path('storage'))){
-            mkdir(public_path('storage'), 0777);
+            mkdir(public_path('storage'), 0755);
         }
         if(!file_exists($parentPath)){
-            mkdir($parentPath, 0777);
+            mkdir($parentPath, 0755);
         }
     }
     public static function uploadToStorage($modul,$filename){
