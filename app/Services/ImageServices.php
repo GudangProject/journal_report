@@ -15,6 +15,7 @@ class ImageServices {
         $imageName        = time().'.'.$image->getClientOriginalExtension();
         // dd($imageName);
         self::cekFolder($destinationPath);
+        
 
         // $path_big       = $destinationPath.'big';
         // $path_mid       = $destinationPath.'mid';
@@ -25,6 +26,10 @@ class ImageServices {
         $path_mid       = $destinationPath.'mid';
 
         $path_thumb     = $destinationPath.'thumb';
+
+        self::cekFolder($path_big);
+        self::cekFolder($path_mid);
+        self::cekFolder($path_thumb);
 
         $width_16_9     = ceil($dataImage['data']['skala169']['width']);
         $height_16_9    = ceil($dataImage['data']['skala169']['height']);
