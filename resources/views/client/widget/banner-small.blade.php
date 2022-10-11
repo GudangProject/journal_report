@@ -8,7 +8,7 @@
                     <div class="card-body p-2"> --}}
                         <div class="d-flex justify-content-center">
                             <a href="{{ $item->slug }}">
-                                <img src="{{ is_file(public_path($item->image)) ? $item->image : '/assets/images/thumb.png' }}" alt="" style="max-height: 25px"/>
+                                <img src="{{ is_file(public_path($item->image)) ? $item->image : '/assets/images/thumb.png' }}" alt="" />
                             </a>
                         {{-- </div>
                     </div>
