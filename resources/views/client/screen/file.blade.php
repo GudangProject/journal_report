@@ -125,7 +125,7 @@
                 @include('client.widget.slide-podcast', ['title'=>'VIDEO & PODCAST', 'data'=> $video, 'limit'=>4])
             </div>
         </div>
-        @include('client.widget.list-image-rows', ['data'=> $posts, 'limit'=>8, 'title'=>$data->getCategory->name.' LAINNYA'])
+        {{-- @include('client.widget.list-image-rows', ['data'=> $posts, 'limit'=>8, 'title'=>$data->getCategory->name.' LAINNYA']) --}}
     </div>
 </section>
 
