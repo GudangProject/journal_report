@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Illuminate\Support\Facades\Cache;
 
 class PostTable extends DataTableComponent
 {
@@ -36,6 +37,9 @@ class PostTable extends DataTableComponent
     public function updateStatus(){
         $data = Post::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 2, 'updated_by' => auth()->user()->id]) : $data->update(['status' => 1, 'updated_by' => auth()->user()->id]));
+
+        Cache::flush('posts');
+
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -47,6 +51,9 @@ class PostTable extends DataTableComponent
 
     public function deleteStatus(){
         Post::findOrFail($this->selected_id)->update(['status' => 3, 'updated_by' => auth()->user()->id]);
+
+        Cache::flush('posts');
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 

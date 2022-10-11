@@ -41,7 +41,7 @@ class PostLinkageIndex extends DataTableComponent
             PostLinkage::whereIn('id', $this->selectedKeys)->delete();
         }
         session()->flash('message', 'Data terkait berhasil dihapus! 😲');
-        return redirect()->to('/admin/post/postlinkage/'.$this->postId);
+        return redirect()->to('/admin/posts/postlinkages/'.$this->postId);
     }
 
 
