@@ -52,13 +52,13 @@
         </div>
 
         <input type="radio" name="custom-tabs" id="tabtwo">
-        <label for="tabtwo">JUMLAH SATKER PADA KANWIL KEMENAG SULBAR</label>
+        <label for="tabtwo">JUMLAH SATKER</label>
         <div class="tab">
           <img src="https://sulbar.kemenag.go.id/wp-content/uploads/2022/01/Jumlah-Satker_001-scaled.jpg" alt="">
         </div>
 
         <input type="radio" name="custom-tabs" id="tabthree">
-        <label for="tabthree">JUMLAH PNS MENURUT KUALIFIKASI PENDIDIKAN</label>
+        <label for="tabthree">JUMLAH PNS </label>
         <div class="tab">
           <img src="https://sulbar.kemenag.go.id/wp-content/uploads/2022/01/PNS-Menurut-Pendidikan_001-scaled-e1642498944617-1536x1078.jpg" alt="">
         </div>
