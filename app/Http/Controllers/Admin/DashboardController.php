@@ -119,9 +119,9 @@ class DashboardController extends Controller
                 ->orderBy('counter', 'DESC')
                 ->paginate($limit);
 
-        $data = array();
-        // $title = array();
-        // $views = array();
+        $data  = array();
+        $title = array();
+        $views = array();
         $title_json = array();
         $views_json = array();
 
