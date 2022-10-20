@@ -133,17 +133,15 @@ class DashboardController extends Controller
             }
 
             for($i=0; $i < $rows->count(); $i++){
-                if($rows->count() < $limit){
-                    $title[$i] = $data['data'][$i]['title'];
-                    $views[$i] = $data['data'][$i]['counter'];
-                }
+                $title[$i] = $data['data'][$i]['title'];
+                $views[$i] = $data['data'][$i]['counter'];
             }
 
             $title_json    = json_encode($title);
             $views_json    = json_encode($views);
 
         }
-        // dd($title_json);
+
         return [
             'data' => $data,
             'title' => $title_json,
