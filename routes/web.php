@@ -91,7 +91,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         Route::resource('servicecategories', ServiceCategoryController::class);
     });
 
-    Route::prefix('silincah')->group(function (){
+    Route::prefix('ptsp')->group(function (){
         Route::get('data-ptsp', [PtspController::class, 'dataPtsp'])->name('data-ptsp');
         Route::get('categories-ptsp', [PtspController::class, 'categoriesPtsp'])->name('categories-ptsp');
 
@@ -131,7 +131,7 @@ Route::get('page/{slug}', [ScreenController::class, 'page']);
 Route::get('informasi', [ScreensController::class, 'files']);
 Route::get('informasi/{slug}', [ScreenController::class, 'file']);
 Route::get('layanan', [ScreensController::class, 'services']);
-Route::get('ptsp', [ScreensController::class, 'ptsp']);
+Route::get('silincah', [ScreensController::class, 'ptsp']);
 Route::get('kantor', [ScreensController::class, 'offices']);
 Route::get('kantor/{slug}', [ScreenController::class, 'office']);
 Route::get('arsip', [ScreensController::class, 'archives']);
