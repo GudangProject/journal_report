@@ -36,7 +36,7 @@
 
                                                 <div class="form-group">
                                                     <h5 class="text-primary">JUDUL</h5>
-                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Judul Image" value="{{ old('title') }}"/>
+                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Judul Promosi" value="{{ old('title') }}"/>
                                                     @if ($errors->has('title'))<span class="text-danger">{{$errors->first('title')}}</span>@endif
                                                 </div>
 

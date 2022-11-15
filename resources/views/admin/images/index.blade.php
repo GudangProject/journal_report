@@ -7,12 +7,12 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Image</h3>
+                            <h3 class="content-header-title float-left mb-0">Promosi</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/admin">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">List Image
+                                    <li class="breadcrumb-item active">List Promosi
                                     </li>
                                 </ol>
                             </div>

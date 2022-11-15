@@ -47,7 +47,9 @@
                                                 <select wire:model='service_list' class="wpcf7-form-control-wrap" style="padding: 8px 8px 8px 15px;">
                                                     <option value="" disabled selected>Pilih Layanan</option>
                                                     @foreach ($data as $service)
-                                                        <option value="{{ $service->id_detail_layanan }}">{{ $service->nama_detail_layanan }}</option>
+                                                        @if ($service->layanan_id == $service_id)
+                                                            <option value="{{ $service->id_detail_layanan }}">{{ $service->nama_detail_layanan }}</option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                                 @error('service_list') <small class="alert alert-danger p-1">{{ $message }}</small> @enderror
