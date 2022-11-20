@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\FilesCategoryController;
 use App\Http\Controllers\Admin\IntegrationController;
+use App\Http\Controllers\Admin\Journals\JournalController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\OfficersController;
@@ -31,7 +32,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ScreenController;
 use App\Http\Controllers\Client\ScreensController;
 use App\Http\Controllers\Client\MetaController;
-
+use App\Models\Journals\Journal;
 use Illuminate\Support\Facades\Route;
 
 if(version_compare(PHP_VERSION, '8.1.0', '>=')) {
@@ -53,55 +54,60 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::prefix('dashboards')->group(function (){
         Route::resource('dashboards', DashboardController::class);
     });
-    Route::prefix('posts')->group(function (){
-        Route::resource('posts', PostController::class);
-        Route::resource('postcategories', PostCategoryController::class);
-        Route::resource('postlinkages', PostLinkageController::class);
-    });
-    Route::prefix('videos')->group(function (){
-        Route::resource('videos', VideoController::class);
-        Route::resource('videocategories', VideoCategoryController::class);
-    });
-    Route::prefix('pages')->group(function (){
-        Route::resource('pages', PageController::class);
-        Route::resource('pagecategories', PageCategoryController::class);
-    });
-    Route::prefix('images')->group(function (){
-        Route::resource('images', ImageController::class);
-        Route::resource('imagecategories', ImageCategoryController::class);
-    });
+    // Route::prefix('posts')->group(function (){
+    //     Route::resource('posts', PostController::class);
+    //     Route::resource('postcategories', PostCategoryController::class);
+    //     Route::resource('postlinkages', PostLinkageController::class);
+    // });
+    // Route::prefix('videos')->group(function (){
+    //     Route::resource('videos', VideoController::class);
+    //     Route::resource('videocategories', VideoCategoryController::class);
+    // });
+    // Route::prefix('pages')->group(function (){
+    //     Route::resource('pages', PageController::class);
+    //     Route::resource('pagecategories', PageCategoryController::class);
+    // });
+    // Route::prefix('images')->group(function (){
+    //     Route::resource('images', ImageController::class);
+    //     Route::resource('imagecategories', ImageCategoryController::class);
+    // });
 
-    Route::prefix('photos')->group(function (){
-        Route::resource('photos', PhotosController::class);
-        Route::resource('photos-content', PhotoContentController::class);
-        Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-photos-linkage');
-    });
+    // Route::prefix('photos')->group(function (){
+    //     Route::resource('photos', PhotosController::class);
+    //     Route::resource('photos-content', PhotoContentController::class);
+    //     Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-photos-linkage');
+    // });
 
-    Route::prefix('offices')->group(function (){
-        Route::resource('offices', OfficeController::class);
-        Route::resource('officecategories', OfficeCategoryController::class);
-    });
-    Route::prefix('files')->group(function (){
-        Route::resource('files', FilesController::class);
-        Route::resource('filescategories', FilesCategoryController::class);
-    });
+    // Route::prefix('offices')->group(function (){
+    //     Route::resource('offices', OfficeController::class);
+    //     Route::resource('officecategories', OfficeCategoryController::class);
+    // });
+    // Route::prefix('files')->group(function (){
+    //     Route::resource('files', FilesController::class);
+    //     Route::resource('filescategories', FilesCategoryController::class);
+    // });
 
-    Route::prefix('services')->group(function (){
-        Route::resource('services', ServiceController::class);
-        Route::resource('servicecategories', ServiceCategoryController::class);
-    });
+    // Route::prefix('services')->group(function (){
+    //     Route::resource('services', ServiceController::class);
+    //     Route::resource('servicecategories', ServiceCategoryController::class);
+    // });
 
-    Route::prefix('ptsp')->group(function (){
-        Route::get('data-ptsp', [PtspController::class, 'dataPtsp'])->name('data-ptsp');
-        Route::get('categories-ptsp', [PtspController::class, 'categoriesPtsp'])->name('categories-ptsp');
+    // Route::prefix('ptsp')->group(function (){
+    //     Route::get('data-ptsp', [PtspController::class, 'dataPtsp'])->name('data-ptsp');
+    //     Route::get('categories-ptsp', [PtspController::class, 'categoriesPtsp'])->name('categories-ptsp');
 
-        Route::resource('ptsp', PtspController::class);
-    });
+    //     Route::resource('ptsp', PtspController::class);
+    // });
 
-    Route::resource('officers', OfficersController::class);
+    // Route::resource('officers', OfficersController::class);
 
-    Route::prefix('integrations')->group(function (){
-        Route::resource('integrations', IntegrationController::class);
+    // Route::prefix('integrations')->group(function (){
+    //     Route::resource('integrations', IntegrationController::class);
+    // });
+
+
+    Route::prefix('journals')->group(function (){
+        Route::resource('journals', JournalController::class);
     });
 
     Route::group(['middleware' => ['role:super admin']], function () {
