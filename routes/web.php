@@ -119,7 +119,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('authors', AuthorController::class);
 });
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
 Route::get('/sitemap.xml', [MetaController::class, 'sitemap'])->name('sitemap');
 
 Route::get('struktur', [ScreensController::class, 'officers']);
@@ -127,23 +127,23 @@ Route::get('struktur', [ScreensController::class, 'officers']);
 Route::get('search', [ScreensController::class, 'search'])->name('search');
 Route::get('author/{slug}', [ScreenController::class, 'author']);
 
-Route::get('page/{slug}', [ScreenController::class, 'page']);
-Route::get('informasi', [ScreensController::class, 'files']);
-Route::get('informasi/{slug}', [ScreenController::class, 'file']);
-Route::get('layanan', [ScreensController::class, 'services']);
-Route::get('silincah', [ScreensController::class, 'ptsp']);
-Route::get('kantor', [ScreensController::class, 'offices']);
-Route::get('kantor/{slug}', [ScreenController::class, 'office']);
-Route::get('arsip', [ScreensController::class, 'archives']);
-Route::get('infografis', [ScreensController::class, 'infografis']);
-Route::get('infografis/{slug}', [ScreenController::class, 'infografis']);
-Route::get('podcasts', [ScreensController::class, 'podcasts']);
-Route::get('video', [ScreensController::class, 'videos']);
-Route::get('video/{slug}', [ScreenController::class, 'video']);
-Route::get('videos/{category?}', [ScreensController::class, 'videos']);
-Route::get('pages/{category}', [ScreensController::class, 'pages']);
-Route::get('photos', [ScreensController::class, 'photos']);
-Route::get('photo/{slug}', [ScreenController::class, 'photo']);
+// Route::get('page/{slug}', [ScreenController::class, 'page']);
+// Route::get('informasi', [ScreensController::class, 'files']);
+// Route::get('informasi/{slug}', [ScreenController::class, 'file']);
+// Route::get('layanan', [ScreensController::class, 'services']);
+// Route::get('silincah', [ScreensController::class, 'ptsp']);
+// Route::get('kantor', [ScreensController::class, 'offices']);
+// Route::get('kantor/{slug}', [ScreenController::class, 'office']);
+// Route::get('arsip', [ScreensController::class, 'archives']);
+// Route::get('infografis', [ScreensController::class, 'infografis']);
+// Route::get('infografis/{slug}', [ScreenController::class, 'infografis']);
+// Route::get('podcasts', [ScreensController::class, 'podcasts']);
+// Route::get('video', [ScreensController::class, 'videos']);
+// Route::get('video/{slug}', [ScreenController::class, 'video']);
+// Route::get('videos/{category?}', [ScreensController::class, 'videos']);
+// Route::get('pages/{category}', [ScreensController::class, 'pages']);
+// Route::get('photos', [ScreensController::class, 'photos']);
+// Route::get('photo/{slug}', [ScreenController::class, 'photo']);
 
 Route::get('berita/{category?}/{slug}', [ScreenController::class, 'redirect']);
 

@@ -3,10 +3,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="/">
-                <span class="brand-logo">
-                    <img src="{{ asset('assets/images/favicon.png') }}" alt="">
-                </span>
-                <h2 class="brand-text">SULBAR</h2>
+                <h6 class="brand-text">JCMS</h6>
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
@@ -30,14 +27,14 @@
             </li>
 
             <li class=" navigation-header">
-                <span data-i18n="Contents &amp; Pages">Contents &amp; Pages</span>
+                <span data-i18n="Contents &amp; Pages">Data</span>
                 <i data-feather="more-horizontal"></i>
             </li>
 
             <li class="nav-item {{ (request()->segment(2) == 'posts' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('posts.index') }}">
                     <i data-feather="file-text"></i>
-                    <span class="menu-title text-truncate" data-i18n="Berita">Berita</span>
+                    <span class="menu-title text-truncate" data-i18n="Berita">Data Jurnal</span>
                 </a>
             </li>
 
@@ -45,12 +42,12 @@
 
             <li class="nav-item {{ (request()->segment(2) == 'videos' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('videos.index') }}">
-                    <i data-feather="video"></i>
-                    <span class="menu-title text-truncate" data-i18n="Video">Video</span>
+                    <i data-feather="clipboard"></i>
+                    <span class="menu-title text-truncate" data-i18n="Video">Laporan</span>
                 </a>
             </li>
 
-            <li class="nav-item {{ (request()->segment(2) == 'pages' ? 'active' : '') }}">
+            {{-- <li class="nav-item {{ (request()->segment(2) == 'pages' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('pages.index') }}">
                     <i data-feather="file"></i>
                     <span class="menu-title text-truncate" data-i18n="Page">Page</span>
@@ -101,26 +98,9 @@
                     <i data-feather="users"></i>
                     <span class="menu-title text-truncate" data-i18n="File">Struktur Organisasi</span>
                 </a>
-            </li>
+            </li> --}}
 
-            <li class="navigation-header {{ (request()->segment(2) == 'settings' ? 'active' : '') }}">
-                <span data-i18n="Setting">Integrasi</span>
-                <i data-feather="more-horizontal"></i>
-            </li>
-            <li class="nav-item {{ (request()->segment(2) == 'integrations' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('integrations.index') }}">
-                    <i data-feather="cpu"></i>
-                    <span class="menu-title text-truncate" data-i18n="Menu">Integrasi</span>
-                </a>
-            </li>
             @endrole
-
-            <li class="nav-item {{ (request()->segment(2) == 'offices' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('offices.index') }}">
-                    <i data-feather="briefcase"></i>
-                    <span class="menu-title text-truncate" data-i18n="Page">Kantor</span>
-                </a>
-            </li>
 
 
 
@@ -131,19 +111,13 @@
                 <i data-feather="more-horizontal"></i>
             </li>
 
-            <li class="nav-item {{ (request()->segment(2) == 'menus' ? 'active' : '') }}">
+            {{-- <li class="nav-item {{ (request()->segment(2) == 'menus' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('menus.index') }}">
                     <i data-feather="menu"></i>
                     <span class="menu-title text-truncate" data-i18n="Menu">Menu</span>
                 </a>
-            </li>
+            </li> --}}
 
-            <li class="nav-item {{ (request()->segment(2) == 'points' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('points.index') }}">
-                    <i data-feather="settings"></i>
-                    <span class="menu-title text-truncate" data-i18n="Menu">Point</span>
-                </a>
-            </li>
 
             {{-- <li class="nav-item {{ (request()->segment(2) == 'authors' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('authors.index') }}">

@@ -49,7 +49,7 @@ return [
     */
 
     'name'  => env('APP_NAME', 'Laravel'),
-    'email' => 'kemenag@mifhai.com',
+    'email' => 'admin@admin.com',
 
     /*
     |--------------------------------------------------------------------------
