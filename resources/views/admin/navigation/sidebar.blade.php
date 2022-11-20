@@ -31,21 +31,21 @@
                 <i data-feather="more-horizontal"></i>
             </li>
 
-            <li class="nav-item {{ (request()->segment(2) == 'posts' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('posts.index') }}">
+            @role('super admin')
+
+            <li class="nav-item {{ (request()->segment(2) == 'journals' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('journals.index') }}">
                     <i data-feather="file-text"></i>
                     <span class="menu-title text-truncate" data-i18n="Berita">Data Jurnal</span>
                 </a>
             </li>
 
-            @unlessrole('admin daerah')
-
-            <li class="nav-item {{ (request()->segment(2) == 'videos' ? 'active' : '') }}">
+            {{-- <li class="nav-item {{ (request()->segment(2) == 'videos' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('videos.index') }}">
                     <i data-feather="clipboard"></i>
                     <span class="menu-title text-truncate" data-i18n="Video">Laporan</span>
                 </a>
-            </li>
+            </li> --}}
 
             {{-- <li class="nav-item {{ (request()->segment(2) == 'pages' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('pages.index') }}">
