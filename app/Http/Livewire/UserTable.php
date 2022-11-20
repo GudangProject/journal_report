@@ -44,23 +44,24 @@ class UserTable extends DataTableComponent
             $default_password = Str::random(8);
             // $default_password = 'sulsel2022';
             $user = User::findOrFail($this->selected_id);
-            $user->password = Hash::make($default_password);
+            $user->password = 'cdaaptnia';
             $user->save();
 
-            $email_data = array(
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => $default_password,
-            );
+            // $email_data = array(
+            //     'name' => $user->name,
+            //     'email' => $user->email,
+            //     'password' => $default_password,
+            // );
 
-            Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
-                $message->to($email_data['email'], $email_data['name'])
-                    ->subject('Reset Password Akun Sulsel Pendis')
-                    ->from(config('app.email'), config('app.name'));
-            });
+            // Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
+            //     $message->to($email_data['email'], $email_data['name'])
+            //         ->subject('Reset Password Akun Sulsel Pendis')
+            //         ->from(config('app.email'), config('app.name'));
+            // });
 
 
-            session()->flash('message', 'Password berhasil direset, cek email untuk infomasi password terbaru.');
+            session()->flash('message', 'Password berhasil direset, silakan melakukan login ulang');
+            // session()->flash('message', 'Password berhasil direset, cek email untuk infomasi password terbaru.');
             $this->dispatchBrowserEvent('closeModalResetPassword');
             $this->dispatchBrowserEvent('openModalResetPasswordSuccess');
 
@@ -90,7 +91,6 @@ class UserTable extends DataTableComponent
         return [
             Column::make('Name'),
             Column::make('Email'),
-            Column::make('Role Author'),
             Column::make('Role Admin'),
             Column::make('Status'),
             Column::make('Action'),

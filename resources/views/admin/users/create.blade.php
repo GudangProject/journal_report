@@ -47,16 +47,6 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">KABUPATEN/KOTA</h5>
-                                                    <select name="kota" class="form-control" id="basicSelect">
-                                                        <option value="">--Pilih Kota--</option>
-                                                        @foreach (config('app.kota') as $item)
-                                                            <option value="{{ $item }}">{{ $item }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
                                                     <h5 class="text-primary">ROLE</h5>
                                                     <select name="roles" class="form-control" id="basicSelect" required>
                                                         <option value="">-- PILIH --</option>
@@ -70,17 +60,7 @@
                                                     </span>
                                                     @endif
                                                 </div>
-                                                <div class="form-group mb-2">
-                                                    <h5 class="text-primary">TYPE</h5>
-                                                    <div class="d-flex flex-row">
-                                                        @foreach (config('app.user_type') as $k=>$item)
-                                                        <div class="custom-control custom-control-success custom-checkbox">
-                                                            <input type="checkbox" name="user_type[]" value="{{ $k }}" class="custom-control-input" id="colorCheck{{ $k }}">
-                                                            <label class="custom-control-label mr-1" for="colorCheck{{ $k }}">{{ $item }}</label>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
+
                                                 <h5 class="text-primary">IMAGE</h5>
                                                 <div class="col-md-4 col-12">
                                                     <div class="form-group mb-2">

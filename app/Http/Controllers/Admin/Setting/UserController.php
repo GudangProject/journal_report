@@ -84,28 +84,26 @@ class UserController extends Controller
                     'slug'          => Str::slug($request->name),
                     'email'         => $request->email,
                     'image'         => $imageName,
-                    'kota'          => $request->kota,
-                    'password'      => Hash::make($password),
+                    'password'      => 'cdaaptnia',
                     'status'        => 1,
-                    'user_type'     => str_replace(array('[', ']', '"'), '', $user_type),
                     'created_by'    => auth()->user()->id,
                 ]);
 
                 $user->assignRole($request->roles);
 
-                $email_data = array(
-                    'name'      => $request->name,
-                    'email'     => $request->email,
-                    'password'  => $password,
-                );
+                // $email_data = array(
+                //     'name'      => $request->name,
+                //     'email'     => $request->email,
+                //     'password'  => $password,
+                // );
 
-                if($request->name != 'author'){
-                    Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
-                        $message->to($email_data['email'], $email_data['name'])
-                            ->subject('Konfirmasi Akun Sulbar Kemenag')
-                            ->from(config('app.email'), config('app.name'));
-                    });
-                }
+                // if($request->name != 'author'){
+                //     Mail::send('admin.users.welcome_email', $email_data, function ($message) use ($email_data) {
+                //         $message->to($email_data['email'], $email_data['name'])
+                //             ->subject('Konfirmasi Akun Sulbar Kemenag')
+                //             ->from(config('app.email'), config('app.name'));
+                //     });
+                // }
 
 
                 return redirect()->route('users.index')->with('message', ucwords($request->name).' | Berhasil ditambahkan!');
@@ -134,7 +132,6 @@ class UserController extends Controller
         $data['user']           = $user;
         $data['roles']          = Roles::all();
         $data['current_role']   = str_replace(array('[', ']', '"'), '', $user->getRoleNames());
-        $data['user_type']      = str_split($user_type);
 
         return view('admin.users.edit', ['data' => $data]);
     }
@@ -192,7 +189,6 @@ class UserController extends Controller
                 'slug'          => Str::slug($request->name),
                 'image'         => $imageName ? $imageName : $user->image,
                 'email'         => $request->email,
-                'kota'          => $request->kota,
                 'user_type'     => $user_type ? str_replace(array('[', ']', '"'), '', $user_type) : '',
                 'updated_by'    => auth()->user()->id,
             ]);
