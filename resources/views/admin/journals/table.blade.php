@@ -2,7 +2,7 @@
     @if($row->type == 2)
         <span class="text-primary"><i class="fa fa-star"></i></span>
     @endif
-    <span class="font-weight-bold {{ ($row->published_at > date(now()) ? 'text-danger' : '') }}">{!! $row->title !!}</span>
+    <span class="font-weight-bold {{ ($row->created_at > date(now()) ? 'text-danger' : '') }}">{!! $row->nama_jurnal !!}</span>
 
 </x-livewire-tables::table.cell>
 

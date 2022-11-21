@@ -11,5 +11,6 @@ class Journal extends Model
 
     protected $table = 'journals';
     protected $keyPrimary = 'id';
+    protected $guarded = [];
 
 }

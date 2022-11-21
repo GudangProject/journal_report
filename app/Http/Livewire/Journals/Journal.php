@@ -14,7 +14,7 @@ use App\Models\Journals\Journal as DataModel;
 class Journal extends DataTableComponent
 {
 
-    public string $defaultSortColumn = 'published_at';
+    public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
     public $selected_id;
@@ -37,9 +37,9 @@ class Journal extends DataTableComponent
 
     public function updateStatus(){
         $data = DataModel::findOrFail($this->selected_id);
-        ($data->status == 1 ? $data->update(['status' => 2, 'updated_by' => auth()->user()->id]) : $data->update(['status' => 1, 'updated_by' => auth()->user()->id]));
+        ($data->status == 1 ? $data->update(['status' => 0 ]) : $data->update(['status' => 1]));
 
-        Cache::flush('posts');
+        Cache::flush('journals');
 
         $this->dispatchBrowserEvent('closeModalStatus');
     }
@@ -51,9 +51,9 @@ class Journal extends DataTableComponent
     }
 
     public function deleteStatus(){
-        DataModel::findOrFail($this->selected_id)->update(['status' => 3, 'updated_by' => auth()->user()->id]);
+        DataModel::findOrFail($this->selected_id)->delete();
 
-        Cache::flush('posts');
+        Cache::flush('journals');
 
         $this->dispatchBrowserEvent('closeModalDelete');
     }

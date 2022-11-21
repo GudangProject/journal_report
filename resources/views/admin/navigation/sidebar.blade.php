@@ -19,12 +19,12 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="d-flex align-items-center" href="{{ route('dashboards.create') }}">
                     <i data-feather="trending-up"></i>
                     <span class="menu-title text-truncate" data-i18n="Dashboards">Analytics</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class=" navigation-header">
                 <span data-i18n="Contents &amp; Pages">Data</span>

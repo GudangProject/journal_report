@@ -7,7 +7,7 @@
 :root {
   --blue: #00cfe8;
   --indigo: #6610f2;
-  --purple: #305b90;
+  --purple: #139e8c;
   --pink: #e83e8c;
   --red: #ea5455;
   --orange: #ff9f43;
@@ -18,7 +18,7 @@
   --white: #fff;
   --gray: #b8c2cc;
   --gray-dark: #1e1e1e;
-  --primary: #305b90;
+  --primary: #139e8c;
   --secondary: #82868b;
   --success: #28c76f;
   --info: #00cfe8;
@@ -5107,12 +5107,12 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #305b90 !important; }
+  background-color: #139e8c !important; }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #4839eb !important; }
+  background-color: #139e8c !important; }
 
 .bg-secondary {
   background-color: #82868b !important; }

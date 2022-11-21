@@ -28,78 +28,41 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form class="form" method="POST" enctype="multipart/form-data" action="{{ route('posts.store') }}">
+                                <form class="form" method="POST" enctype="multipart/form-data" action="{{ route('journals.store') }}">
                                     @csrf
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-8 col-12">
-
-                                                <div class="row col-6 form-group">
-                                                    <h5 class="text-primary">TANGGAL PUBLISH</h5>
-                                                    <input name="published_at" type="text" class="form-control flatpickr-date-time" placeholder="Tanggal Publish Berita" value="{{ old('published_at') }}" />
-                                                    @if ($errors->has('published_at'))<span class="text-danger">{{$errors->first('published_at')}}</span>@endif
-                                                </div>
+                                            <div class="col-md-12 col-12">
 
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">PREFIX <span class="text-danger">(opsional)</span></h5>
-                                                    <input name="prefix" type="text" class="form-control" placeholder="Prefix Berita" value="{{ old('prefix') }}"/>
-                                                    @if ($errors->has('prefix'))<span class="text-danger">{{$errors->first('prefix')}}</span>@endif
+                                                    <h5 class="text-primary">NAMA JURNAL</h5>
+                                                    <input id="nama_jurnal" name="nama_jurnal" type="text" class="form-control" placeholder="Judul Jurnal" value="{{ old('nama_jurnal') }}"/>
+                                                    @if ($errors->has('nama_jurnal'))<span class="text-danger">{{$errors->first('nama_jurnal')}}</span>@endif
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">JUDUL</h5>
-                                                    <input id="title" name="title" type="text" class="form-control" placeholder="Judul Berita" value="{{ old('title') }}"/>
-                                                    @if ($errors->has('title'))<span class="text-danger">{{$errors->first('title')}}</span>@endif
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">SLUG</h5>
-                                                    <div class="alert alert-primary" role="alert">
-                                                        <div class="alert-body"><strong id="text-slug"> {{ old('slug') }}</strong></div>
-                                                    </div>
-                                                    <span id="input-slug" style="display:none;">
-                                                        <input name="slug" type="text" id="slug" class="form-control mb-1" value="{{old('slug') }}"/>
-                                                        <button type="button" class="btn btn-primary btn-xs" id="simpan_slug">OK</button>
-                                                        <button type="button" class="btn btn-secondary btn-xs" id="close_slug">Cancel</button>
-                                                    </span>
-                                                    @if ($errors->has('slug'))<span class="text-danger">{{$errors->first('slug')}}</span>@endif
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">KATEGORI</h5>
-                                                    <select name="category_id" class="form-control" id="basicSelect">
-                                                        <option value="">-- Pilih Kategori --</option>
-                                                        @foreach ($categories as $item)
-                                                            @if ($item->parent_id == 0)
-                                                            <option value="{{ $item->id }}" disabled>-- {{ $item->name }} --</option>
-                                                                @foreach ($categories as $value)
-                                                                    @if ($value->parent_id == $item->id)
-                                                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @if ($errors->has('category_id'))
-                                                    <span class="text-danger">
-                                                        {{ $errors->first('category_id') }}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">PREVIEW</h5>
-                                                    <textarea name="preview" id="preview" class="form-control">{{ old('preview') }}</textarea>
-                                                    @if ($errors->has('preview'))<span class="text-danger">{{$errors->first('preview')}}</span>@endif
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">CONTENT</h5>
-                                                    <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
-                                                    @if ($errors->has('content'))<span class="text-danger">{{$errors->first('content')}}</span>@endif
-                                                </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-6 col-12">
+
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">VOLUME</h5>
+                                                    <input id="volume" name="volume" type="text" class="form-control" placeholder="Volume Jurnal" value="{{ old('volume') }}"/>
+                                                    @if ($errors->has('volume'))<span class="text-danger">{{$errors->first('volume')}}</span>@endif
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 col-12">
+
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">JUMLAH NASKAH</h5>
+                                                    <div class="input-group input-group-lg">
+                                                        <input type="number" name="jumlah_naskah" class="touchspin" value="0" />
+                                                        @if ($errors->has('jumlah_naskah'))<span class="text-danger">{{$errors->first('jumlah_naskah')}}</span>@endif
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            {{-- <div class="col-md-4 col-12">
                                                 <div class="form-group mb-2">
                                                     <h5 class="text-primary">IMAGE</h5>
                                                     <div class="media flex-column text-center">
@@ -191,6 +154,12 @@
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>
                                                     <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                                 </div>
+                                            </div> --}}
+                                            <div class="col-12">
+                                                <div class="form-group border rounded p-1">
+                                                    <button type="submit" class="btn btn-primary mr-1">Simpan</button>
+                                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,6 +184,7 @@
     @push('scripts')
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/forms/form-number-input.js')}}"></script>
     <script>
         $(function () {
             var changePicture = $('#change-picture'),
