@@ -3,7 +3,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="/">
-                <h6 class="brand-text">JCMS</h6>
+                <h6 class="brand-text">LAPORAN JURNAL</h6>
                 </a>
             </li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
@@ -32,14 +32,45 @@
             </li>
 
             @role('super admin')
-
-            <li class="nav-item {{ (request()->segment(2) == 'journals' ? 'active' : '') }}">
-                <a class="d-flex align-items-center" href="{{ route('journals.index') }}">
-                    <i data-feather="file-text"></i>
-                    <span class="menu-title text-truncate" data-i18n="Berita">Data Jurnal</span>
-                </a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Master Data</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">3</span></a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->segment(2) == 'journals' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('journals.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="Berita">Jurnal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->segment(2) == 'knowledge' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('knowledge.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="Berita">Bidang Ilmu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->segment(2) == 'payment' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('payment.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="Berita">Pembayaran</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Laporan</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span></a>
+                <ul class="menu-content">
+                    <li class="nav-item {{ (request()->segment(2) == 'reports.stock' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('reports.stock') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="Stock Journal">Stok Jurnal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->segment(2) == 'reports.payment' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('reports.payment') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="Laporan Pembayaran">Pembayaran</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             {{-- <li class="nav-item {{ (request()->segment(2) == 'videos' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('videos.index') }}">
                     <i data-feather="clipboard"></i>

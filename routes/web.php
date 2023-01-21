@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\FilesCategoryController;
 use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\Journals\JournalController;
+use App\Http\Controllers\Admin\Journals\KnowledgeController;
+use App\Http\Controllers\Admin\Journals\PaymentController;
+use App\Http\Controllers\Admin\Journals\ReportController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\OfficersController;
@@ -54,60 +57,11 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::prefix('dashboards')->group(function (){
         Route::resource('dashboards', DashboardController::class);
     });
-    // Route::prefix('posts')->group(function (){
-    //     Route::resource('posts', PostController::class);
-    //     Route::resource('postcategories', PostCategoryController::class);
-    //     Route::resource('postlinkages', PostLinkageController::class);
-    // });
-    // Route::prefix('videos')->group(function (){
-    //     Route::resource('videos', VideoController::class);
-    //     Route::resource('videocategories', VideoCategoryController::class);
-    // });
-    // Route::prefix('pages')->group(function (){
-    //     Route::resource('pages', PageController::class);
-    //     Route::resource('pagecategories', PageCategoryController::class);
-    // });
-    // Route::prefix('images')->group(function (){
-    //     Route::resource('images', ImageController::class);
-    //     Route::resource('imagecategories', ImageCategoryController::class);
-    // });
-
-    // Route::prefix('photos')->group(function (){
-    //     Route::resource('photos', PhotosController::class);
-    //     Route::resource('photos-content', PhotoContentController::class);
-    //     Route::get('create-linkage/{parent}', [PhotoContentController::class, 'createLinkage'])->name('create-photos-linkage');
-    // });
-
-    // Route::prefix('offices')->group(function (){
-    //     Route::resource('offices', OfficeController::class);
-    //     Route::resource('officecategories', OfficeCategoryController::class);
-    // });
-    // Route::prefix('files')->group(function (){
-    //     Route::resource('files', FilesController::class);
-    //     Route::resource('filescategories', FilesCategoryController::class);
-    // });
-
-    // Route::prefix('services')->group(function (){
-    //     Route::resource('services', ServiceController::class);
-    //     Route::resource('servicecategories', ServiceCategoryController::class);
-    // });
-
-    // Route::prefix('ptsp')->group(function (){
-    //     Route::get('data-ptsp', [PtspController::class, 'dataPtsp'])->name('data-ptsp');
-    //     Route::get('categories-ptsp', [PtspController::class, 'categoriesPtsp'])->name('categories-ptsp');
-
-    //     Route::resource('ptsp', PtspController::class);
-    // });
-
-    // Route::resource('officers', OfficersController::class);
-
-    // Route::prefix('integrations')->group(function (){
-    //     Route::resource('integrations', IntegrationController::class);
-    // });
-
 
     Route::prefix('journals')->group(function (){
         Route::resource('journals', JournalController::class);
+        Route::resource('payment', PaymentController::class);
+        Route::resource('knowledge', KnowledgeController::class);
     });
 
     Route::group(['middleware' => ['role:super admin']], function () {
@@ -120,43 +74,17 @@ Route::prefix('admin')->middleware('auth')->group(function (){
             Route::resource('menuscategories', MenuCategoriesController::class);
         });
     });
+
     Route::resource('users', UserController::class)->middleware('role:super admin');
     Route::get('profile', [UserController::class, 'show'])->name('profile');
     Route::resource('authors', AuthorController::class);
+
+    Route::get('reports-stock', [ReportController::class, 'stock'])->name('reports.stock');
+    Route::get('reports-payment', [ReportController::class, 'payment'])->name('reports.payment');
 });
 
-// Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/sitemap.xml', [MetaController::class, 'sitemap'])->name('sitemap');
-
-Route::get('struktur', [ScreensController::class, 'officers']);
-
-Route::get('search', [ScreensController::class, 'search'])->name('search');
-Route::get('author/{slug}', [ScreenController::class, 'author']);
-
-// Route::get('page/{slug}', [ScreenController::class, 'page']);
-// Route::get('informasi', [ScreensController::class, 'files']);
-// Route::get('informasi/{slug}', [ScreenController::class, 'file']);
-// Route::get('layanan', [ScreensController::class, 'services']);
-// Route::get('silincah', [ScreensController::class, 'ptsp']);
-// Route::get('kantor', [ScreensController::class, 'offices']);
-// Route::get('kantor/{slug}', [ScreenController::class, 'office']);
-// Route::get('arsip', [ScreensController::class, 'archives']);
-// Route::get('infografis', [ScreensController::class, 'infografis']);
-// Route::get('infografis/{slug}', [ScreenController::class, 'infografis']);
-// Route::get('podcasts', [ScreensController::class, 'podcasts']);
-// Route::get('video', [ScreensController::class, 'videos']);
-// Route::get('video/{slug}', [ScreenController::class, 'video']);
-// Route::get('videos/{category?}', [ScreensController::class, 'videos']);
-// Route::get('pages/{category}', [ScreensController::class, 'pages']);
-// Route::get('photos', [ScreensController::class, 'photos']);
-// Route::get('photo/{slug}', [ScreenController::class, 'photo']);
-
-Route::get('berita/{category?}/{slug}', [ScreenController::class, 'redirect']);
-
-Route::get('{category}', [ScreensController::class, 'posts']);
-Route::get('{category?}/{slug}-{code}', [ScreenController::class, 'post'])->where('slug', '(.*)');
-Route::get('{category}/sitemap.xml', [MetaController::class, 'sitemapDetail'])->name('sitemap-detail');
-
 
 
 
