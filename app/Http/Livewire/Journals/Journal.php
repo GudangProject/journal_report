@@ -9,7 +9,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Illuminate\Support\Facades\Cache;
-use App\Models\Journals\Journal as DataModel;
+use App\Models\Journals\Journal as JournalModel;
 
 class Journal extends DataTableComponent
 {
@@ -21,12 +21,7 @@ class Journal extends DataTableComponent
 
     public function showModalDetail($id)
     {
-        $this->selected_id = $id;
-        $data = DataModel::findOrFail($id);
-        $this->title = $data->title;
-        $this->content = $data->content;
-        $this->image = $data->image;
-        $this->dispatchBrowserEvent('openModalDetail');
+
     }
 
     public function statusModal($id)
@@ -36,7 +31,7 @@ class Journal extends DataTableComponent
     }
 
     public function updateStatus(){
-        $data = DataModel::findOrFail($this->selected_id);
+        $data = JournalModel::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 0 ]) : $data->update(['status' => 1]));
 
         Cache::flush('journals');
@@ -51,7 +46,7 @@ class Journal extends DataTableComponent
     }
 
     public function deleteStatus(){
-        DataModel::findOrFail($this->selected_id)->delete();
+        JournalModel::findOrFail($this->selected_id)->delete();
 
         Cache::flush('journals');
 
@@ -61,11 +56,16 @@ class Journal extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Judul'),
-            Column::make('Voume'),
-            Column::make('Jml Naskah'),
-            Column::make('Status'),
-            Column::make('Action'),
+            Column::make('Rumpun Ilmu'),
+            Column::make('Judul', 'name')->sortable(),
+            Column::make('Volume'),
+            Column::make('Link Issue'),
+            Column::make('Indexasi'),
+            Column::make('Afiliasi'),
+            Column::make('Jumlah'),
+            Column::make('Upload By'),
+            // Column::make('Status'),
+            Column::make('Aksi'),
         ];
     }
 
@@ -103,12 +103,12 @@ class Journal extends DataTableComponent
     {
         $user = auth()->user();
 
-        $data = DataModel::query();
+        $data = JournalModel::query();
         $data = $data->where('status', '!=', 3);
         if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] != 'admin editor'){
             $data = $data->where('created_by', $user->id);
         }
-        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('title', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
         $data = $data->when($this->getFilter('category'), fn ($query, $category) => $query->whereHas('getCategory', fn ($q) => $q->where('slug', $category)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 

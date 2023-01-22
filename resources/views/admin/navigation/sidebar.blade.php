@@ -32,30 +32,30 @@
             </li>
 
             @role('super admin')
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Master Data</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">3</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Master Data</span></a>
                 <ul class="menu-content">
                     <li class="nav-item {{ (request()->segment(2) == 'journals' ? 'active' : '') }}">
                         <a class="d-flex align-items-center" href="{{ route('journals.index') }}">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate" data-i18n="Berita">Jurnal</span>
+                            <span class="menu-title text-truncate" data-i18n="Jurnal">Jurnal</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->segment(2) == 'knowledge' ? 'active' : '') }}">
                         <a class="d-flex align-items-center" href="{{ route('knowledge.index') }}">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate" data-i18n="Berita">Bidang Ilmu</span>
+                            <span class="menu-title text-truncate" data-i18n="Rumpun Ilmu">Rumpun Ilmu</span>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->segment(2) == 'payment' ? 'active' : '') }}">
                         <a class="d-flex align-items-center" href="{{ route('payment.index') }}">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate" data-i18n="Berita">Pembayaran</span>
+                            <span class="menu-title text-truncate" data-i18n="Pembayaran">Pembayaran</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Laporan</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Laporan</span></a>
                 <ul class="menu-content">
                     <li class="nav-item {{ (request()->segment(2) == 'reports.stock' ? 'active' : '') }}">
                         <a class="d-flex align-items-center" href="{{ route('reports.stock') }}">

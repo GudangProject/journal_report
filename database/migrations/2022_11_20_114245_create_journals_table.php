@@ -15,12 +15,21 @@ class CreateJournalsTable extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('rumpun_id')->nullable();
-            $table->string('nama_jurnal')->nullable();
-            $table->string('volume')->nullable();
-            $table->bigInteger('jumlah_naskah')->nullable();
+            $table->bigInteger('knowledge_id')->nullable();
+            $table->string('name');
+            $table->integer('volume')->nullable();
+            $table->integer('number')->nullable();
+            $table->integer('month')->nullable();
+            $table->integer('year')->nullable();
+            $table->string('semester')->nullable();
+            $table->text('link_issue')->nullable();
+            $table->integer('indexasi')->nullable();
+            $table->string('afiliate')->nullable();
+            $table->bigInteger('total');
+            $table->integer('created_by');
             $table->integer('status')->default(1);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

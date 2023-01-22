@@ -60,9 +60,16 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::prefix('journals')->group(function (){
         Route::resource('journals', JournalController::class);
-        Route::resource('payment', PaymentController::class);
+    });
+
+    Route::prefix('knowledge')->group(function (){
         Route::resource('knowledge', KnowledgeController::class);
     });
+
+    Route::prefix('payment')->group(function (){
+        Route::resource('payment', PaymentController::class);
+    });
+
 
     Route::group(['middleware' => ['role:super admin']], function () {
         Route::prefix('points')->group(function (){
