@@ -17,13 +17,13 @@ class CreateJournalsTable extends Migration
             $table->id();
             $table->bigInteger('knowledge_id')->nullable();
             $table->string('name');
-            $table->integer('volume')->nullable();
-            $table->integer('number')->nullable();
-            $table->integer('month')->nullable();
-            $table->integer('year')->nullable();
+            $table->string('volume')->nullable();
+            $table->string('number')->nullable();
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->string('semester')->nullable();
             $table->text('link_issue')->nullable();
-            $table->integer('indexasi')->nullable();
+            $table->string('indexasi')->nullable();
             $table->string('afiliate')->nullable();
             $table->bigInteger('total');
             $table->integer('created_by');

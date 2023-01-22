@@ -56,15 +56,16 @@ class Journal extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Rumpun Ilmu'),
             Column::make('Judul', 'name')->sortable(),
+            Column::make('Rumpun Ilmu'),
             Column::make('Volume'),
             Column::make('Link Issue'),
             Column::make('Indexasi'),
             Column::make('Afiliasi'),
             Column::make('Jumlah'),
             Column::make('Upload By'),
-            // Column::make('Status'),
+            Column::make('No HP'),
+            Column::make('Status'),
             Column::make('Aksi'),
         ];
     }

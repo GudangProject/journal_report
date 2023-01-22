@@ -1,22 +1,40 @@
 <x-livewire-tables::table.cell>
-    @if($row->type == 2)
-        <span class="text-primary"><i class="fa fa-star"></i></span>
-    @endif
-    <span class="font-weight-bold {{ ($row->created_at > date(now()) ? 'text-danger' : '') }}">{!! $row->nama_jurnal !!}</span>
-
+    <span>{{ $row->name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
     <div class="badge badge-primary">
-        <span>{!! $row->volume !!}</span>
+        <span>{!! $row->knowledge->name !!}</span>
     </div>
 </x-livewire-tables::table.cell >
 
 <x-livewire-tables::table.cell>
-    <div class="badge badge-primary">
-        <span>{!! $row->jumlah_naskah !!}</span>
-    </div>
-</x-livewire-tables::table.cell >
+    <span>{{ $row->volume }} No. {{ $row->number }} {{ $row->month }} {{ $row->year }}, Semester: {{ $row->semester }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <a href="{{ $row->link_issue }}">{{ $row->link_issue }}</a>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{{ $row->indexasi }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{{ $row->afiliate }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{{ $row->total }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{{ $row->createdBy->name }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <span>{{ $row->createdBy->phone }}</span>
+</x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
     @if($row->status == 1)
