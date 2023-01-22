@@ -1,5 +1,5 @@
 <x-livewire-tables::table.cell>
-    <span>{{ $row->name }}</span>
+    <span class="font-weight-bold">{{ $row->name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -61,21 +61,11 @@
         <div class="dropdown">
             <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
             <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('posts.edit', $row->id) }}">
+                    <a class="dropdown-item" href="{{ route('journals.edit', $row->id) }}">
                         <i class="mr-1 fas fa-edit"></i>
                         <span class="align-middle">Edit</span>
                     </a>
-                    <a type="button" class="dropdown-item" wire:click="showModalDetail({{ $row->id }})">
-                        <i class="mr-1 fas fa-desktop"></i>
-                        <span class="align-middle">Detail</span>
-                    </a>
-                    @if($row->published_at < date(now()))
-                    <a class="dropdown-item" target="_blank" href="{{env('APP_URL').'/'.$row->getCategory->slug.'/'.$row->slug.'-'.$row->code }}">
-                        <i class="mr-1 fas fa-eye"></i>
-                        <span class="align-middle">Web</span>
-                    </a>
-                    @endif
-                    @role('super admin|admin editor')
+                    @role('super admin|admin')
                     <a type="button" class="dropdown-item" wire:click="deleteModal({{ $row->id }})">
                         <i class="mr-1 fas fa-trash"></i>
                         <span class="align-middle">Delete</span>

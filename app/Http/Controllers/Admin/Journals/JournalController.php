@@ -28,7 +28,7 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+
         $countVolume = count($request->volume);
         try{
             for($i = 0; $i < $countVolume; $i++){
@@ -48,8 +48,6 @@ class JournalController extends Controller
                 ]);
             }
 
-            Cache::flush('journals');
-
             return redirect()->route('journals.index')->with('message', $save->name.' | Berhasil ditambahkan!');
         }catch(Exception $error){
             dd($error);
@@ -58,38 +56,44 @@ class JournalController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('admin.journals.edit', [
+            'data' => Journal::find($id),
+            'knowledge' => Knowledge::all()
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $save = Journal::where('id', $id)->update([
+                'knowledge_id' => $request->knowledge_id,
+                'name' => $request->name,
+                'volume' => $request->volume,
+                'number' => $request->number,
+                'month' => $request->month,
+                'year' => $request->year,
+                'semester' => $request->semester,
+                'link_issue' => $request->link_issue,
+                'indexasi' => $request->indexasi,
+                'afiliate' => $request->afiliate,
+                'total' => $request->total,
+                'created_by' => auth()->user()->id,
+            ]);
+
+            return redirect()->route('journals.index')->with('message', $save->name.' | Berhasil diupdate!');
+        }catch(Exception $error){
+            dd($error);
+            Alert::error('Error', $error->getMessage());
+            return back()->withInput();
+        }
+
     }
 
     /**

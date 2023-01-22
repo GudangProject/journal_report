@@ -10,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Journals\Journal as JournalModel;
+use App\Models\Journals\Knowledge;
 
 class Journal extends DataTableComponent
 {
@@ -47,9 +48,6 @@ class Journal extends DataTableComponent
 
     public function deleteStatus(){
         JournalModel::findOrFail($this->selected_id)->delete();
-
-        Cache::flush('journals');
-
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
@@ -72,30 +70,29 @@ class Journal extends DataTableComponent
 
     public function filters(): array
     {
-        $dataCategory = PostCategory::where('status', 1)->get();
+        $dataKnowledge = Knowledge::where('status', 1)->get();
 
-        $category = array();
-        foreach($dataCategory as $k=>$v){
-            $category[$k]['id'] = $v->slug;
-            $category[$k]['name'] = $v->name;
+        $knowledge = array();
+        foreach($dataKnowledge as $k=>$v){
+            $knowledge[$k]['id'] = $v->id;
+            $knowledge[$k]['name'] = $v->name;
         }
-
-        $data = collect($category)->mapWithKeys(function ($name) {
+        $data = collect($knowledge)->mapWithKeys(function ($name) {
             return [$name['id'] => $name['name']];
         })->toArray();
-
+        // dd($data);
         return [
-            'category' => Filter::make('Category')
+            'knowledge' => Filter::make('Rumpun Ilmu')
                 ->select(
                     array_merge([
-                        '' => '--Semua--',
+                        '0' => '--Semua--',
                       ], $data)
                 ),
             'status' => Filter::make('Status')
                 ->select([
                     '' => '--Semua--',
-                    1 => 'Tayang',
-                    2 => 'Tidak',
+                    1 => 'Aktif',
+                    0 => 'Tidak Aktif',
                 ]),
         ];
     }
@@ -105,12 +102,11 @@ class Journal extends DataTableComponent
         $user = auth()->user();
 
         $data = JournalModel::query();
-        $data = $data->where('status', '!=', 3);
         if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] != 'admin editor'){
             $data = $data->where('created_by', $user->id);
         }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
-        $data = $data->when($this->getFilter('category'), fn ($query, $category) => $query->whereHas('getCategory', fn ($q) => $q->where('slug', $category)));
+        $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         return $data;
