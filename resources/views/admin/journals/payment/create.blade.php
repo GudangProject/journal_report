@@ -35,7 +35,7 @@
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Jurnal</h5>
-                                                    <select class="select2 form-control" name="journal_id" multiple>
+                                                    <select class="form-control" name="journal_id">
                                                         <optgroup label="Daftar Jurnal">
                                                             @foreach ($journals as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}</option>
@@ -52,20 +52,27 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">Judul Naskah</h5>
-                                                    <input id="manuscript_title" name="manuscript_title" type="text" class="form-control" placeholder="Judul Naskah" value="{{ old('manuscript_title') }}"/>
-                                                    @error('manuscript_title') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">Link Naskah</h5>
-                                                    <input id="manuscript_link" name="manuscript_link" type="text" class="form-control" placeholder="Link Naskah" value="{{ old('manuscript_link') }}"/>
-                                                    @error('manuscript_link') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
+                                            <div class="col-md-12 col-12">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-primary">Judul Naskah</td>
+                                                            <th class="text-primary">Link Naskah</th>
+                                                            <th class="text-primary"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="add-volume">
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="">
+                                                            </td>
+                                                            <td><button type="text" class="btn btn-success btn-add"><i class="fas fa-plus"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                             <div class="col-md-12 col-12">
@@ -105,6 +112,14 @@
                                                     <input type="hidden" name="1_1_height" id="1_1_height"/>
                                                     <input type="hidden" name="1_1_x" id="1_1_x"/>
                                                     <input type="hidden" name="1_1_y" id="1_1_y"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-12 mt-2">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Ketetangan</h5>
+                                                    <div class="input-group">
+                                                        <textarea name="description" class="form-control" placeholder="Tulis keterangan pembayaran disini."></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-2">
@@ -168,22 +183,10 @@
                 e.preventDefault();
                 let html = '<tr>';
                 html += '<td>';
-                html += '<select class="select2 form-control" name="journal_id">';
-                html += '<option selected disabled>--Silahkan Pilih---</option>';
-                html += '@foreach ($journals as $item)';
-                html += '<option value="{{ $item->id }}">{{ $item->name }}</option>';
-                html += '@endforeach';
-                html += '</select>';
-                html += '<div class="invalid-feedback"></div>';
+                html += '<input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">';
                 html += '</td>';
-
                 html += '<td>';
-                html += '<select name="semester[]" class="form-control">';
-                html += '<option selected disabled>--Silahkan Pilih---</option>';
-                html += '<option value="Ganjil">Ganjil</option>';
-                html += '<option value="Genap">Genap</option>';
-                html += '</select>';
-                html += ' <div class="invalid-feedback"> </div>';
+                html += '<input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="">';
                 html += '</td>';
 
                 html += '<td><button type="text" class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>';
