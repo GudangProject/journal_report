@@ -26,6 +26,8 @@ class CreateJournalsTable extends Migration
             $table->string('indexasi')->nullable();
             $table->string('afiliate')->nullable();
             $table->bigInteger('total');
+            $table->string('manager_by');
+            $table->string('manager_phone');
             $table->integer('created_by');
             $table->integer('status')->default(1);
             $table->timestamps();

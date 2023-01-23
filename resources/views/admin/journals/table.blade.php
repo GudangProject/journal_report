@@ -29,11 +29,11 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->createdBy->name }}</span>
+    <span>{{ $row->manager_by }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->createdBy->phone }}</span>
+    <span>{{ $row->manager_phone }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>

@@ -155,6 +155,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Pengelola Jurnal</h5>
+                                                    <input type="text" name="manager_by" id="manager_by" class="form-control " autocomplete="off" placeholder="Nama pengelola jurnal" value="{{ $data->manager_by }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Nomor Hp Pengelola</h5>
+                                                    <div class="input-group">
+                                                        <input type="text" name="manager_phone" class="form-control" value="{{ $data->phone_by }}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group border rounded p-1">
                                                     <button type="submit" class="btn btn-primary mr-1">Simpan</button>

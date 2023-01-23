@@ -44,6 +44,8 @@ class JournalController extends Controller
                     'indexasi' => $request->indexasi,
                     'afiliate' => $request->afiliate,
                     'total' => $request->total,
+                    'manager_by' => $request->manager_by,
+                    'manager_phone' => $request->manager_phone,
                     'created_by' => auth()->user()->id,
                 ]);
             }
@@ -84,6 +86,8 @@ class JournalController extends Controller
                 'indexasi' => $request->indexasi,
                 'afiliate' => $request->afiliate,
                 'total' => $request->total,
+                'manager_by' => $request->manager_by,
+                'manager_phone' => $request->manager_phone,
                 'created_by' => auth()->user()->id,
             ]);
 
