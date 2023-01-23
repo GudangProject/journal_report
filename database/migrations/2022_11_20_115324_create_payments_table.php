@@ -17,8 +17,8 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->integer('journal_id')->nullable();
             $table->string('payer_name');
-            $table->string('manuscript_title');
-            $table->string('manuscript_link');
+            $table->string('manuscript_title')->nullable();
+            $table->string('manuscript_link')->nullable();
             $table->integer('price');
             $table->text('image');
             $table->text('description');

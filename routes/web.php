@@ -86,6 +86,8 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::get('profile', [UserController::class, 'show'])->name('profile');
     Route::resource('authors', AuthorController::class);
 
+    Route::get('/naskah/delete/{id}', [PaymentController::class, 'naskahDelete']);
+
     Route::get('reports-stock', [ReportController::class, 'stock'])->name('reports.stock');
     Route::get('reports-payment', [ReportController::class, 'payment'])->name('reports.payment');
 });

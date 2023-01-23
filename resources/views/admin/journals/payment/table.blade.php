@@ -4,28 +4,28 @@
 
 <x-livewire-tables::table.cell>
     <div class="badge badge-primary">
-        {{-- <span>{!! $row->knowledge->name !!}</span> --}}
+        <span>{{ $row->knowledge }}</span>
     </div>
 </x-livewire-tables::table.cell >
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->name }}</span>
+    <span>{{ $row->payer_name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->manuscript_name }}</span>
+    @foreach ($row->naskah() as $item)
+        <a href="{{ $item->link }}" class="badge badge-light-primary" style="margin: 3px;">
+            {{ $item->name }}
+        </a>
+    @endforeach
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <a href="{{ $row->manuscript_link }}">{{ $row->manuscript_link }}</a>
+    <span>{{ $row->date }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->created_at }}</span>
-</x-livewire-tables::table.cell>
-
-<x-livewire-tables::table.cell>
-    <span>{{ $row->price }}</span>
+    <span class="font-weight-bold text-primary">{{ number_format($row->price) }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -33,7 +33,11 @@
         <div class="dropdown">
             <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
             <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('journals.edit', $row->id) }}">
+                    <a class="dropdown-item" href="{{ asset('storage/pictures/payment/big/'.$row->image) }}">
+                        <i class="mr-1 fas fa-image"></i>
+                        <span class="align-middle">Bukti Bayar</span>
+                    </a>
+                    <a class="dropdown-item" href="{{ route('payment.edit', $row->id) }}">
                         <i class="mr-1 fas fa-edit"></i>
                         <span class="align-middle">Edit</span>
                     </a>

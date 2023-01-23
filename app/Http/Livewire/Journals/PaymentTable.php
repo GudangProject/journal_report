@@ -54,7 +54,7 @@ class PaymentTable extends DataTableComponent
             Column::make('Rumpun Ilmu'),
             Column::make('Nama'),
             Column::make('Judul Naskah'),
-            Column::make('Link Naskah'),
+            // Column::make('Link Naskah'),
             Column::make('Tanggal Pembayaran'),
             Column::make('Nominal'),
             Column::make('Aksi'),
