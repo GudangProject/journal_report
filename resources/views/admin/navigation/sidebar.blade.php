@@ -46,13 +46,14 @@
                             <span class="menu-title text-truncate" data-i18n="Rumpun Ilmu">Rumpun Ilmu</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->segment(2) == 'payment' ? 'active' : '') }}">
-                        <a class="d-flex align-items-center" href="{{ route('payment.index') }}">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate" data-i18n="Pembayaran">Pembayaran</span>
-                        </a>
-                    </li>
                 </ul>
+            </li>
+
+            <li class="nav-item {{ (request()->segment(2) == 'payment' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('payment.index') }}">
+                    <i data-feather="credit-card"></i>
+                    <span class="menu-title text-truncate" data-i18n="Pembayaran">Pembayaran</span>
+                </a>
             </li>
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Laporan</span></a>

@@ -2,17 +2,15 @@
 
 namespace App\Http\Livewire\Journals;
 
-use App\Models\Post;
-use App\Models\PostCategory;
+use App\Models\Journals\Journal;
+use App\Models\Journals\Knowledge;
+use App\Models\Journals\Payment;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Illuminate\Support\Facades\Cache;
-use App\Models\Journals\Journal as JournalModel;
-use App\Models\Journals\Knowledge;
 
-class Journal extends DataTableComponent
+class PaymentTable extends DataTableComponent
 {
 
     public string $defaultSortColumn = 'created_at';
@@ -32,10 +30,8 @@ class Journal extends DataTableComponent
     }
 
     public function updateStatus(){
-        $data = JournalModel::findOrFail($this->selected_id);
+        $data = Payment::findOrFail($this->selected_id);
         ($data->status == 1 ? $data->update(['status' => 0 ]) : $data->update(['status' => 1]));
-
-        Cache::flush('journals');
 
         $this->dispatchBrowserEvent('closeModalStatus');
     }
@@ -47,7 +43,7 @@ class Journal extends DataTableComponent
     }
 
     public function deleteStatus(){
-        JournalModel::findOrFail($this->selected_id)->delete();
+        Payment::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
@@ -56,21 +52,18 @@ class Journal extends DataTableComponent
         return [
             Column::make('Judul', 'name')->sortable(),
             Column::make('Rumpun Ilmu'),
-            Column::make('Volume'),
-            Column::make('Link Issue'),
-            Column::make('Indexasi'),
-            Column::make('Afiliasi'),
-            Column::make('Jumlah'),
-            Column::make('Upload By'),
-            Column::make('No HP'),
-            Column::make('Status'),
+            Column::make('Nama'),
+            Column::make('Judul Naskah'),
+            Column::make('Link Naskah'),
+            Column::make('Tanggal Pembayaran'),
+            Column::make('Nominal'),
             Column::make('Aksi'),
         ];
     }
 
     public function filters(): array
     {
-        $dataKnowledge = Knowledge::where('status', 1)->get();
+        $dataKnowledge = Journal::where('status', 1)->get();
 
         $knowledge = array();
         foreach($dataKnowledge as $k=>$v){
@@ -101,12 +94,12 @@ class Journal extends DataTableComponent
     {
         $user = auth()->user();
 
-        $data = JournalModel::query();
+        $data = Payment::query();
         if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] != 'admin editor'){
             $data = $data->where('created_by', $user->id);
         }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
-        $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
+        $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->whereHas('journal', fn ($q) => $q->where('journal_id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         return $data;
@@ -117,11 +110,11 @@ class Journal extends DataTableComponent
 
     public function rowView(): string
     {
-        return 'admin.journals.table';
+        return 'admin.journals.payment.table';
     }
 
     public function modalsView(): string
     {
-        return 'admin.journals.modal';
+        return 'admin.journals.payment.modal';
     }
 }

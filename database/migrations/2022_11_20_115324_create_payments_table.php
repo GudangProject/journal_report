@@ -15,12 +15,14 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('rumpun_id')->nullable();
-            $table->bigInteger('journal_id')->nullable();
-            // $table->bigInteger('journal_id')->nullable();
-            $table->string('nama')->nullable();
-            $table->string('judul_naskah')->nullable();
-            $table->string('link_naskah')->nullable();
+            $table->integer('journal_id')->nullable();
+            $table->string('payer_name');
+            $table->string('manuscript_title');
+            $table->string('manuscript_link');
+            $table->integer('price');
+            $table->text('image');
+            $table->text('description');
+            $table->integer('created_by');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

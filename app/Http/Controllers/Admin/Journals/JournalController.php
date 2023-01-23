@@ -87,9 +87,8 @@ class JournalController extends Controller
                 'created_by' => auth()->user()->id,
             ]);
 
-            return redirect()->route('journals.index')->with('message', $save->name.' | Berhasil diupdate!');
+            return redirect()->route('journals.index')->with('message', 'Jurnal Berhasil diupdate!');
         }catch(Exception $error){
-            dd($error);
             Alert::error('Error', $error->getMessage());
             return back()->withInput();
         }

@@ -3,83 +3,97 @@
 namespace App\Http\Controllers\Admin\Journals;
 
 use App\Http\Controllers\Controller;
+use App\Models\Journals\Journal;
+use App\Services\ImageServices;
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('admin.journals.payment.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.journals.payment.create', [
+            'journals' => Journal::where('status', true)->get(),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $imageName = '';
+        dd($request);
+        // if($request->image != null){
+        //     $validate = $request->validate([
+        //         'image' =>'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
+        //     ]);
+
+        //     $image_setting = [
+        //         'ori_width'=>config('app.img_size.ori_width'),
+        //         'ori_height'=>config('app.img_size.ori_height'),
+        //         'mid_width'=>config('app.img_size.mid_width'),
+        //         'mid_height'=>config('app.img_size.mid_height'),
+        //         'thumb_width'=>config('app.img_size.thumb_width'),
+        //         'thumb_height'=>config('app.img_size.thumb_height')
+        //     ];
+
+        //     if($request->file('image') != null){
+        //         $data = array(
+        //             'skala11' => array(
+        //                 'width'=>$request->input('1_1_width'),
+        //                 'height'=>$request->input('1_1_height'),
+        //                 'x'=>$request->input('1_1_x'),
+        //                 'y'=>$request->input('1_1_y')
+        //             )
+        //         );
+
+        //         $image_data = [
+        //             'file'=>$request->file('image'),
+        //             'setting'=>$image_setting,
+        //             'path'=>public_path('storage/pictures/payment/'),
+        //             'modul'=>'payment',
+        //             'data'=>$data
+        //         ];
+        //         $image_service = ImageServices::imageUser($image_data);
+        //         if($image_service['status'] == true){
+        //             $imageName = $image_service['namaImage'];
+        //         }
+        //     }
+        // }
+
+        try {
+
+        } catch (Exception $error) {
+            dd($error);
+            Alert::error('Error', $error->getMessage());
+            return back()->withInput();
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
     }
+
+
 }
