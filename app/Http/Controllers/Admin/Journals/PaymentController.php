@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Journals;
 
 use App\Http\Controllers\Controller;
 use App\Models\Journals\Journal;
+use App\Models\Journals\Mybank;
 use App\Models\Journals\Naskah;
 use App\Models\Journals\Payment;
 use App\Services\ImageServices;
@@ -22,6 +23,7 @@ class PaymentController extends Controller
     {
         return view('admin.journals.payment.create', [
             'journals' => Journal::where('status', true)->get(),
+            'mybank' => Mybank::all()
         ]);
     }
 
@@ -113,6 +115,7 @@ class PaymentController extends Controller
             'data' => $data,
             'naskah' => Naskah::where('journal_id', $data->journal_id)->get(),
             'journals' => Journal::where('status', true)->get(),
+            'mybank' => Mybank::all()
         ]);
     }
 
@@ -164,6 +167,9 @@ class PaymentController extends Controller
             $pay = Payment::findOrFail($id);
             $pay->journal_id = $request->journal_id;
             $pay->payer_name = $request->payer_name;
+            $pay->payer_rekening = $request->payer_rekening;
+            $pay->payer_bank = $request->payer_bank;
+            $pay->mybank_id = $request->mybank_id;
             $pay->price = $request->price;
             $pay->image = $imageName;
             $pay->description = $request->description;
@@ -171,7 +177,7 @@ class PaymentController extends Controller
             $pay->created_by = auth()->user()->id;
             $pay->save();
 
-            if($pay){
+            if($pay && $request->manuscript_title[0] != null){
                 for ($i=0; $i < $countNaskah ; $i++) {
                     $naskah[$i] = Naskah::create([
                         'journal_id' => $request->journal_id,

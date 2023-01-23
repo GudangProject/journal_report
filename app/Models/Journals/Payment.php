@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Journals\Naskah;
 use App\Models\Journals\Knowledge;
 use App\Services\DateServices;
+use App\Models\Journals\Mybank;
 
 class Payment extends Model
 {
@@ -19,6 +20,10 @@ class Payment extends Model
 
     public function createBy(){
         return $this->belongsTo(User::class, 'created_by')->withTrashed();
+    }
+
+    public function mybank(){
+        return $this->belongsTo(Mybank::class, 'mybank_id');
     }
 
     public function journal(){

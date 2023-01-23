@@ -16,10 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->integer('journal_id')->nullable();
-            $table->string('payer_name');
             $table->string('manuscript_title')->nullable();
             $table->string('manuscript_link')->nullable();
             $table->integer('price');
+            $table->string('payer_name');
+            $table->string('payer_rekening');
+            $table->string('payer_bank');
+            $table->integer('mybank_id');
             $table->text('image');
             $table->text('description');
             $table->integer('created_by');

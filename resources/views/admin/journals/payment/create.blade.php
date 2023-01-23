@@ -44,13 +44,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">Nama</h5>
-                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ old('payer_name') }}"/>
-                                                    @error('payer_name') <span class="text-danger">{{ $message }}</span> @enderror
-                                                </div>
-                                            </div>
 
                                             <div class="col-md-12 col-12">
                                                 <table class="table">
@@ -75,11 +68,53 @@
                                                 </table>
                                             </div>
 
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">No Rekening</h5>
+                                                    <input id="payer_rekening" name="payer_rekening" type="text" class="form-control" placeholder="No Rekening" value="{{ old('payer_rekening') }}"/>
+                                                    @error('payer_rekening') <span class="text-danger">{{ $message }}</span> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">BANK</h5>
+                                                    <input id="payer_bank" name="payer_bank" type="text" class="form-control" placeholder="BANK" value="{{ old('payer_bank') }}"/>
+                                                    @error('payer_bank') <span class="text-danger">{{ $message }}</span> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Nama</h5>
+                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ old('payer_name') }}"/>
+                                                    @error('payer_name') <span class="text-danger">{{ $message }}</span> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <h5 class="text-primary">Rekening Tujuan</h5>
+                                                    <select class="form-control" name="journal_id">
+                                                        <optgroup label="Daftar rekening pembayaran">
+                                                            @foreach ($mybank as $item)
+                                                                <option value="{{ $item->id }}">{{ $item->no_rekening }} {{ $item->bank }} a.n {{ $item->owner }}</option>
+                                                            @endforeach
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                @livewire('journals.mybank-form')
+                                            </div>
+
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Biaya</h5>
+                                                    <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">
                                                         <input type="number" name="price" class="form-control"/>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,7 +151,7 @@
                                             </div>
                                             <div class="col-md-12 col-12 mt-2">
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Ketetangan</h5>
+                                                    <h5 class="text-primary">Keterangan</h5>
                                                     <div class="input-group">
                                                         <textarea name="description" class="form-control" placeholder="Tulis keterangan pembayaran disini."></textarea>
                                                     </div>

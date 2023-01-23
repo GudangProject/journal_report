@@ -63,19 +63,20 @@ class PaymentTable extends DataTableComponent
 
     public function filters(): array
     {
-        $dataKnowledge = Journal::where('status', 1)->get();
+        $dataJournal = Journal::where('status', 1)->get();
 
-        $knowledge = array();
-        foreach($dataKnowledge as $k=>$v){
-            $knowledge[$k]['id'] = $v->id;
-            $knowledge[$k]['name'] = $v->name;
+        $journal = array();
+        foreach($dataJournal as $k=>$v){
+            $journal[$k]['id'] = $v->id;
+            $journal[$k]['name'] = $v->name;
         }
-        $data = collect($knowledge)->mapWithKeys(function ($name) {
+
+        $data = collect($journal)->mapWithKeys(function ($name) {
             return [$name['id'] => $name['name']];
         })->toArray();
         // dd($data);
         return [
-            'knowledge' => Filter::make('Rumpun Ilmu')
+            'journal' => Filter::make('Nama Jurnal')
                 ->select(
                     array_merge([
                         '0' => '--Semua--',

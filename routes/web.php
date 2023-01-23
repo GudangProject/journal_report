@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\FilesCategoryController;
 use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\Journals\JournalController;
 use App\Http\Controllers\Admin\Journals\KnowledgeController;
+use App\Http\Controllers\Admin\Journals\MybankController;
 use App\Http\Controllers\Admin\Journals\PaymentController;
 use App\Http\Controllers\Admin\Journals\ReportController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
@@ -68,8 +69,8 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::prefix('payment')->group(function (){
         Route::resource('payment', PaymentController::class);
+        Route::resource('mybank', MybankController::class);
     });
-
 
     Route::group(['middleware' => ['role:super admin']], function () {
         Route::prefix('points')->group(function (){
