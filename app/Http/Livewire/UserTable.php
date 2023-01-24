@@ -44,7 +44,7 @@ class UserTable extends DataTableComponent
             $default_password = Str::random(8);
             // $default_password = 'sulsel2022';
             $user = User::findOrFail($this->selected_id);
-            $user->password = 12345678;
+            $user->password = Hash::make(12345678);
             $user->save();
 
             // $email_data = array(

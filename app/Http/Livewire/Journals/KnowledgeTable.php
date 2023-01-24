@@ -72,10 +72,9 @@ class KnowledgeTable extends DataTableComponent
         $user = auth()->user();
 
         $data = Knowledge::query();
-        $data = $data->where('status', '!=', 3);
-        if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] != 'admin editor'){
-            $data = $data->where('created_by', $user->id);
-        }
+        // if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] == 'pic'){
+        //     $data = $data->where('created_by', $user->id);
+        // }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
 
         return $data;

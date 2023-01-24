@@ -84,7 +84,7 @@ class UserController extends Controller
                     'slug'          => Str::slug($request->name),
                     'email'         => $request->email,
                     'image'         => $imageName,
-                    'password'      => 'cdaaptnia',
+                    'password'      => Hash::make('cdaaptnia'),
                     'status'        => 1,
                     'created_by'    => auth()->user()->id,
                 ]);
