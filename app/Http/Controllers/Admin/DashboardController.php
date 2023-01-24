@@ -11,20 +11,16 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Nette\Utils\Json;
 use App\Charts\MonthlyUsersChart;
+use App\Models\Journals\Journal;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['total_post']           = (int)Post::where('created_at', '>', Carbon::now()->subDays(7))->count();
-        $data['total_reader']         = (int)Post::where('created_at', '>', Carbon::now()->subDays(7))->sum('counter');
+        $data['total_journal']        = Journal::where('status', true)->get()->count();
+        $data['total_stock_journal']  = Journal::where('status', true)->get()->sum('total');
         $data['top_point']            = self::TopPoint();
-        $data['posts']                = self::Posts(10)['data'];
+        $data['journal']              = Journal::where('status', true)->orderByDesc('created_at')->paginate(15);
         $data['wiget']                = self::Wiget();
 
         // dd($data);

@@ -36,11 +36,9 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Jurnal</h5>
                                                     <select class="form-control" name="journal_id">
-                                                        <optgroup label="Daftar Jurnal">
-                                                            @foreach ($journals as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}</option>
-                                                            @endforeach
-                                                        </optgroup>
+                                                        @foreach ($journals as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}, Slot: {{ $item->total }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -95,7 +93,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Rekening Tujuan</h5>
-                                                    <select class="form-control" name="journal_id">
+                                                    <select class="form-control" name="mybank_id">
                                                         <optgroup label="Daftar rekening pembayaran">
                                                             @foreach ($mybank as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->no_rekening }} {{ $item->bank }} a.n {{ $item->owner }}</option>
@@ -113,7 +111,7 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">
-                                                        <input type="number" name="price" class="form-control"/>
+                                                        <input type="number" name="price" class="form-control" value="{{ old('price') }}"/>
 
                                                     </div>
                                                 </div>

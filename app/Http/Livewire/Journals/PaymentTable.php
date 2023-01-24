@@ -16,22 +16,23 @@ class PaymentTable extends DataTableComponent
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
-    public $selected_id;
+    public $selected_id, $status;
 
     public function showModalDetail($id)
     {
 
     }
 
-    public function statusModal($id)
+    public function statusModal($id, $status)
     {
         $this->selected_id = $id;
+        $this->status = $status;
         $this->dispatchBrowserEvent('openModalStatus');
     }
 
     public function updateStatus(){
         $data = Payment::findOrFail($this->selected_id);
-        ($data->status == 1 ? $data->update(['status' => 0 ]) : $data->update(['status' => 1]));
+        $data->update(['status' => $this->status]);
 
         $this->dispatchBrowserEvent('closeModalStatus');
     }
@@ -47,6 +48,16 @@ class PaymentTable extends DataTableComponent
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
+    public function deleteSelectedModal()
+    {
+        $this->dispatchBrowserEvent('openModalDeleteSelected');
+    }
+
+    public function deleteSelected(){
+        Payment::whereIn('id', $this->selectedKeys)->delete();
+        $this->dispatchBrowserEvent('closeModalDeleteSelected');
+    }
+
     public function columns(): array
     {
         return [
@@ -54,12 +65,17 @@ class PaymentTable extends DataTableComponent
             Column::make('Rumpun Ilmu'),
             Column::make('Nama'),
             Column::make('Judul Naskah'),
-            // Column::make('Link Naskah'),
             Column::make('Tanggal Pembayaran'),
             Column::make('Nominal'),
+            Column::make('Status'),
             Column::make('Aksi'),
         ];
     }
+
+    public array $bulkActions = [
+        'exportSelected' => 'Export',
+        'deleteSelectedModal' => 'Delete',
+    ];
 
     public function filters(): array
     {

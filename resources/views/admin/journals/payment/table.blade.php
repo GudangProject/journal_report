@@ -29,6 +29,25 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    <div class="btn-group">
+        @role('author')
+        <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }}">
+            {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
+        </button>
+        @endrole
+        @role('super admin|finance')
+        <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }} dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+            <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 1)'>LUNAS</a>
+            <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 0)'>PENDING</a>
+        </div>
+        @endrole
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     <div class="content-header-right">
         <div class="dropdown">
             <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>

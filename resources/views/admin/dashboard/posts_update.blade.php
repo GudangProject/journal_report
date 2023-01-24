@@ -5,23 +5,27 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Views</th>
+                        <th>Nama Jurnal</th>
+                        <th>Rumpun Ilmu</th>
+                        <th>Volume</th>
+                        <th>Slot</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @if (isset($data['posts']['data']))
-                            @foreach ($data['posts']['data'] as $k=>$v)
+                        @if (isset($data['journal']))
+                            @foreach ($data['journal'] as $k=>$v)
                                 <tr>
-                                    <td>{!! $v['title'] !!}</td>
+                                    <td>{!! $v->name !!}</td>
                                     <td>
-                                        <div class="badge badge-light-primary">{{ $v['category'] }}</div>
+                                        <div class="badge badge-light-primary">{{ $v->knowledge->name }}</div>
+                                    </td>
+                                    <td>
+                                        <span class="text-primary font-italic">{{ $v->volume }} No. {{ $v->number }}, {{ $v->month }} {{ $v->year }}, Semester: {{ $v->semester }}</div>
                                     </td>
                                     <td class="text-nowrap">
                                         <div class="d-flex align-items-center">
                                             <span class="font-weight-bolder mr-1">
-                                                {{ $v['counter'] }}
+                                                {{ $v->total }}
                                             </span>
                                             <i data-feather="trending-up" class="text-success font-medium-1"></i>
                                         </div>

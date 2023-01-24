@@ -21,7 +21,7 @@
                 </div>
                 <div class="content-header-right text-md-right col-md-3 col-7">
                     <div class="form-group breadcrumb-right">
-                        <a href="{{ route('payment.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="{{ route('payment.create') }}" class="btn btn-primary">Tambah</a>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,14 @@
 
         window.addEventListener('closeModalDelete', event => {
             $("#delete-modal").modal('hide');
+        });
+
+        window.addEventListener('openModalDeleteSelected', event => {
+            $("#delete-modal-selected").modal('show');
+        });
+
+        window.addEventListener('closeModalDeleteSelected', event => {
+            $("#delete-modal-selected").modal('hide');
         });
     </script>
     @endpush

@@ -29,8 +29,19 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
-        $imageName = '';
-        $countNaskah = count($request->manuscript_title);
+        $imageName     = '';
+        $countNaskah   = count($request->manuscript_title);
+        $journal       = Journal::findOrFail($request->journal_id);
+        $journalStock  = $journal->total;
+
+        if($countNaskah > $journalStock){
+
+            Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+            return back()->withInput();
+        }else{
+            $updateStock   = $journalStock - $countNaskah;
+            $currentStock  = $journal->update(['total' => $updateStock]);
+        }
 
         if($request->image != null){
             $validate = $request->validate([
@@ -75,14 +86,18 @@ class PaymentController extends Controller
             $pay = new Payment();
             $pay->journal_id = $request->journal_id;
             $pay->payer_name = $request->payer_name;
+            $pay->payer_rekening = $request->payer_rekening;
+            $pay->payer_bank = $request->payer_bank;
+            $pay->mybank_id = $request->mybank_id;
             $pay->price = $request->price;
             $pay->image = $imageName;
             $pay->description = $request->description;
-            $pay->status = true;
+            $pay->status = false;
             $pay->created_by = auth()->user()->id;
             $pay->save();
 
             if($pay){
+
                 for ($i=0; $i < $countNaskah ; $i++) {
                     $naskah[$i] = Naskah::create([
                         'journal_id' => $request->journal_id,
@@ -96,7 +111,6 @@ class PaymentController extends Controller
             return redirect()->route('payment.index');
 
         } catch (Exception $error) {
-            dd($error);
             Alert::error('Error', $error->getMessage());
             return back()->withInput();
         }
@@ -113,8 +127,8 @@ class PaymentController extends Controller
         $data = Payment::findOrFail($id);
         return view('admin.journals.payment.edit', [
             'data' => $data,
-            'naskah' => Naskah::where('journal_id', $data->journal_id)->get(),
-            'journals' => Journal::where('status', true)->get(),
+            'naskah' => Naskah::where('journal_id', $data->journal_id)->where('created_at', $data->created_at)->get(),
+            'journals' => Journal::all(),
             'mybank' => Mybank::all()
         ]);
     }
@@ -123,6 +137,17 @@ class PaymentController extends Controller
     {
         $imageName = '';
         $countNaskah = count($request->manuscript_title);
+        $journal       = Journal::findOrFail($request->journal_id);
+        $journalStock  = $journal->total;
+
+        if($countNaskah > $journalStock){
+
+            Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+            return back()->withInput();
+        }else{
+            $updateStock   = $journalStock - $countNaskah;
+            $currentStock  = $journal->update(['total' => $updateStock]);
+        }
 
         if($request->image != null){
             $validate = $request->validate([
@@ -173,7 +198,7 @@ class PaymentController extends Controller
             $pay->price = $request->price;
             $pay->image = $imageName;
             $pay->description = $request->description;
-            $pay->status = true;
+            $pay->status = false;
             $pay->created_by = auth()->user()->id;
             $pay->save();
 
@@ -204,7 +229,13 @@ class PaymentController extends Controller
 
     public function naskahDelete($id)
     {
-        Naskah::findOrFail($id)->delete();
+        $naskah = Naskah::findOrFail($id);
+        $journal = Journal::findOrFail($naskah->journal_id)->increment('total');
+
+        if($journal){
+            $naskah->delete();
+        }
+
         Alert::success('Deleted', 'Naskah berhasil dihapus.');
         return back()->withInput();
     }

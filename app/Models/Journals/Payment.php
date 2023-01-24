@@ -35,7 +35,7 @@ class Payment extends Model
     }
 
     public function naskah(){
-        return Naskah::where('journal_id', $this->journal_id)->get();
+        return Naskah::where('journal_id', $this->journal_id)->where('created_at', $this->created_at)->get();
     }
 
     public function getDateAttribute()

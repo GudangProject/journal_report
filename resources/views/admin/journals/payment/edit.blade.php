@@ -39,7 +39,7 @@
                                                     <select class="form-control" name="journal_id">
                                                         <optgroup label="Daftar Jurnal">
                                                             @foreach ($journals as $item)
-                                                                <option value="{{ $item->id }}" {{ $item->id == $data->journal_id ? 'selected' : ''}}>{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}</option>
+                                                                <option value="{{ $item->id }}" {{ $item->id == $data->journal_id ? 'selected' : ''}} {{ $item->id != $data->journal_id ? 'disabled' : ''}}>{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}, Slot: {{ $item->total }}</option>
                                                             @endforeach
                                                         </optgroup>
                                                     </select>
