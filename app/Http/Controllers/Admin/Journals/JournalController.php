@@ -16,7 +16,9 @@ class JournalController extends Controller
 
     public function index()
     {
-        return view('admin.journals.index');
+        return view('admin.journals.index', [
+            'data' => Journal::orderByDesc('created_at')->get()
+        ]);
     }
 
     public function create()

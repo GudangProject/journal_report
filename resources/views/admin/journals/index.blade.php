@@ -19,9 +19,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right text-md-right col-md-3 col-7">
+                <div class="content-header-right text-right col-md-3 col-7">
                     <div class="form-group breadcrumb-right">
-                        <a href="{{ route('journals.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="{{ route('journals.create') }}" class="btn btn-primary">Tambah</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">{{ $data->count() }}</h2>
+                                <p class="card-text">Total Jurnal</p>
+                            </div>
+                            <div class="avatar bg-light-primary p-50 m-0">
+                                <div class="avatar-content">
+                                    <i data-feather="book" class="font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
+                                <p class="card-text">Stok Jurnal</p>
+                            </div>
+                            <div class="avatar bg-light-success p-50 m-0">
+                                <div class="avatar-content">
+                                    <i data-feather="activity" class="font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,6 +72,8 @@
     </div>
 
     @push('scripts')
+    <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/cards/card-statistics.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             $(function () {

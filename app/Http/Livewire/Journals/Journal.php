@@ -60,7 +60,7 @@ class Journal extends DataTableComponent
             Column::make('Link Issue'),
             Column::make('Indexasi'),
             Column::make('Afiliasi'),
-            Column::make('Jumlah'),
+            Column::make('Stok'),
             Column::make('Pengelola'),
             Column::make('No HP'),
             Column::make('Status'),
@@ -71,26 +71,69 @@ class Journal extends DataTableComponent
     public function filters(): array
     {
         $dataKnowledge = Knowledge::where('status', 1)->get();
+        $journal       = JournalModel::all();
+        $all           = array("0" => '--Semua--');
 
         $knowledge = array();
         foreach($dataKnowledge as $k=>$v){
             $knowledge[$k]['id'] = $v->id;
             $knowledge[$k]['name'] = $v->name;
         }
+
         $data = collect($knowledge)->mapWithKeys(function ($name) {
             return [$name['id'] => $name['name']];
         })->toArray();
-        // dd($data);
+
+
+        $dataJournal = array();
+        foreach($journal as $k=>$v){
+            $dataJournal[$k]['volume'] = $v->volume;
+            $dataJournal[$k]['month'] = $v->month;
+            $dataJournal[$k]['year'] = $v->year;
+            $dataJournal[$k]['indexasi'] = $v->indexasi;
+            $dataJournal[$k]['semester'] = $v->semester;
+        }
+
+        // volume
+        $dataVolume = collect($dataJournal)->mapWithKeys(function ($volumeName) {
+            return [$volumeName['volume'] => $volumeName['volume']];
+        })->toArray();
+
+        // month
+        $dataMonth = collect($dataJournal)->mapWithKeys(function ($month) {
+            return [$month['month'] => $month['month']];
+        })->toArray();
+
+        // year
+        $dataYear = collect($dataJournal)->mapWithKeys(function ($year) {
+            return [$year['year'] => $year['year']];
+        })->toArray();
+
+        // indexasi
+        $dataIndexasi = collect($dataJournal)->mapWithKeys(function ($indexasi) {
+            return [$indexasi['indexasi'] => $indexasi['indexasi']];
+        })->toArray();
+
+        // semester
+        $dataSemester = collect($dataJournal)->mapWithKeys(function ($semester) {
+            return [$semester['semester'] => $semester['semester']];
+        })->toArray();
+
         return [
             'knowledge' => Filter::make('Rumpun Ilmu')
-                ->select(
-                    array_merge([
-                        '0' => '--Semua--',
-                      ], $data)
-                ),
+                ->select($data),
+            'volume' => Filter::make('Volume')
+                ->select($dataVolume),
+            'month' => Filter::make('Bulan')
+                ->select($dataMonth),
+            'year' => Filter::make('Tahun')
+                ->select($dataYear),
+            'indexasi' => Filter::make('INDEXASI')
+                ->select($dataIndexasi),
+            'semester' => Filter::make('Semester')
+            ->select($dataSemester),
             'status' => Filter::make('Status')
                 ->select([
-                    '0' => '--Semua--',
                     1 => 'Aktif',
                     2 => 'Tidak Aktif',
                 ]),
@@ -107,6 +150,11 @@ class Journal extends DataTableComponent
         }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
         $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
+        $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->where('volume', $volume));
+        $data = $data->when($this->getFilter('month'), fn ($query, $month) => $query->where('month', $month));
+        $data = $data->when($this->getFilter('year'), fn ($query, $year) => $query->where('year', $year));
+        $data = $data->when($this->getFilter('indexasi'), fn ($query, $indexasi) => $query->where('indexasi', $indexasi));
+        $data = $data->when($this->getFilter('semester'), fn ($query, $semester) => $query->where('semester', $semester));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         return $data;
