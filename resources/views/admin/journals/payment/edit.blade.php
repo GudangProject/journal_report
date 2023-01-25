@@ -36,7 +36,7 @@
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Jurnal</h5>
-                                                    <select class="form-control" name="journal_id">
+                                                    <select class="form-control" name="journal_id" required>
                                                         <optgroup label="Daftar Jurnal">
                                                             @foreach ($journals as $item)
                                                                 <option value="{{ $item->id }}" {{ $item->id == $data->journal_id ? 'selected' : ''}} {{ $item->id != $data->journal_id ? 'disabled' : ''}}>{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}, Slot: {{ $item->total }}</option>
@@ -59,10 +59,10 @@
                                                         @foreach ($naskah as $item)
                                                             <tr>
                                                                 <td>
-                                                                    <input disabled type="text" name="manuscript_titlex" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="{{ $item->name }}">
+                                                                    <input disabled type="text" name="manuscript_titlex" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="{{ $item->name }}" required>
                                                                 </td>
                                                                 <td>
-                                                                    <input disabled type="text" name="manuscript_linkx" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="{{ $item->link }}">
+                                                                    <input disabled type="text" name="manuscript_linkx" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="{{ $item->link }}" required>
                                                                 </td>
                                                                 <td><a href="/admin/naskah/delete/{{ $item->id }}" class="btn btn-danger"><i class="fas fa-times"></i></a></td>
                                                             </tr>
@@ -83,7 +83,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">No Rekening</h5>
-                                                    <input id="payer_rekening" name="payer_rekening" type="number" class="form-control" placeholder="No Rekening" value="{{ $data->payer_rekening }}"/>
+                                                    <input id="payer_rekening" name="payer_rekening" type="number" class="form-control" placeholder="No Rekening" value="{{ $data->payer_rekening }}" required/>
                                                     @error('payer_rekening') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -91,7 +91,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">BANK</h5>
-                                                    <input id="payer_bank" name="payer_bank" type="text" class="form-control" placeholder="BANK" value="{{ $data->payer_bank }}"/>
+                                                    <input id="payer_bank" name="payer_bank" type="text" class="form-control" placeholder="BANK" value="{{ $data->payer_bank }}" required/>
                                                     @error('payer_bank') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -99,7 +99,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nama</h5>
-                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ $data->payer_name }}"/>
+                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ $data->payer_name }}" required/>
                                                     @error('payer_name') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Rekening Tujuan</h5>
-                                                    <select class="form-control" name="mybank_id">
+                                                    <select class="form-control" name="mybank_id" required>
                                                         <optgroup label="Daftar rekening pembayaran">
                                                             @foreach ($mybank as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->no_rekening }} {{ $item->bank }} a.n {{ $item->owner }}</option>
@@ -125,7 +125,7 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">
-                                                        <input type="number" name="price" class="form-control" value="{{ $data->price }}"/>
+                                                        <input type="number" name="price" class="form-control" value="{{ $data->price }}" required/>
 
                                                     </div>
                                                 </div>

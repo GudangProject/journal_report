@@ -7,21 +7,16 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Jurnal</h3>
+                            <h3 class="content-header-title float-left mb-0">Stok Jurnal</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="/admin">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active">List Jurnal
                                     </li>
                                 </ol>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-header-right text-right col-md-3 col-7">
-                    <div class="form-group breadcrumb-right">
-                        <a href="{{ route('journals.create') }}" class="btn btn-primary">Tambah</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +61,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('journals.journal')
+                @livewire('journals.stock-table')
             </div>
         </div>
     </div>
@@ -74,6 +69,7 @@
     @push('scripts')
     <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/cards/card-statistics.js')}}"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             $(function () {

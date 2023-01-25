@@ -73,7 +73,6 @@ class PaymentTable extends DataTableComponent
     }
 
     public array $bulkActions = [
-        'exportSelected' => 'Export',
         'deleteSelectedModal' => 'Delete',
     ];
 
@@ -93,11 +92,7 @@ class PaymentTable extends DataTableComponent
         // dd($data);
         return [
             'journal' => Filter::make('Nama Jurnal')
-                ->select(
-                    array_merge([
-                        '0' => '--Semua--',
-                      ], $data)
-                ),
+                ->select($data),
             'status' => Filter::make('Status')
                 ->select([
                     '0' => '--Semua--',

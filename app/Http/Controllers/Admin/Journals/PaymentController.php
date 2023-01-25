@@ -100,6 +100,7 @@ class PaymentController extends Controller
 
                 for ($i=0; $i < $countNaskah ; $i++) {
                     $naskah[$i] = Naskah::create([
+                        'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
                         'link' => $request->manuscript_link[$i],
@@ -127,7 +128,7 @@ class PaymentController extends Controller
         $data = Payment::findOrFail($id);
         return view('admin.journals.payment.edit', [
             'data' => $data,
-            'naskah' => Naskah::where('journal_id', $data->journal_id)->where('created_at', $data->created_at)->get(),
+            'naskah' => Naskah::where('journal_id', $data->journal_id)->where('payment_id', $this->id)->get(),
             'journals' => Journal::all(),
             'mybank' => Mybank::all()
         ]);
@@ -137,16 +138,19 @@ class PaymentController extends Controller
     {
         $imageName = '';
         $countNaskah = count($request->manuscript_title);
-        $journal       = Journal::findOrFail($request->journal_id);
-        $journalStock  = $journal->total;
 
-        if($countNaskah > $journalStock){
+        if($request->manuscript_title[0] != null || $request->manuscript_link[0] != null){
+            $journal       = Journal::findOrFail($request->journal_id);
+            $journalStock  = $journal->total;
 
-            Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
-            return back()->withInput();
-        }else{
-            $updateStock   = $journalStock - $countNaskah;
-            $currentStock  = $journal->update(['total' => $updateStock]);
+            if($countNaskah > $journalStock){
+
+                Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+                return back()->withInput();
+            }else{
+                $updateStock   = $journalStock - $countNaskah;
+                $currentStock  = $journal->update(['total' => $updateStock]);
+            }
         }
 
         if($request->image != null){
@@ -205,6 +209,7 @@ class PaymentController extends Controller
             if($pay && $request->manuscript_title[0] != null){
                 for ($i=0; $i < $countNaskah ; $i++) {
                     $naskah[$i] = Naskah::create([
+                        'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
                         'link' => $request->manuscript_link[$i],

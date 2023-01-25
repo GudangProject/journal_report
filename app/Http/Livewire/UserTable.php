@@ -39,12 +39,10 @@ class UserTable extends DataTableComponent
 
     public function resetPassword()
     {
-        // dd($this->selected_id);
         try {
-            $default_password = Str::random(8);
-            // $default_password = 'sulsel2022';
+            $default_password = '12345678';
             $user = User::findOrFail($this->selected_id);
-            $user->password = Hash::make(12345678);
+            $user->password = Hash::make($default_password);
             $user->save();
 
             // $email_data = array(

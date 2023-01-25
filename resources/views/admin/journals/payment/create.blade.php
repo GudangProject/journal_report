@@ -35,7 +35,7 @@
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Jurnal</h5>
-                                                    <select class="form-control" name="journal_id">
+                                                    <select class="form-control" name="journal_id" required>
                                                         @foreach ($journals as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}, Slot: {{ $item->total }}</option>
                                                         @endforeach
@@ -55,10 +55,10 @@
                                                     <tbody id="add-volume">
                                                         <tr>
                                                             <td>
-                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">
+                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="" required>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="">
+                                                                <input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="" required>
                                                             </td>
                                                             <td><button type="text" class="btn btn-success btn-add"><i class="fas fa-plus"></i></button></td>
                                                         </tr>
@@ -69,7 +69,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">No Rekening</h5>
-                                                    <input id="payer_rekening" name="payer_rekening" type="text" class="form-control" placeholder="No Rekening" value="{{ old('payer_rekening') }}"/>
+                                                    <input id="payer_rekening" name="payer_rekening" type="text" class="form-control" placeholder="No Rekening" value="{{ old('payer_rekening') }}" required/>
                                                     @error('payer_rekening') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -77,7 +77,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">BANK</h5>
-                                                    <input id="payer_bank" name="payer_bank" type="text" class="form-control" placeholder="BANK" value="{{ old('payer_bank') }}"/>
+                                                    <input id="payer_bank" name="payer_bank" type="text" class="form-control" placeholder="BANK" value="{{ old('payer_bank') }}" required/>
                                                     @error('payer_bank') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -85,7 +85,7 @@
                                             <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nama</h5>
-                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ old('payer_name') }}"/>
+                                                    <input id="payer_name" name="payer_name" type="text" class="form-control" placeholder="Nama Pembayar" value="{{ old('payer_name') }}" required/>
                                                     @error('payer_name') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Rekening Tujuan</h5>
-                                                    <select class="form-control" name="mybank_id">
+                                                    <select class="form-control" name="mybank_id" required>
                                                         <optgroup label="Daftar rekening pembayaran">
                                                             @foreach ($mybank as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->no_rekening }} {{ $item->bank }} a.n {{ $item->owner }}</option>
@@ -111,7 +111,7 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">
-                                                        <input type="number" name="price" class="form-control" value="{{ old('price') }}"/>
+                                                        <input type="number" name="price" class="form-control" value="{{ old('price') }}" required/>
 
                                                     </div>
                                                 </div>
