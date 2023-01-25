@@ -1,0 +1,124 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* CSS KEMENAG DALAM ANGKA */
+.kemenag-angka{
+    font-family: Poppins;
+    max-width: 100px;
+}
+.custom-tabs {
+	display: flex;
+	flex-wrap: wrap;
+    font-family: Poppins;
+
+}
+.custom-tabs label {
+	order: 1;
+	display: block;
+    font-family: Poppins;
+	padding: 1rem;
+    /* max-width: 285px; */
+	margin-right: 0.2rem;
+	cursor: pointer;
+    color: #333;
+    background: #ddd;
+    font-weight: bold;
+    transition: background ease 0.2s;
+}
+.custom-tabs .tab {
+  order: 99;
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  /* padding: 1rem; */
+  background: #fff;
+}
+.custom-tabs input[type="radio"] {
+	display: none;
+}
+.custom-tabs input[type="radio"]:checked + label {
+	background: #2f5596;
+    color: #fff;
+}
+.custom-tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#card-height{
+    max-height: 100px !important;
+}
+
+@media (max-width: 1024px) {
+  .custom-tabs .tab,
+  .custom-tabs label {
+    order: initial;
+  }
+  .custom-tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+
+}
+
+
+/* VIDEO PROFILE HOME */
+.bg-videos{
+    height: 60px;
+    background-color: #2f5596;
+}
+.video-card{
+    margin: 10px;
+}
+.video-title{
+    background-color: #2f5596;
+    color: #fff;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 0 30px 30px 30px;
+    z-index: 9;
+    position: relative;
+    left: 30%;
+    top: 10px;
+}
+.video-card img{
+    display: block;
+    border: none;
+    border-radius: 8px;
+    width: 640px;
+    height: 400px;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .video-card img{
+        width: 540px;
+        height: 200px;
+    }
+
+    .video-title{
+        left: 10%;
+    }
+}
+
+.video-card .video-icon-play{
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.video-thumbnail{
+background-color: #333;
+opacity: 1;
+}
+
+.video-thumbnail:hover{
+    opacity: 0.8;
+}

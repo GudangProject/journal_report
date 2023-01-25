@@ -19,6 +19,7 @@ class StockTable extends DataTableComponent
 
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
+    public bool $useHeaderAsFooter = true;
 
     public $selected_id;
 
