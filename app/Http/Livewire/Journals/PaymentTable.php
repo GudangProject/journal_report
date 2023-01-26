@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Journals;
 
 use App\Models\Journals\Journal;
 use App\Models\Journals\Knowledge;
+use App\Models\Journals\Naskah;
 use App\Models\Journals\Payment;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -44,7 +45,15 @@ class PaymentTable extends DataTableComponent
     }
 
     public function deleteStatus(){
-        Payment::findOrFail($this->selected_id)->delete();
+        $payment     = Payment::findOrFail($this->selected_id);
+        $naskahCount = Naskah::where('payment_id', $this->selected_id)->get()->count();
+        $journal     = Journal::findOrFail($payment->journal_id);
+        $updateStock = $journal->update(['total' => $journal->total + $naskahCount]);
+
+        if($updateStock){
+            $payment->delete();
+        }
+
         $this->dispatchBrowserEvent('closeModalDelete');
     }
 
@@ -72,9 +81,9 @@ class PaymentTable extends DataTableComponent
         ];
     }
 
-    public array $bulkActions = [
-        'deleteSelectedModal' => 'Delete',
-    ];
+    // public array $bulkActions = [
+    //     'deleteSelectedModal' => 'Delete',
+    // ];
 
     public function filters(): array
     {

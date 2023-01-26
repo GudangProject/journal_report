@@ -70,6 +70,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::prefix('payment')->group(function (){
         Route::resource('payment', PaymentController::class);
         Route::resource('mybank', MybankController::class);
+        Route::get('invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
     });
 
     Route::group(['middleware' => ['role:super admin']], function () {

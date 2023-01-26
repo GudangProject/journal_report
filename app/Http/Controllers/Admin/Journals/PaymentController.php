@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Journals;
 
 use App\Http\Controllers\Controller;
+use App\Models\Journals\Invoice;
 use App\Models\Journals\Journal;
 use App\Models\Journals\Mybank;
 use App\Models\Journals\Naskah;
@@ -97,6 +98,16 @@ class PaymentController extends Controller
             $pay->save();
 
             if($pay){
+                $invoice = new Invoice();
+                $invoice->payment_id = $pay->id;
+                $invoice->code = $pay->id.time();
+                $invoice->price = $pay->price;
+                $invoice->status = true;
+                $invoice->created_by = auth()->user()->id;
+                $invoice->save();
+
+                $mybank = Mybank::findOrFail($pay->mybank_id);
+                $mybank->update(['balance' => $mybank->balance + $pay->price]);
 
                 for ($i=0; $i < $countNaskah ; $i++) {
                     $naskah[$i] = Naskah::create([
@@ -245,5 +256,12 @@ class PaymentController extends Controller
         return back()->withInput();
     }
 
+    public function invoice(Request $request){
+        return view('admin.journals.payment.invoice',[
+            'payment' => Payment::findOrfail($request->id),
+            'invoice' => Invoice::where('payment_id', $request->id)->first(),
+            'naskah'  => Naskah::where('payment_id', $request->id)->get()
+        ]);
+    }
 
 }

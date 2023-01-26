@@ -25,38 +25,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $data->count() }}</h2>
-                                <p class="card-text">Total Jurnal</p>
-                            </div>
-                            <div class="avatar bg-light-primary p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="book" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
-                                <p class="card-text">Total Stok Jurnal</p>
-                            </div>
-                            <div class="avatar bg-light-success p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="activity" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="content-body">
                 @if (session()->has('message'))
                 <div class="alert alert-primary alert-dismissible fade show" role="alert">

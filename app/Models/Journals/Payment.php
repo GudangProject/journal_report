@@ -10,6 +10,7 @@ use App\Models\Journals\Naskah;
 use App\Models\Journals\Knowledge;
 use App\Services\DateServices;
 use App\Models\Journals\Mybank;
+use Carbon\Carbon;
 
 class Payment extends Model
 {
@@ -41,5 +42,10 @@ class Payment extends Model
     public function getDateAttribute()
     {
         return DateServices::dateHome($this->created_at);
+    }
+
+    public function getDateOriginalAttribute()
+    {
+        return Carbon::parse($this->crated_at)->format('d-m-Y h:m:s');
     }
 }
