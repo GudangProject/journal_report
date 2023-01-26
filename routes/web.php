@@ -90,6 +90,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::get('/naskah/delete/{id}', [PaymentController::class, 'naskahDelete']);
 
+    Route::get('reports-invoice-download', [ReportController::class, 'invoiceDownload'])->name('reports.invoice-download');
     Route::get('reports-stock', [ReportController::class, 'stock'])->name('reports.stock');
     Route::get('reports-payment', [ReportController::class, 'payment'])->name('reports.payment');
 });

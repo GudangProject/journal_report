@@ -20,7 +20,7 @@ class Payment extends Model
     protected $appends = ['knowledge'];
 
     public function createBy(){
-        return $this->belongsTo(User::class, 'created_by')->withTrashed();
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function mybank(){

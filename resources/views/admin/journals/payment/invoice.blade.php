@@ -60,11 +60,11 @@
 
                             <div class="card-body invoice-padding pt-0">
                                 <div class="row invoice-spacing">
-                                    <div class="col-xl-8 p-0">
+                                    <div class="col-xl-8 pl-1">
                                         <h6 class="mb-2">Kepada:</h6>
                                         <h6 class="mb-25 text-primary">{{ ucwords($payment->payer_name) }}</h6>
                                     </div>
-                                    <div class="col-xl-4 p-0 mt-xl-0 mt-2">
+                                    <div class="col-xl-4 pl-1 mt-xl-0 mt-2">
                                         <h6 class="mb-2">Detail Pembayaran:</h6>
                                         <table>
                                             <tbody>
@@ -150,17 +150,13 @@
                     <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                         <div class="card">
                             <div class="card-body">
-                                <button class="btn btn-primary btn-block mb-75" data-toggle="modal" data-target="#send-invoice-sidebar">
-                                    Send Invoice
-                                </button>
-                                <button class="btn btn-outline-secondary btn-block btn-download-invoice mb-75">Download</button>
+                                <a href="{{ route('reports.invoice-download', ['id' => $payment->id]) }}" class="btn btn-primary btn-block mb-75">
+                                    Download
+                                </a>
                                 <a class="btn btn-outline-secondary btn-block mb-75" href="./app-invoice-print.html" target="_blank">
                                     Print
                                 </a>
-                                <a class="btn btn-outline-secondary btn-block mb-75" href="./app-invoice-edit.html"> Edit </a>
-                                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#add-payment-sidebar">
-                                    Add Payment
-                                </button>
+
                             </div>
                         </div>
                     </div>
