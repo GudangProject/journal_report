@@ -17,6 +17,7 @@ class ReportController extends Controller
 
         return view('admin.journals.reports.stock', [
             'data'  => Journal::orderByDesc('created_at')->get(),
+            'naskah' => Naskah::orderByDesc('created_at')->get(),
             'chart' => $chart->build()
         ]);
     }
@@ -43,6 +44,21 @@ class ReportController extends Controller
             'payment' => Payment::findOrfail($request->id),
             'invoice' => $invoice,
             'naskah'  => Naskah::where('payment_id', $request->id)->get()
+        ]);
+    }
+
+    public function payments(){
+        $data = [
+            'income' => [
+                'total' => Payment::where('status', true)->sum('price'),
+                'currentYear' => Payment::whereYear('created_at', now()->year)->where('status', true)->sum('price'),
+                'currentMonth' => Payment::whereMonth('created_at', now()->month)->where('status', true)->sum('price'),
+                'currentDay' => Payment::whereDay('created_at', now()->day)->where('status', true)->sum('price'),
+            ],
+        ];
+        // dd($data);
+        return view('admin.journals.reports.payments', [
+            'data' => $data
         ]);
     }
 }

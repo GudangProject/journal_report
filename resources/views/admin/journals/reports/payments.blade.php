@@ -7,12 +7,12 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Stok Jurnal</h3>
+                            <h3 class="content-header-title float-left mb-0">Laporan Pembayaran</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">List Jurnal
+                                    <li class="breadcrumb-item active">List Laporan Pembayaran
                                     </li>
                                 </ol>
                             </div>
@@ -21,16 +21,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $data->count() }}</h2>
-                                <p class="card-text">Total Jurnal</p>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['total']) }}</h2>
+                                <p class="card-text">Total Pembayaran</p>
                             </div>
                             <div class="avatar bg-light-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="book" class="font-medium-5"></i>
+                                    <i data-feather="arrow-up" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -40,12 +40,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $naskah->count() }}</h2>
-                                <p class="card-text">Total Naskah</p>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentYear']) }}</h2>
+                                <p class="card-text">Tahun ini</p>
                             </div>
                             <div class="avatar bg-light-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="file-text" class="font-medium-5"></i>
+                                    <i data-feather="arrow-up" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -55,12 +55,27 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
-                                <p class="card-text">Total Stok Jurnal</p>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentMonth']) }}</h2>
+                                <p class="card-text">Bulan ini</p>
+                            </div>
+                            <div class="avatar bg-light-primary p-50 m-0">
+                                <div class="avatar-content">
+                                    <i data-feather="arrow-up" class="font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentDay']) }}</h2>
+                                <p class="card-text">Hari ini</p>
                             </div>
                             <div class="avatar bg-light-success p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="activity" class="font-medium-5"></i>
+                                    <i data-feather="arrow-up" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +91,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('journals.stock-table')
+                @livewire('journals.report-payment-table')
             </div>
         </div>
     </div>

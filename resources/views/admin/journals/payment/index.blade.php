@@ -33,6 +33,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                @else
+                <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                    <div class="alert-body"><strong>Invoice akan muncul pada kolom AKSI, jika status pembayaran sudah LUNAS</strong></div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
                 @livewire('journals.payment-table')
             </div>
