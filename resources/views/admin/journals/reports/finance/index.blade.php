@@ -7,12 +7,12 @@
                 <div class="content-header-left col-md-9 col-5 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Laporan Pembayaran</h3>
+                            <h3 class="content-header-title float-left mb-0">Laporan Keuangan</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">List Laporan Pembayaran
+                                    <li class="breadcrumb-item active">List Laporan Keuangan
                                     </li>
                                 </ol>
                             </div>
@@ -21,61 +21,31 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['total']) }}</h2>
-                                <p class="card-text">Total Semua Pembayaran</p>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income_amount']) }}</h2>
+                                <p class="card-text">Dana Masuk</p>
                             </div>
                             <div class="avatar bg-light-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="arrow-up" class="font-medium-5"></i>
+                                    <i class="fa fa-credit-card font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentYear']) }}</h2>
-                                <p class="card-text">Tahun ini</p>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['speding_money']) }}</h2>
+                                <p class="card-text">Dana Keluar</p>
                             </div>
-                            <div class="avatar bg-light-primary p-50 m-0">
+                            <div class="avatar bg-light-danger p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="arrow-up" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentMonth']) }}</h2>
-                                <p class="card-text">Bulan ini</p>
-                            </div>
-                            <div class="avatar bg-light-primary p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="arrow-up" class="font-medium-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($data['income']['currentDay']) }}</h2>
-                                <p class="card-text">Hari ini</p>
-                            </div>
-                            <div class="avatar bg-light-success p-50 m-0">
-                                <div class="avatar-content">
-                                    <i data-feather="arrow-up" class="font-medium-5"></i>
+                                    <i class="fa fa-credit-card font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +61,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('journals.report-payment-table')
+                @livewire('journals.finance-table')
             </div>
         </div>
     </div>
@@ -115,12 +85,12 @@
             $("#detail-modal").modal('show');
         });
 
-        window.addEventListener('openModalStatus', event => {
-            $("#status-modal").modal('show');
+        window.addEventListener('openModalEdit', event => {
+            $("#edit-modal").modal('show');
         });
 
-        window.addEventListener('closeModalStatus', event => {
-            $("#status-modal").modal('hide');
+        window.addEventListener('closeModalEdit', event => {
+            $("#edit-modal").modal('hide');
         });
 
         window.addEventListener('openModalDelete', event => {

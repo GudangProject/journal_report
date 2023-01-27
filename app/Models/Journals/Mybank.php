@@ -10,4 +10,9 @@ class Mybank extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function getSpedingMoneyAttribute()
+    {
+        return SpedingMoney::where('mybank_id', $this->id)->get()->count();
+    }
 }

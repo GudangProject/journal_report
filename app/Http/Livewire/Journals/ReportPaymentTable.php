@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Journals;
 
+use App\Exports\PaymentExport;
 use App\Models\Journals\Journal;
 use App\Models\Journals\Knowledge;
 use App\Models\Journals\Naskah;
 use App\Models\Journals\Payment;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
@@ -84,6 +86,11 @@ class ReportPaymentTable extends DataTableComponent
     public array $bulkActions = [
         'exportSelected' => 'Export',
     ];
+
+    public function exportSelected()
+    {
+        return Excel::download(New PaymentExport($this->selectedKeys), 'data_pembayaran.xlsx');
+    }
 
     public function filters(): array
     {

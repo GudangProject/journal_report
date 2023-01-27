@@ -75,8 +75,8 @@
                             <span class="menu-title text-truncate" data-i18n="Laporan Pembayaran">Pembayaran</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->segment(2) == 'reports.payment' ? 'active' : '') }}">
-                        <a class="d-flex align-items-center" href="{{ route('reports.payment') }}">
+                    <li class="nav-item {{ (request()->segment(2) == 'reports.finance' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('reports.finance') }}">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate" data-i18n="Laporan Pembayaran">Asset Keuangan</span>
                         </a>

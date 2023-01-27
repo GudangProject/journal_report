@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\FilesCategoryController;
 use App\Http\Controllers\Admin\IntegrationController;
+use App\Http\Controllers\Admin\Journals\FinanceController;
 use App\Http\Controllers\Admin\Journals\JournalController;
 use App\Http\Controllers\Admin\Journals\KnowledgeController;
 use App\Http\Controllers\Admin\Journals\MybankController;
@@ -94,6 +95,9 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::get('reports-invoice-print', [ReportController::class, 'invoicePrint'])->name('reports.invoice-print');
     Route::get('reports-stock', [ReportController::class, 'stock'])->name('reports.stock');
     Route::get('reports-payment', [ReportController::class, 'payments'])->name('reports.payment');
+
+    // finance
+    Route::get('reports-finance', [FinanceController::class, 'index'])->name('reports.finance');
 });
 
 Route::get('/', [HomeController::class, 'index']);
