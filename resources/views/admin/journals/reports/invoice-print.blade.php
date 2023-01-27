@@ -105,8 +105,8 @@
 						<table>
 							<tr>
 								<td class="title">
-                                    <h2>Invoice Pembayaran Jurnal & Naskah</h6><br>
-                                    <span style="font-size: 12px;">{{ config('app.name') }}</span>
+                                    <h2>Invoice Pembayaran Jurnal & Naskah</h6>
+                                    <small>{{ config('app.name') }}</small>
 								</td>
 
 								<td>

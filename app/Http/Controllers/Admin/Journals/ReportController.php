@@ -34,4 +34,15 @@ class ReportController extends Controller
         return $pdf->download('invoice-'.$invoice->code.'.pdf');
 
     }
+
+    public function invoicePrint(Request $request)
+    {
+        $invoice = Invoice::where('payment_id', $request->id)->first();
+
+        return view('admin.journals.reports.invoice-print', [
+            'payment' => Payment::findOrfail($request->id),
+            'invoice' => $invoice,
+            'naskah'  => Naskah::where('payment_id', $request->id)->get()
+        ]);
+    }
 }
