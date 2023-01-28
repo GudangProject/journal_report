@@ -98,6 +98,8 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     // finance
     Route::get('reports-finance', [FinanceController::class, 'index'])->name('reports.finance');
+    Route::get('finance-detail', [FinanceController::class, 'detail'])->name('reports.finance-detail');
+    Route::post('finance-speding-money', [FinanceController::class, 'spedingMoney'])->name('finance.speding-money');
 });
 
 Route::get('/', [HomeController::class, 'index']);

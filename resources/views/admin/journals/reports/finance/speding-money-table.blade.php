@@ -1,19 +1,13 @@
 <x-livewire-tables::table.cell>
-    <span class="font-weight-bold">{{ $row->no_rekening }}</span>
+    <span class="font-weight-bold">{{ $row->amount }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <div class="badge badge-primary">
-        <span>{{ $row->bank }}</span>
-    </div>
+    <p>{{ $row->description }}</p>
 </x-livewire-tables::table.cell >
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->owner }}</span>
-</x-livewire-tables::table.cell>
-
-<x-livewire-tables::table.cell>
-    <strong>Rp {{ number_format($row->balance) }}</strong>
+    <span>{{ $row->usedBy->name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
@@ -21,14 +15,6 @@
         <div class="dropdown">
             <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route('reports.finance-detail', ['id' => $row->id]) }}">
-                    <i class="mr-1 fas fa-credit-card"></i>
-                    <span class="align-middle">DETAIL</span>
-                </a>
-                <a class="dropdown-item" href="#" wire:click='editModal({{ $row->id }})'>
-                    <i class="mr-1 fas fa-pen"></i>
-                    <span class="align-middle">EDIT</span>
-                </a>
                 <a class="dropdown-item" href="#" wire:click='deleteModal({{ $row->id }})'>
                     <i class="mr-1 fas fa-trash text-danger"></i>
                     <span class="align-middle">HAPUS</span>

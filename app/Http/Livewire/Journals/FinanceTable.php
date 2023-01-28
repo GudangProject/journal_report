@@ -89,7 +89,6 @@ class FinanceTable extends DataTableComponent
             Column::make('Bank'),
             Column::make('Owner', 'name')->sortable(),
             Column::make('Saldo', 'balance')->sortable(),
-            Column::make('Pengeluaran'),
             Column::make('Aksi'),
         ];
     }
