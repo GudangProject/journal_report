@@ -18,7 +18,7 @@ class SpedingMoneyTable extends DataTableComponent
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
-    public $selected_id, $status;
+    public $mybank_id, $selected_id, $status;
 
     public function deleteModal($id)
     {
@@ -90,6 +90,7 @@ class SpedingMoneyTable extends DataTableComponent
         $user = auth()->user();
 
         $data = SpedingMoney::query();
+        $data = $data->where('mybank_id', $this->mybank_id);
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('description', 'like', '%'.$term.'%')->orWhere('amount', 'like', '%'.$term.'%'));
 
         return $data;

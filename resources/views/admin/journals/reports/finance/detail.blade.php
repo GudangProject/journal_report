@@ -96,7 +96,7 @@
                     </button>
                 </div>
                 @endif
-                @livewire('journals.speding-money-table')
+                @livewire('journals.speding-money-table', ['mybank_id' => $data['id']])
             </div>
         </div>
     </div>

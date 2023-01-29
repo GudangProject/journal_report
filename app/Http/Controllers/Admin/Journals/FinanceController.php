@@ -29,7 +29,7 @@ class FinanceController extends Controller
         $data = [
             'id' => $mybank->id,
             'income_amount' => $mybank->balance,
-            'speding_money' => SpedingMoney::sum('amount'),
+            'speding_money' => SpedingMoney::where('mybank_id', $mybank->id)->sum('amount'),
         ];
         return view('admin.journals.reports.finance.detail', [
             'data' => $data
