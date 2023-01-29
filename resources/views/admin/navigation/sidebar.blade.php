@@ -50,7 +50,7 @@
             </li>
             @endrole
 
-            @role('author|super admin')
+            @role('author|super admin|pic|finance')
             <li class="nav-item {{ (request()->segment(2) == 'payment' ? 'active' : '') }}">
                 <a class="d-flex align-items-center" href="{{ route('payment.index') }}">
                     <i data-feather="credit-card"></i>

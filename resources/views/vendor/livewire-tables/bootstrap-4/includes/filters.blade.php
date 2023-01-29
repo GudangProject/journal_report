@@ -23,7 +23,7 @@
         <ul
             class="dropdown-menu"
             x-bind:class="{'show' : open}"
-            role="menu"
+            role="menu" style="margin-top:200px;"
         >
             <li>
                 @if ($filtersView)

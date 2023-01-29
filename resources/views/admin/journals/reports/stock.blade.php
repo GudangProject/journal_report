@@ -56,7 +56,7 @@
                         <div class="card-header">
                             <div>
                                 <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
-                                <p class="card-text">Total Stok Jurnal</p>
+                                <p class="card-text">Total Stok Naskah</p>
                             </div>
                             <div class="avatar bg-light-success p-50 m-0">
                                 <div class="avatar-content">

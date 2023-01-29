@@ -17,10 +17,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['total_journal']        = Journal::where('status', true)->get()->count();
-        $data['total_stock_journal']  = Journal::where('status', true)->get()->sum('total');
+        $data['total_journal']        = Journal::where('status', true)->where('created_by', auth()->user()->id)->get()->count();
+        $data['total_stock_journal']  = Journal::where('status', true)->where('created_by', auth()->user()->id)->get()->sum('total');
         $data['top_point']            = self::TopPoint();
-        $data['journal']              = Journal::where('status', true)->orderByDesc('created_at')->paginate(15);
+        $data['journal']              = Journal::where('status', true)->where('created_by', auth()->user()->id)->orderByDesc('created_at')->paginate(15);
         $data['wiget']                = self::Wiget();
 
         // dd($data);
