@@ -45,14 +45,14 @@ class JournalController extends Controller
                     'link_issue' => $request->link_issue[$i],
                     'indexasi' => $request->indexasi,
                     'afiliate' => $request->afiliate,
-                    'total' => $request->total,
+                    'total' => $request->total[$i],
                     'manager_by' => $request->manager_by,
                     'manager_phone' => $request->manager_phone,
                     'created_by' => auth()->user()->id,
                 ]);
             }
 
-            return redirect()->route('journals.index')->with('message', $save->name.' | Berhasil ditambahkan!');
+            return redirect()->route('journals.index')->with('message', 'Jurnal '.$request->name.' Berhasil ditambahkan!');
         }catch(Exception $error){
             dd($error);
             Alert::error('Error', $error->getMessage());

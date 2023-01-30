@@ -65,6 +65,7 @@
                                                             <th class="text-primary">Tahun</th>
                                                             <th class="text-primary">Semester</th>
                                                             <th class="text-primary">Link Issue</th>
+                                                            <th class="text-primary">Jumlah</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -117,8 +118,13 @@
                                                                     <option value="Genap">Genap</option>
                                                                 </select>
                                                                 <div class="invalid-feedback"></div>
+                                                            </td>
                                                             <td>
                                                                 <input type="text" name="link_issue" id="link_issue" class="form-control " autocomplete="off" placeholder="link_issue" value="{{ $data->link_issue }}">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="total" class="form-control" value="{{ $data->total }}"/>
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                         </tr>
@@ -147,14 +153,14 @@
                                                     <input type="text" name="afiliate" id="afiliate" class="form-control " autocomplete="off" placeholder="Masukkan Afiliasi jurnal" value="{{ $data->afiliate }}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            {{-- <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">JUMLAH</h5>
                                                     <div class="input-group">
                                                         <input type="number" name="total" class="form-control" value="{{ $data->total }}"/>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pengelola Jurnal</h5>
@@ -165,7 +171,7 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nomor Hp Pengelola</h5>
                                                     <div class="input-group">
-                                                        <input type="text" name="manager_phone" class="form-control" value="{{ $data->phone_by }}"/>
+                                                        <input type="text" name="manager_phone" class="form-control" value="{{ $data->manager_phone }}"/>
                                                     </div>
                                                 </div>
                                             </div>

@@ -64,6 +64,7 @@
                                                             <th class="text-primary">Tahun</th>
                                                             <th class="text-primary">Semester</th>
                                                             <th class="text-primary">Link Issue</th>
+                                                            <th class="text-primary">Jumlah</th>
                                                             <th class="text-primary"></th>
                                                         </tr>
                                                     </thead>
@@ -121,6 +122,10 @@
                                                                 <input type="text" name="link_issue[]" id="link_issue" class="form-control " autocomplete="off" placeholder="link_issue" value="">
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
+                                                            <td>
+                                                                <input type="number" name="total[]" class="form-control"/>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
                                                             <td><button type="text" class="btn btn-success btn-add"><i class="fas fa-plus"></i></button></td>
                                                         </tr>
                                                     </tbody>
@@ -148,14 +153,14 @@
                                                     <input type="text" name="afiliate" id="afiliate" class="form-control " autocomplete="off" placeholder="Masukkan Afiliasi jurnal" value="">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            {{-- <div class="col-md-4 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">JUMLAH</h5>
                                                     <div class="input-group">
                                                         <input type="number" name="total" class="form-control"/>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pengelola Jurnal</h5>
@@ -285,7 +290,10 @@
                 html += ' <div class="invalid-feedback"> </div>';
                 html += '</td>';
 
-
+                html += '<td>';
+                html += '<input type="number" name="total[]" class="form-control"/>';
+                html += '<div class="invalid-feedback"></div>';
+                html += '</td>';
                 html += '<td><button type="text" class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>';
                 html += '</tr>';
                 $('#add-volume').append(html);
