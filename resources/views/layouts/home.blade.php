@@ -75,7 +75,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-center d-flex justify-content-center col-12 mb-2">
-                    <p>  <h1><strong>SIAPIK</strong></h1> </p>
+                    <p>  <h1><strong>SIPTENAN</strong></h1> </p>
                   
                 </div>
             </div>
