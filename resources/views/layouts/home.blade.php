@@ -44,9 +44,10 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern 1-column navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+<body class="vertical-layout vertical-menu-modern footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
 
-    <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
+
+    <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav">
         <div class="navbar-container d-flex content">
             <ul class="nav navbar-nav align-items-center ml-auto">
                 <li class="nav-item d-none d-lg-block">
@@ -54,7 +55,7 @@
                         <i class="ficon" data-feather="moon"></i>
                     </a>
                 </li>
-                <li class="nav-item d-none d-lg-block ml-2">
+                <li class="nav-item mr-2">
                     <div class="btn-group">
                         @if (auth()->user())
                             <a href="/admin" class="btn btn-success">DASHBOARD</a>
@@ -67,7 +68,6 @@
             </ul>
         </div>
     </nav>
-
 
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -146,7 +146,7 @@
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+        <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2023 {{ config('app.name') }} <span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
