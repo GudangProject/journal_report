@@ -33,7 +33,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->manager_phone }}</span>
+    <span class="badge badge-success"><a href="https://wa.me/{{ $row->manager_phone }}">{{ $row->manager_phone }}</a></span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
