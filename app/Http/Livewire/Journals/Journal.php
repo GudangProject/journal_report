@@ -145,9 +145,9 @@ class Journal extends DataTableComponent
         $user = auth()->user();
 
         $data = JournalModel::query();
-        // if($user->getRoleNames()[0] == 'super admin' && $user->getRoleNames()[0] == 'pic'){
-        //     $data = $data->where('created_by', $user->id);
-        // }
+        if($user->getRoleNames()[0] == 'pic'){
+            $data = $data->where('created_by', $user->id);
+        }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
         $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
         $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->where('volume', $volume));

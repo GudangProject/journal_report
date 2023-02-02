@@ -116,7 +116,7 @@ class PaymentTable extends DataTableComponent
         $user = auth()->user();
 
         $data = Payment::query();
-        if($user->getRoleNames()[0] != 'super admin' && $user->getRoleNames()[0] == 'author'){
+        if($user->getRoleNames()[0] != 'super admin' || $user->getRoleNames()[0] == 'author' || $user->getRoleNames()[0] == 'pic'){
             $data = $data->where('created_by', $user->id);
         }
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
