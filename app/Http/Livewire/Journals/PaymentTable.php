@@ -119,7 +119,7 @@ class PaymentTable extends DataTableComponent
         if($user->getRoleNames()[0] != 'super admin' || $user->getRoleNames()[0] == 'author' || $user->getRoleNames()[0] == 'pic'){
             $data = $data->where('created_by', $user->id);
         }
-        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
         $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->whereHas('journal', fn ($q) => $q->where('journal_id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 

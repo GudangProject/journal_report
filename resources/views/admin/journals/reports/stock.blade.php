@@ -40,12 +40,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $naskah->count() }}</h2>
-                                <p class="card-text">Total Naskah</p>
+                                <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
+                                <p class="card-text">Total Stok Naskah</p>
                             </div>
-                            <div class="avatar bg-light-primary p-50 m-0">
+                            <div class="avatar bg-light-success p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="file-text" class="font-medium-5"></i>
+                                    <i data-feather="activity" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -55,12 +55,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
-                                <p class="card-text">Total Stok Naskah</p>
+                                <h2 class="font-weight-bolder mb-0">{{ $naskah->count() }}</h2>
+                                <p class="card-text">Total Naskah</p>
                             </div>
-                            <div class="avatar bg-light-success p-50 m-0">
+                            <div class="avatar bg-light-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="activity" class="font-medium-5"></i>
+                                    <i data-feather="file-text" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>
