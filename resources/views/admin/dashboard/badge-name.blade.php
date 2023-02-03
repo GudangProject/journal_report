@@ -18,7 +18,7 @@
                     - {{ ucwords(auth()->user()->name) }}
                 </h1>
                 <p class="card-text m-auto w-75">
-                    Selamat Datang di CMS {{ config('app.name') }}
+                    Selamat Datang di Aplikasi {{ config('app.name') }}
                 </p>
             </div>
         </div>
