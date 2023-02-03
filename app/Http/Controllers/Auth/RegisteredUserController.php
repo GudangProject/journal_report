@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
             'slug' => Str::slug($request->name),
             'email' => $request->email,
             'company' => $request->company,
+            'status' => 1,
             'password' => Hash::make($request->password),
         ]);
 
