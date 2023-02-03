@@ -12,6 +12,14 @@
 
 <x-livewire-tables::table.cell>
     <div class="avatar-group text-center">
+        <a href="#" class="badge badge-light-dark">
+            {{ $row->company ?? '-' }}
+        </a>
+    </div>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <div class="avatar-group text-center">
         <a href="#" class="badge badge-light-primary">
             @foreach ($row->getRoleNames() as $role)
                 {{ ucwords($role) }}

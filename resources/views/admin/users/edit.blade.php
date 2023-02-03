@@ -48,6 +48,12 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <h5 class="text-primary">Instansi</h5>
+                                                    <input id="company" name="company" type="text" class="form-control" placeholder="" value="{{ $data['user']['company'] }}" required/>
+                                                    @if ($errors->has('company'))<span class="text-danger">{{$errors->first('company')}}</span>@endif
+                                                </div>
+
+                                                <div class="form-group">
                                                     <h5 class="text-primary">ROLE</h5>
                                                     <select name="roles" class="form-control" id="basicSelect">
                                                         <option value="">--Pilih Role--</option>

@@ -21,7 +21,7 @@
                 </div>
                 <div class="content-header-right text-md-right col-md-3 col-7">
                     <div class="form-group breadcrumb-right">
-                        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a>
                     </div>
                 </div>
             </div>

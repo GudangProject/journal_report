@@ -83,6 +83,7 @@ class UserController extends Controller
                     'name'          => $request->name,
                     'slug'          => Str::slug($request->name),
                     'email'         => $request->email,
+                    'company'       => $request->company,
                     'image'         => $imageName,
                     'password'      => Hash::make('cdaaptnia'),
                     'status'        => 1,
@@ -130,6 +131,8 @@ class UserController extends Controller
         $user_type              = str_replace(',', '', $user->user_type);
 
         $data['user']           = $user;
+        $data['email']          = $user->email;
+        $data['company']        = $user->company;
         $data['roles']          = Roles::all();
         $data['current_role']   = str_replace(array('[', ']', '"'), '', $user->getRoleNames());
 
@@ -189,6 +192,7 @@ class UserController extends Controller
                 'slug'          => Str::slug($request->name),
                 'image'         => $imageName ? $imageName : $user->image,
                 'email'         => $request->email,
+                'company'       => $request->company,
                 'user_type'     => $user_type ? str_replace(array('[', ']', '"'), '', $user_type) : '',
                 'updated_by'    => auth()->user()->id,
             ]);

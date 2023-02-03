@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Roles;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Exception;
 use App\Models\User;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class UserTable extends DataTableComponent
 {
@@ -87,19 +89,51 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Name'),
+            Column::make('Name')->sortable(),
             Column::make('Email'),
+            Column::make('Instansi'),
             Column::make('Role Admin'),
             Column::make('Status'),
             Column::make('Action'),
         ];
     }
 
+    public function filters(): array
+    {
+        $dataRole = Roles::all();
+
+        $role = array();
+        foreach($dataRole as $k=>$v){
+            $role[$k]['id'] = $v->id;
+            $role[$k]['name'] = $v->name;
+        }
+
+        $data = collect($role)->mapWithKeys(function ($name) {
+            return [$name['id'] => $name['name']];
+        })->toArray();
+        // dd($data);
+        return [
+            'role' => Filter::make('ROLE')
+                ->select($data),
+            'status' => Filter::make('Status')
+                ->select([
+                    '0' => '--Semua--',
+                    1 => 'Aktif',
+                    2 => 'Tidak Aktif',
+                ]),
+        ];
+    }
+
     public function query(): Builder
     {
-        return User::query()
-                ->where('status', '!=', 3)
-                ->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
+        $data = User::query();
+        $data = $data->where('status', '!=', 3);
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('role'), fn ($query, $role) => $query->role($role));
+        $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+
+        return $data;
+
     }
 
     public function rowView(): string
