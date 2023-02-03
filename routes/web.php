@@ -38,6 +38,7 @@ use App\Http\Controllers\Client\ScreenController;
 use App\Http\Controllers\Client\ScreensController;
 use App\Http\Controllers\Client\MetaController;
 use App\Models\Journals\Journal;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 if(version_compare(PHP_VERSION, '8.1.0', '>=')) {
@@ -105,6 +106,35 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/sitemap.xml', [MetaController::class, 'sitemap'])->name('sitemap');
 
+//Clear route cache
+Route::get('/route-cache', function() {
+    Artisan::call('route:cache');
+    return 'Routes cache cleared';
+});
+
+//Clear config cache
+Route::get('/config-cache', function() {
+    Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
+
+// Clear application cache
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+
+// Clear view cache
+Route::get('/view-clear', function() {
+    Artisan::call('view:clear');
+    return 'View cache cleared';
+});
+
+// Clear cache using reoptimized class
+Route::get('/optimize-clear', function() {
+    Artisan::call('optimize:clear');
+    return 'View cache cleared';
+});
 
 
 
