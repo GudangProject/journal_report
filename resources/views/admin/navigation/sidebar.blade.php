@@ -25,13 +25,6 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item">
-                <a class="d-flex align-items-center" href="{{ route('dashboards.create') }}">
-                    <i data-feather="trending-up"></i>
-                    <span class="menu-title text-truncate" data-i18n="Dashboards">Analytics</span>
-                </a>
-            </li> --}}
-
             <li class=" navigation-header">
                 <span data-i18n="Contents &amp; Pages">Data</span>
                 <i data-feather="more-horizontal"></i>
@@ -46,12 +39,14 @@
                             <span class="menu-title text-truncate" data-i18n="Jurnal">Jurnal</span>
                         </a>
                     </li>
+                    @role('super admin')
                     <li class="nav-item {{ (request()->segment(2) == 'knowledge' ? 'active' : '') }}">
                         <a class="d-flex align-items-center" href="{{ route('knowledge.index') }}">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate" data-i18n="Rumpun Ilmu">Rumpun Ilmu</span>
                         </a>
                     </li>
+                    @endrole
                 </ul>
             </li>
             @endrole

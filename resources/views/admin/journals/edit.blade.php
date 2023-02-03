@@ -66,9 +66,10 @@
                                                             <th class="text-primary">Semester</th>
                                                             <th class="text-primary">Link Issue</th>
                                                             <th class="text-primary">Jumlah</th>
+                                                            <th class="text-primary"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="add-volume">
                                                         <tr>
                                                             <td>
                                                                 <input type="text" name="volume" id="volume" class="form-control " autocomplete="off" placeholder="Volume" value="{{ $data->volume }}">
@@ -128,6 +129,65 @@
                                                                 <div class="invalid-feedback"></div>
                                                             </td>
                                                         </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="newvolume[]" id="volume" class="form-control " autocomplete="off" placeholder="Volume" value="">
+                                                                <div class="invalid-feedback">
+                                                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="newnumber[]" id="nomor" class="form-control " autocomplete="off" placeholder="Nomor" value="">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <select name="newmonth[]" class="form-control ">
+                                                                    <option selected disabled>--Silahkan Pilih---</option>
+                                                                    <option value="Januari">Januari</option>
+                                                                    <option value="Februari">Februari</option>
+                                                                    <option value="Maret">Maret</option>
+                                                                    <option value="April">April</option>
+                                                                    <option value="Mei">Mei</option>
+                                                                    <option value="Juni">Juni</option>
+                                                                    <option value="Juli">Juli</option>
+                                                                    <option value="Agustus">Agustus</option>
+                                                                    <option value="September">September</option>
+                                                                    <option value="Oktober">Oktober</option>
+                                                                    <option value="Nopember">Nopember</option>
+                                                                    <option value="Desember">Desember</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <select name="newyear[]" id="tahun" class="form-control ">
+                                                                    <option value="2020">2020</option>
+                                                                    <option value="2021">2021</option>
+                                                                    <option value="2022">2022</option>
+                                                                    <option value="2023">2023</option>
+                                                                    <option value="2024">2024</option>
+                                                                    <option value="2025">2025</option>
+                                                                    <option value="2026">2026</option>
+                                                                    <option value="2027">2027</option>
+                                                                    <option value="2028">2028</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <select name="newsemester[]" class="form-control ">
+                                                                    <option selected disabled>--Silahkan Pilih---</option>
+                                                                    <option value="Ganjil">Ganjil</option>
+                                                                    <option value="Genap">Genap</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"></div>
+                                                            <td>
+                                                                <input type="text" name="newlink_issue[]" id="link_issue" class="form-control " autocomplete="off" placeholder="link_issue" value="">
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="newtotal[]" class="form-control"/>
+                                                                <div class="invalid-feedback"></div>
+                                                            </td>
+                                                            <td><button type="text" class="btn btn-success btn-add"><i class="fas fa-plus"></i></button></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -153,14 +213,7 @@
                                                     <input type="text" name="afiliate" id="afiliate" class="form-control " autocomplete="off" placeholder="Masukkan Afiliasi jurnal" value="{{ $data->afiliate }}">
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-md-4 col-12">
-                                                <div class="form-group">
-                                                    <h5 class="text-primary">JUMLAH</h5>
-                                                    <div class="input-group">
-                                                        <input type="number" name="total" class="form-control" value="{{ $data->total }}"/>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pengelola Jurnal</h5>
@@ -191,10 +244,6 @@
             </div>
         </div>
     </div>
-
-    @include('admin.components.imagecrop')
-    @include('admin.components.slug')
-    @include('admin.components.texteditor')
 
     @push('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
@@ -235,15 +284,15 @@
                 e.preventDefault();
                 let html = '<tr>';
                 html += '<td>';
-                html += '<input type="text" name="volume[]" id="volume" class="form-control " autocomplete="off" placeholder="Volume" value="">';
+                html += '<input type="text" name="newvolume[]" id="volume" class="form-control " autocomplete="off" placeholder="Volume" value="">';
                 html += ' <div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<input type="number" name="number[]" id="nomor" class="form-control " autocomplete="off" placeholder="Nomor" value="">';
+                html += '<input type="number" name="newnumber[]" id="nomor" class="form-control " autocomplete="off" placeholder="Nomor" value="">';
                 html += ' <div class = "invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<select name="month[]" id="bulan" class="form-control " autocomplete="off" placeholder="Bulan">';
+                html += '<select name="newmonth[]" id="bulan" class="form-control " autocomplete="off" placeholder="Bulan">';
                 html += '<option selected disabled>--Silahkan Pilih---</option>';
                 html += '<option value="Januari">Januari</option>';
                 html += '<option value="Februari">Februari</option>';
@@ -261,7 +310,7 @@
                 html += '<div class="invalid-feedback"> </div>';
                 html += '</td>';
                 html += '<td>';
-                html += '<select name="year[]" id="tahun" class="form-control " autocomplete="off" placeholder="Tahun">';
+                html += '<select name="newyear[]" id="tahun" class="form-control " autocomplete="off" placeholder="Tahun">';
                 html += '<option value="2020">2020</option>';
                 html += '<option value="2021">2021</option>';
                 html += '<option value="2022">2022</option>';
@@ -276,7 +325,7 @@
                 html += '</td>';
 
                 html += '<td>';
-                html += '<select name="semester[]" class="form-control">';
+                html += '<select name="newsemester[]" class="form-control">';
                 html += '<option selected disabled>--Silahkan Pilih---</option>';
                 html += '<option value="Ganjil">Ganjil</option>';
                 html += '<option value="Genap">Genap</option>';
@@ -286,11 +335,14 @@
 
 
                 html += '<td>';
-                html += '<input type="text" name="link_issue[]" id="link_issue" class="form-control" autocomplete="off" placeholder="link_issue" value="">';
+                html += '<input type="text" name="newlink_issue[]" id="link_issue" class="form-control" autocomplete="off" placeholder="link_issue" value="">';
                 html += ' <div class="invalid-feedback"> </div>';
                 html += '</td>';
 
-
+                html += '<td>';
+                html += '<input type="number" name="newtotal[]" class="form-control"/>';
+                html += '<div class="invalid-feedback"></div>';
+                html += '</td>';
                 html += '<td><button type="text" class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>';
                 html += '</tr>';
                 $('#add-volume').append(html);

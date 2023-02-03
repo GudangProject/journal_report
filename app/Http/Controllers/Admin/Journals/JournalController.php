@@ -75,6 +75,12 @@ class JournalController extends Controller
 
     public function update(Request $request, $id)
     {
+        $countNewVolume = 0;
+
+        if($request->newvolume[0] != null){
+            $countNewVolume = count($request->newvolume);
+        }
+
         try{
             $save = Journal::where('id', $id)->update([
                 'knowledge_id' => $request->knowledge_id,
@@ -92,6 +98,27 @@ class JournalController extends Controller
                 'manager_phone' => $request->manager_phone,
                 'created_by' => auth()->user()->id,
             ]);
+
+            if($countNewVolume > 0){
+                for($i = 0; $i < $countNewVolume; $i++){
+                    $newsave[$i] = Journal::create([
+                        'knowledge_id' => $request->knowledge_id,
+                        'name' => $request->name,
+                        'volume' => $request->newvolume[$i],
+                        'number' => $request->newnumber[$i],
+                        'month' => $request->newmonth[$i],
+                        'year' => $request->newyear[$i],
+                        'semester' => $request->newsemester[$i],
+                        'link_issue' => $request->newlink_issue[$i],
+                        'indexasi' => $request->indexasi,
+                        'afiliate' => $request->afiliate,
+                        'total' => $request->newtotal[$i],
+                        'manager_by' => $request->manager_by,
+                        'manager_phone' => $request->manager_phone,
+                        'created_by' => auth()->user()->id,
+                    ]);
+                }
+            }
 
             return redirect()->route('journals.index')->with('message', 'Jurnal Berhasil diupdate!');
         }catch(Exception $error){
