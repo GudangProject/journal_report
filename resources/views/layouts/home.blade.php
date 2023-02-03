@@ -75,7 +75,8 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-center d-flex justify-content-center col-12 mb-2">
-                    <h1><strong>Data Stok Jurnal</strong></h1>
+                    <p>  <h1><strong>SIPTENAN</strong></h1> </p>
+                 <h5> Sistem Informasi Pencarian dan Ketersediaan Artikel Jurnal</h5>
                 </div>
             </div>
             <div class="row">
