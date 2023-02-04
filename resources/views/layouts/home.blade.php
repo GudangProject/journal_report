@@ -50,11 +50,6 @@
     <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav">
         <div class="navbar-container d-flex content">
             <ul class="nav navbar-nav align-items-center ml-auto">
-                <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link nav-link-style">
-                        <i class="ficon" data-feather="moon"></i>
-                    </a>
-                </li>
                 <li class="nav-item mr-2">
                     <div class="btn-group">
                         @if (auth()->user())

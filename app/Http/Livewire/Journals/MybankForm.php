@@ -5,26 +5,36 @@ namespace App\Http\Livewire\Journals;
 use App\Models\Journals\Mybank;
 use Exception;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MybankForm extends Component
 {
     public $no_rekening, $bank, $owner;
 
     public function submit(){
-        try {
-            Mybank::create([
-                'no_rekening' => $this->no_rekening,
-                'bank' => $this->bank,
-                'owner' => $this->owner,
-            ]);
+        $same = Mybank::where('no_rekening', $this->no_rekening)->where('bank', $this->bank)->first();
 
-            session()->flash('message', 'Nomor rekening berhasil ditambahkan');
-            $this->dispatchBrowserEvent('closeModalMybank');
+        if($same){
+            Alert::error('Gagal', 'Rekening dan bank sudah tersedia');
+        }else{
+            try {
+                Mybank::create([
+                    'no_rekening' => $this->no_rekening,
+                    'bank' => $this->bank,
+                    'owner' => $this->owner,
+                ]);
 
-        } catch (Exception $error) {
-            session()->flash('error', 'Data tidak boleh kosong');
-            $this->dispatchBrowserEvent('closeModalMybank');
+                Alert::success('Berhasil', 'Nomor rekening berhasil ditambahkan');
+                return redirect()->route('reports.finance');
+                $this->dispatchBrowserEvent('closeModalMybank');
+
+            } catch (Exception $error) {
+                Alert::error('Gagal', $error->getMessage());
+                return redirect()->route('reports.finance');
+                $this->dispatchBrowserEvent('closeModalMybank');
+            }
         }
+
 
     }
 

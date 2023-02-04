@@ -19,6 +19,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="content-header-right text-right col-md-3 col-7">
+                    <div class="form-group breadcrumb-right">
+                        @livewire('journals.mybank-form')
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">

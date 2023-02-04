@@ -1,5 +1,4 @@
 <div>
-    <h5 class="text-primary">Tambah Rekening Tujuan</h5>
     <div class="form-group">
         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#inlineForm">TAMBAH REKENING</a>
     </div>
