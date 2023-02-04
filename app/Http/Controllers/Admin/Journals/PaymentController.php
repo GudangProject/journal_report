@@ -23,7 +23,7 @@ class PaymentController extends Controller
     public function create()
     {
         return view('admin.journals.payment.create', [
-            'journals' => Journal::where('status', true)->get(),
+            'journals' => Journal::where('status', true)->orderByDesc('created_at')->get(),
             'mybank' => Mybank::all()
         ]);
     }

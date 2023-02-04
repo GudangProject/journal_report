@@ -191,7 +191,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Indexasi</h5>
                                                     <select name="indexasi" class="form-control ">
@@ -207,7 +207,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Afiliasi</h5>
                                                     <input type="text" name="afiliate" id="afiliate" class="form-control " autocomplete="off" placeholder="Masukkan Afiliasi jurnal" value="{{ $data->afiliate }}">

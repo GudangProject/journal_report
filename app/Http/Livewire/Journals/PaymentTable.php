@@ -52,6 +52,7 @@ class PaymentTable extends DataTableComponent
 
         if($updateStock){
             $payment->delete();
+            Naskah::where('payment_id', $this->selected_id)->delete();
         }
 
         $this->dispatchBrowserEvent('closeModalDelete');
@@ -71,6 +72,7 @@ class PaymentTable extends DataTableComponent
     {
         return [
             Column::make('Judul', 'name')->sortable(),
+            Column::make('Volume'),
             Column::make('Rumpun Ilmu'),
             Column::make('Nama'),
             Column::make('Judul Naskah'),
@@ -116,13 +118,22 @@ class PaymentTable extends DataTableComponent
         $user = auth()->user();
 
         $data = Payment::query();
-        if($user->getRoleNames()[0] != 'super admin' || $user->getRoleNames()[0] == 'author' || $user->getRoleNames()[0] == 'pic'){
+        if($user->getRoleNames()[0] == 'author')
+        {
             $data = $data->where('created_by', $user->id);
         }
+
+        if($user->getRoleNames()[0] == 'pic')
+        {
+            $journalId = Journal::where('created_by', $user->id)->pluck('id');
+            $data = $data->whereIn('journal_id', $journalId)->orWhere('created_by', $user->id);
+        }
+
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
         $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->whereHas('journal', fn ($q) => $q->where('journal_id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
+        // dd($data);
         return $data;
 
 
