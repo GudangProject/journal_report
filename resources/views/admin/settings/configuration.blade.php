@@ -66,7 +66,7 @@
                                                 <div class="media flex-column flex-md-row">
                                                     <div class="media-body">
                                                         @if (isset($data->logo))
-                                                            <img src="{{ asset('storage') }}/assets/{{ $data->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
+                                                            <img src="{{ asset('storage') }}/assets/{{ $data->logo }}" height="50" width="180" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Logo" />
                                                         @endif
                                                         <p class="my-50">
                                                             <small class="text-muted">Required 228px x 36px Image max size 2MB.</small>

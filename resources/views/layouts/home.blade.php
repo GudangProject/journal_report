@@ -55,7 +55,7 @@
                 <ul class="nav navbar-nav bookmark-icons">
                     <li class="nav-item nav-search d-none d-sm-none d-md-block d-lg-block">
                         @if (isset($web->logo))
-                            <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
+                            <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" height="50" width="180" alt="Logo" />
                         @endif
                     </li>
                 </ul>
