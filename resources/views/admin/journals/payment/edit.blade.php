@@ -118,10 +118,6 @@
                                             </div>
 
                                             <div class="col-md-6 col-12">
-                                                @livewire('journals.mybank-form')
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">

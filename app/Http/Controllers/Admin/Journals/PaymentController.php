@@ -139,7 +139,7 @@ class PaymentController extends Controller
         $data = Payment::findOrFail($id);
         return view('admin.journals.payment.edit', [
             'data' => $data,
-            'naskah' => Naskah::where('journal_id', $data->journal_id)->where('payment_id', $this->id)->get(),
+            'naskah' => Naskah::where('journal_id', $data->journal_id)->where('payment_id', $id)->get(),
             'journals' => Journal::all(),
             'mybank' => Mybank::all()
         ]);
