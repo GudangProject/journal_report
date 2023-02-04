@@ -100,7 +100,7 @@
                         <div class="card-header">
                             <div>
                                 <h2 class="font-weight-bolder mb-0">{{ $data->sum('total') }}</h2>
-                                <p class="card-text">Total Stok Naskah</p>
+                                <p class="card-text">Slot yang tersedia</p>
                             </div>
                             <div class="avatar bg-light-success p-50 m-0">
                                 <div class="avatar-content">
@@ -115,11 +115,11 @@
                         <div class="card-header">
                             <div>
                                 <h2 class="font-weight-bolder mb-0">{{ $naskah->count() }}</h2>
-                                <p class="card-text">Total Naskah</p>
+                                <p class="card-text">Slot yang sudah terisi</p>
                             </div>
                             <div class="avatar bg-light-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i data-feather="file-text" class="font-medium-5"></i>
+                                    <i data-feather="activity" class="font-medium-5"></i>
                                 </div>
                             </div>
                         </div>

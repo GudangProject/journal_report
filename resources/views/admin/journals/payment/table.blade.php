@@ -35,7 +35,7 @@
             {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
         </button>
         @endrole
-        @role('super admin|finance')
+        @role('super admin|finance|pic')
         <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }} dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
         </button>
@@ -62,11 +62,11 @@
                         <i class="mr-1 fas fa-image"></i>
                         <span class="align-middle">Bukti Bayar</span>
                     </a>
-                    {{-- <a class="dropdown-item" href="{{ route('payment.edit', $row->id) }}">
+                    @role('super admin|admin')
+                    <a class="dropdown-item" href="{{ route('payment.edit', $row->id) }}">
                         <i class="mr-1 fas fa-edit"></i>
                         <span class="align-middle">Edit</span>
-                    </a> --}}
-                    @role('super admin|admin')
+                    </a>
                     <a type="button" class="dropdown-item" wire:click="deleteModal({{ $row->id }})">
                         <i class="mr-1 fas fa-trash"></i>
                         <span class="align-middle">Delete</span>

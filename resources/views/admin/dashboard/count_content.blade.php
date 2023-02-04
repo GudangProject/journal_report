@@ -11,7 +11,7 @@
                 <div class="col-6">
                     <div class="alert alert-success p-1">
                         <h2 class="font-weight-bolder mt-1 text-primary"><i data-feather="activity" class="font-medium-5"></i> {{ $data['total_stock_journal'] }}</h2>
-                        <p class="card-text">Total Semua Stok Jurnal</p>
+                        <p class="card-text">Slot yang tesedia</p>
                     </div>
                 </div>
                 <div class="col-6">
