@@ -35,7 +35,7 @@
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Pilih Jurnal</h5>
-                                                    <select class="form-control" name="journal_id" required>
+                                                    <select class="select2 form-control form-control-lg" name="journal_id" required>
                                                         @foreach ($journals as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}, Volume {{ $item->volume }} No. {{ $item->number }} {{ $item->month }} {{ $item->year }}, Semester: {{ $item->semester }}, Slot: {{ $item->total }}</option>
                                                         @endforeach

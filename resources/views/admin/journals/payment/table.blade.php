@@ -3,6 +3,10 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    <span>{{ $row->journal->volume }} No. {{ $row->journal->number }} {{ $row->journal->month }} {{ $row->journal->year }}, Semester: {{ $row->journal->semester }}</span>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     <div class="badge badge-primary">
         <span>{{ $row->knowledge }}</span>
     </div>
@@ -67,6 +71,12 @@
                         <i class="mr-1 fas fa-edit"></i>
                         <span class="align-middle">Edit</span>
                     </a>
+                    <a type="button" class="dropdown-item" wire:click="deleteModal({{ $row->id }})">
+                        <i class="mr-1 fas fa-trash"></i>
+                        <span class="align-middle">Delete</span>
+                    </a>
+                    @endrole
+                    @role('pic')
                     <a type="button" class="dropdown-item" wire:click="deleteModal({{ $row->id }})">
                         <i class="mr-1 fas fa-trash"></i>
                         <span class="align-middle">Delete</span>

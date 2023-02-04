@@ -37,6 +37,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ScreenController;
 use App\Http\Controllers\Client\ScreensController;
 use App\Http\Controllers\Client\MetaController;
+use App\Http\Controllers\WebsettingController;
 use App\Models\Journals\Journal;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -84,6 +85,9 @@ Route::prefix('admin')->middleware('auth')->group(function (){
             Route::resource('menus', MenuController::class);
             Route::resource('menuscategories', MenuCategoriesController::class);
         });
+
+        Route::resource('websetting', WebsettingController::class);
+
     });
 
     Route::resource('users', UserController::class)->middleware('role:super admin');
