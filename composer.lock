@@ -200,26 +200,26 @@
         },
         {
             "name": "barryvdh/laravel-dompdf",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-dompdf.git",
-                "reference": "1d47648c6cef37f715ecb8bcc5f5a656ad372e27"
+                "reference": "9843d2be423670fb434f4c978b3c0f4dd92c87a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/1d47648c6cef37f715ecb8bcc5f5a656ad372e27",
-                "reference": "1d47648c6cef37f715ecb8bcc5f5a656ad372e27",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/9843d2be423670fb434f4c978b3c0f4dd92c87a6",
+                "reference": "9843d2be423670fb434f4c978b3c0f4dd92c87a6",
                 "shasum": ""
             },
             "require": {
-                "dompdf/dompdf": "^2",
-                "illuminate/support": "^6|^7|^8|^9",
+                "dompdf/dompdf": "^2.0.1",
+                "illuminate/support": "^6|^7|^8|^9|^10",
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "nunomaduro/larastan": "^1|^2",
-                "orchestra/testbench": "^4|^5|^6|^7",
+                "orchestra/testbench": "^4|^5|^6|^7|^8",
                 "phpro/grumphp": "^1",
                 "squizlabs/php_codesniffer": "^3.5"
             },
@@ -261,7 +261,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
-                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v2.0.0"
+                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v2.0.1"
             },
             "funding": [
                 {
@@ -273,7 +273,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-06T11:12:10+00:00"
+            "time": "2023-01-12T15:12:49+00:00"
         },
         {
             "name": "brick/math",
@@ -1837,16 +1837,16 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "47afb7fae28ed29057fdca37e16a84f90cc62fae"
+                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/47afb7fae28ed29057fdca37e16a84f90cc62fae",
-                "reference": "47afb7fae28ed29057fdca37e16a84f90cc62fae",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
+                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
                 "shasum": ""
             },
             "require": {
@@ -1893,7 +1893,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2022-09-08T13:45:54+00:00"
+            "time": "2023-01-30T18:31:20+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -5255,16 +5255,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.4.19",
+            "version": "v5.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "70fd0eb8a1570ba119d5e496c8ee79bf9f0b51b0"
+                "reference": "d0435363362a47c14e9cf50663cb8ffbf491875a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/70fd0eb8a1570ba119d5e496c8ee79bf9f0b51b0",
-                "reference": "70fd0eb8a1570ba119d5e496c8ee79bf9f0b51b0",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d0435363362a47c14e9cf50663cb8ffbf491875a",
+                "reference": "d0435363362a47c14e9cf50663cb8ffbf491875a",
                 "shasum": ""
             },
             "require": {
@@ -5311,7 +5311,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v5.4.19"
+                "source": "https://github.com/symfony/http-foundation/tree/v5.4.20"
             },
             "funding": [
                 {
@@ -5327,20 +5327,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:32:19+00:00"
+            "time": "2023-01-29T11:11:52+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v5.4.19",
+            "version": "v5.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "ee371cd7718c938d1bffdf868b665003aeeae69c"
+                "reference": "aaeec341582d3c160cc9ecfa8b2419ba6c69954e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/ee371cd7718c938d1bffdf868b665003aeeae69c",
-                "reference": "ee371cd7718c938d1bffdf868b665003aeeae69c",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/aaeec341582d3c160cc9ecfa8b2419ba6c69954e",
+                "reference": "aaeec341582d3c160cc9ecfa8b2419ba6c69954e",
                 "shasum": ""
             },
             "require": {
@@ -5423,7 +5423,7 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-kernel/tree/v5.4.19"
+                "source": "https://github.com/symfony/http-kernel/tree/v5.4.20"
             },
             "funding": [
                 {
@@ -5439,7 +5439,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-24T13:37:42+00:00"
+            "time": "2023-02-01T08:18:48+00:00"
         },
         {
             "name": "symfony/mime",
@@ -7717,16 +7717,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "a64f78a4ab86c04a4c5de39bea20a8d36ad48a22"
+                "reference": "4f230634a3163f3442def6a4e6ffdb02b02e14d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/a64f78a4ab86c04a4c5de39bea20a8d36ad48a22",
-                "reference": "a64f78a4ab86c04a4c5de39bea20a8d36ad48a22",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/4f230634a3163f3442def6a4e6ffdb02b02e14d6",
+                "reference": "4f230634a3163f3442def6a4e6ffdb02b02e14d6",
                 "shasum": ""
             },
             "require": {
@@ -7773,7 +7773,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2023-01-11T14:35:04+00:00"
+            "time": "2023-01-31T13:37:57+00:00"
         },
         {
             "name": "mockery/mockery",
