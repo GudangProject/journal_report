@@ -117,6 +117,12 @@
                     <span class="menu-title text-truncate" data-i18n="Users">Users</span>
                 </a>
             </li>
+            <li class="nav-item {{ (request()->segment(2) == 'websetting' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('websetting.index') }}">
+                    <i data-feather="settings"></i>
+                    <span class="menu-title text-truncate" data-i18n="Users">Web Setting</span>
+                </a>
+            </li>
             @endrole
         </ul>
     </div>

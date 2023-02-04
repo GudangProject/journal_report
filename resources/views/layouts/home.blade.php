@@ -46,9 +46,20 @@
 
 <body class="vertical-layout vertical-menu-modern footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
 
-
-    <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav">
+    @php
+        $web = \App\Models\Websetting::orderBy('created_at')->first();
+    @endphp
+    <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav navbar-sm-light">
         <div class="navbar-container d-flex content">
+            <div class="bookmark-wrapper d-flex align-items-center">
+                <ul class="nav navbar-nav bookmark-icons">
+                    <li class="nav-item nav-search d-none d-sm-none d-md-block d-lg-block">
+                        @if (isset($web->logo))
+                            <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" alt="Blog Featured Image" />
+                        @endif
+                    </li>
+                </ul>
+            </div>
             <ul class="nav navbar-nav align-items-center ml-auto">
                 <li class="nav-item mr-2">
                     <div class="btn-group">
@@ -70,8 +81,8 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-center text-center col-12 mb-2">
-                    <h1><strong>SIPTENAN</strong></h1>
-                    <h5> Sistem Informasi Pencarian dan Ketersediaan Artikel Jurnal</h5>
+                    <h1><strong>{{ $web->name }}</strong></h1>
+                    <h5>{!! $web->description !!}</h5>
                 </div>
             </div>
             <div class="row">

@@ -169,9 +169,9 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Nomor Hp Pengelola</h5>
+                                                    <h5 class="text-primary">Nomor Hp Pengelola <small class="text-danger">* harap masukan awalan kode negara +62</small></h5>
                                                     <div class="input-group">
-                                                        <input type="text" name="manager_phone" class="form-control"/>
+                                                        <input type="text" name="manager_phone" placeholder="+628xxx" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
