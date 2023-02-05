@@ -82,6 +82,19 @@
                                                             <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{ $data['user']['email'] }}" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="account-name">Instansi</label>
+                                                            <input type="text" class="form-control" id="account-name" name="company" placeholder="Instansi" value="{{ $data['user']->company }}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="account-name">No HP <small class="text-danger">* harap masukan awalan kode negara +62</small></label>
+                                                            <input type="text" class="form-control" id="account-name" name="phone" placeholder="+626237xx" value="{{ $data['user']->phone }}" />
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-12">
                                                         <button type="submit" class="btn btn-primary mt-2 mr-1">Simpan</button>
                                                     </div>

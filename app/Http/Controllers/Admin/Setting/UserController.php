@@ -259,6 +259,8 @@ class UserController extends Controller
         $update = User::where('email', $request->email)->update([
             'name'      => $request->name,
             'email'     => $request->email,
+            'company'   => $request->company,
+            'phone'     => $request->phone,
             'image'     => $namaImage != null ? $namaImage : $user->image,
         ]);
 

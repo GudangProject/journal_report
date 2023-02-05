@@ -59,7 +59,6 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>Name</th>
-                                        <th class="text-center">Post</th>
                                         <th class="text-center">Point</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -74,11 +73,6 @@
                                             </td>
                                             <td>
                                                 <span class="font-weight-bold">{!! $v['name'] !!}</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-primary">
-                                                    <span>{{ $v['total_journal'] }}</span>
-                                                </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="badge badge-primary">
