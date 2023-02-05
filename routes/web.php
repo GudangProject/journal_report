@@ -1,44 +1,21 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ImageCategoryController;
-use App\Http\Controllers\Admin\ImageController;
-use App\Http\Controllers\Admin\PageCategoryController;
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\PointController;
 use App\Http\Controllers\Admin\PointSettingController;
-use App\Http\Controllers\Admin\PostCategoryController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\FilesController;
-use App\Http\Controllers\Admin\FilesCategoryController;
-use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\Journals\FinanceController;
 use App\Http\Controllers\Admin\Journals\JournalController;
 use App\Http\Controllers\Admin\Journals\KnowledgeController;
 use App\Http\Controllers\Admin\Journals\MybankController;
 use App\Http\Controllers\Admin\Journals\PaymentController;
+use App\Http\Controllers\Admin\Journals\PointController;
 use App\Http\Controllers\Admin\Journals\ReportController;
-use App\Http\Controllers\Admin\OfficeCategoryController;
-use App\Http\Controllers\Admin\OfficeController;
-use App\Http\Controllers\Admin\OfficersController;
-use App\Http\Controllers\Admin\PhotoContentController;
-use App\Http\Controllers\Admin\PhotosController;
-use App\Http\Controllers\Admin\PostLinkageController;
-use App\Http\Controllers\Admin\PtspController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\Setting\AuthorController;
 use App\Http\Controllers\Admin\Setting\MenuController;
 use App\Http\Controllers\Admin\Setting\MenuCategoriesController;
 use App\Http\Controllers\Admin\Setting\UserController;
-use App\Http\Controllers\Admin\VideoCategoryController;
-use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Client\HomeController;
-use App\Http\Controllers\Client\ScreenController;
-use App\Http\Controllers\Client\ScreensController;
 use App\Http\Controllers\Client\MetaController;
 use App\Http\Controllers\WebsettingController;
-use App\Models\Journals\Journal;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -87,6 +64,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         });
 
         Route::resource('websetting', WebsettingController::class);
+        Route::resource('points', PointController::class);
 
     });
 
