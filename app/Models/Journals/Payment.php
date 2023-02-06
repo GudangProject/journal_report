@@ -31,6 +31,10 @@ class Payment extends Model
         return $this->belongsTo(Journal::class, 'journal_id')->withTrashed();
     }
 
+    public function getnaskah(){
+        return $this->belongsTo(Naskah::class, 'id', 'payment_id');
+    }
+
     public function getKnowledgeAttribute(){
         return Knowledge::findOrFail($this->journal->knowledge_id)->name;
     }

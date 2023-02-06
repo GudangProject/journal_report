@@ -115,13 +115,15 @@ class PaymentController extends Controller
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
+                        'number' => $request->manuscript_number[$i],
                         'link' => $request->manuscript_link[$i],
+                        'created_by' => $request->created_by[$i],
                     ]);
                 }
 
                 $point = new JournalPoint();
                 $point->journal_id = $request->journal_id;
-                $point->user_id = auth()->user()->id;
+                $point->user_id = $journal->created_by;
                 $point->point = $countNaskah * 2;
                 $point->status = 1;
                 $point->save();
@@ -219,7 +221,9 @@ class PaymentController extends Controller
             $pay->payer_bank = $request->payer_bank;
             $pay->mybank_id = $request->mybank_id;
             $pay->price = $request->price;
-            $pay->image = $imageName;
+            if($request->file('image') != null){
+                $pay->image = $imageName;
+            }
             $pay->description = $request->description;
             $pay->status = false;
             $pay->created_by = auth()->user()->id;
@@ -231,7 +235,9 @@ class PaymentController extends Controller
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
+                        'number' => $request->manuscript_number[$i],
                         'link' => $request->manuscript_link[$i],
+                        'created_by' => $request->created_by[$i],
                     ]);
                 }
 

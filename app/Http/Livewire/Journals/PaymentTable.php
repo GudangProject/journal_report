@@ -89,7 +89,11 @@ class PaymentTable extends DataTableComponent
 
     public function filters(): array
     {
-        $dataJournal = Journal::where('status', 1)->get();
+        if(auth()->user()->getRoleNames()[0] == 'pic'){
+            $dataJournal = Journal::where('created_by', auth()->user()->id)->get();
+        }else{
+            $dataJournal = Journal::all();
+        }
 
         $journal = array();
         foreach($dataJournal as $k=>$v){
@@ -107,8 +111,8 @@ class PaymentTable extends DataTableComponent
             'status' => Filter::make('Status')
                 ->select([
                     '0' => '--Semua--',
-                    1 => 'Aktif',
-                    2 => 'Tidak Aktif',
+                    1 => 'LUNAS',
+                    0 => 'PENDING',
                 ]),
         ];
     }
@@ -126,11 +130,14 @@ class PaymentTable extends DataTableComponent
         if($user->getRoleNames()[0] == 'pic')
         {
             $journalId = Journal::where('created_by', $user->id)->pluck('id');
+            $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
+            $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
             $data = $data->whereIn('journal_id', $journalId)->orWhere('created_by', $user->id);
         }
 
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
-        $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->whereHas('journal', fn ($q) => $q->where('journal_id', $journal)));
+        $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         // dd($data);
