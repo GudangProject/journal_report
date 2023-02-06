@@ -29,12 +29,10 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->manager_by }}</span>
+    <span>{{ $row->createdBy->name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-
-    <span class="badge badge-success"><a href="https://wa.me/{{ $row->manager_phone }}">{{ $row->manager_phone }}</a></span>
-
+    <span class="badge badge-success"><a href="https://wa.me/{{ $row->createdBy->phone }}">{{ $row->createdBy->phone }}</a></span>
 </x-livewire-tables::table.cell>
 

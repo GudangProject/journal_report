@@ -46,8 +46,8 @@ class JournalController extends Controller
                     'indexasi' => $request->indexasi,
                     'afiliate' => $request->afiliate,
                     'total' => $request->total[$i],
-                    'manager_by' => $request->manager_by,
-                    'manager_phone' => $request->manager_phone,
+                    'manager_by' => '-',
+                    'manager_phone' => '-',
                     'created_by' => auth()->user()->id,
                 ]);
             }
@@ -94,8 +94,8 @@ class JournalController extends Controller
                 'indexasi' => $request->indexasi,
                 'afiliate' => $request->afiliate,
                 'total' => $request->total,
-                'manager_by' => $request->manager_by,
-                'manager_phone' => $request->manager_phone,
+                'manager_by' => '-',
+                'manager_phone' => '-',
                 'created_by' => auth()->user()->id,
             ]);
 
@@ -113,8 +113,8 @@ class JournalController extends Controller
                         'indexasi' => $request->indexasi,
                         'afiliate' => $request->afiliate,
                         'total' => $request->newtotal[$i],
-                        'manager_by' => $request->manager_by,
-                        'manager_phone' => $request->manager_phone,
+                        'manager_by' => '-',
+                        'manager_phone' => '-',
                         'created_by' => auth()->user()->id,
                     ]);
                 }

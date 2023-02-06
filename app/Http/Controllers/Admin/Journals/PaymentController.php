@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Journals;
 use App\Http\Controllers\Controller;
 use App\Models\Journals\Invoice;
 use App\Models\Journals\Journal;
+use App\Models\Journals\JournalPoint;
 use App\Models\Journals\Mybank;
 use App\Models\Journals\Naskah;
 use App\Models\Journals\Payment;
@@ -117,6 +118,13 @@ class PaymentController extends Controller
                         'link' => $request->manuscript_link[$i],
                     ]);
                 }
+
+                $point = new JournalPoint();
+                $point->journal_id = $request->journal_id;
+                $point->user_id = auth()->user()->id;
+                $point->point = $countNaskah * 2;
+                $point->status = 1;
+                $point->save();
             }
 
             Alert::success('Sukses', 'Data pembayaran berhasil ditambahkan.');
@@ -226,6 +234,7 @@ class PaymentController extends Controller
                         'link' => $request->manuscript_link[$i],
                     ]);
                 }
+
             }
 
             Alert::success('Sukses', 'Data pembayaran berhasil diupdate.');
