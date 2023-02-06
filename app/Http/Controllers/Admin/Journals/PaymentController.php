@@ -34,6 +34,7 @@ class PaymentController extends Controller
         $imageName     = '';
         $countNaskah   = count($request->manuscript_title);
         $journal       = Journal::findOrFail($request->journal_id);
+
         $journalStock  = $journal->total;
 
         if($countNaskah > $journalStock){
@@ -133,6 +134,7 @@ class PaymentController extends Controller
             return redirect()->route('payment.index');
 
         } catch (Exception $error) {
+            dd($error->getMessage());
             Alert::error('Error', $error->getMessage());
             return back()->withInput();
         }

@@ -62,6 +62,9 @@
                                                                     <input disabled type="text" name="manuscript_titlex" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="{{ $item->name }}" required>
                                                                 </td>
                                                                 <td>
+                                                                    <input type="text" name="manuscript_number" id="manuscript_number" class="form-control " autocomplete="off" placeholder="Nomor Naskah" value="{{ $item->number }}">
+                                                                </td>
+                                                                <td>
                                                                     <input disabled type="text" name="manuscript_linkx" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="{{ $item->link }}" required>
                                                                 </td>
                                                                 <td><a href="/admin/naskah/delete/{{ $item->id }}" class="btn btn-danger"><i class="fas fa-times"></i></a></td>

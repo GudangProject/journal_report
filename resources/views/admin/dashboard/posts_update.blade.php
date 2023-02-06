@@ -60,7 +60,7 @@
             @foreach ($data['top_point']['data'] as $item)
                 <div class="browser-states">
                     <div class="media">
-                        <img src="{{ isset($item['picture']) ? '/storage/pictures/users/mid/'.$item['picture'] : asset('assets/images/dummy-image.jpeg') }}" class="round mr-1" height="30" alt="Google Chrome" />
+                        <img src="{{ isset($item['picture']) ? asset('storage/pictures/users/mid/'.$item['picture']) : asset('assets/images/dummy-image.jpeg') }}" class="round mr-1" height="30" alt="image" />
                         <h6 class="align-self-center mb-0">{{ $item['username'] }}</h6>
                     </div>
                     <div class="d-flex align-items-center">
