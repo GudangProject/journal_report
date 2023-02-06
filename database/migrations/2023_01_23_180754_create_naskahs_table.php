@@ -17,7 +17,9 @@ class CreateNaskahsTable extends Migration
             $table->id();
             $table->integer('journal_id');
             $table->string('name');
+            $table->string('number');
             $table->string('link');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
