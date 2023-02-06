@@ -69,11 +69,11 @@
                                                         @endforeach
                                                         <tr>
                                                             <td>
-                                                                <input type="hidden" name="created_by[]" id="created_by" class="form-control " autocomplete="off" value="{{ auth()->user()->id }}" required>
-                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="" required>
+                                                                <input type="hidden" name="created_by[]" id="created_by" class="form-control " autocomplete="off" value="{{ auth()->user()->id }}">
+                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="manuscript_number[]" id="manuscript_number" class="form-control " autocomplete="off" placeholder="Nomor Naskah" value="" required>
+                                                                <input type="text" name="manuscript_number[]" id="manuscript_number" class="form-control " autocomplete="off" placeholder="Nomor Naskah" value="">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="">
