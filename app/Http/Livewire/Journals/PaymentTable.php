@@ -120,7 +120,8 @@ class PaymentTable extends DataTableComponent
     public function query(): Builder
     {
         $user = auth()->user();
-
+        $naskah = Payment::where('journal_id', 157)->pluck('id');
+        // dd($naskah);
         $data = Payment::query();
         if($user->getRoleNames()[0] == 'author')
         {
