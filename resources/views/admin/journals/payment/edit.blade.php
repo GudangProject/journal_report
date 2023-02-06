@@ -69,7 +69,11 @@
                                                         @endforeach
                                                         <tr>
                                                             <td>
-                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">
+                                                                <input type="hidden" name="created_by[]" id="created_by" class="form-control " autocomplete="off" value="{{ auth()->user()->id }}" required>
+                                                                <input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="manuscript_number[]" id="manuscript_number" class="form-control " autocomplete="off" placeholder="Nomor Naskah" value="" required>
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="manuscript_link[]" id="manuscript_link" class="form-control " autocomplete="off" placeholder="Link Naskah" value="">
@@ -462,6 +466,10 @@
             $(".btn-add").click(function(e) {
                 e.preventDefault();
                 let html = '<tr>';
+                html += '<td>';
+                html += '<input type="hidden" name="created_by[]" id="created_by" class="form-control " autocomplete="off" value="{{ auth()->user()->id }}" required>';
+                html += '<input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="" required>';
+                html += '</td>';
                 html += '<td>';
                 html += '<input type="text" name="manuscript_title[]" id="manuscript_title" class="form-control " autocomplete="off" placeholder="Judul Naskah" value="">';
                 html += '</td>';

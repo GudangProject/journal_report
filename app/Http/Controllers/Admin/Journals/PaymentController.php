@@ -115,7 +115,9 @@ class PaymentController extends Controller
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
+                        'number' => $request->manuscript_number[$i],
                         'link' => $request->manuscript_link[$i],
+                        'created_by' => $request->created_by[$i],
                     ]);
                 }
 
@@ -233,7 +235,9 @@ class PaymentController extends Controller
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
                         'name' => $request->manuscript_title[$i],
+                        'number' => $request->manuscript_number[$i],
                         'link' => $request->manuscript_link[$i],
+                        'created_by' => $request->created_by[$i],
                     ]);
                 }
 
