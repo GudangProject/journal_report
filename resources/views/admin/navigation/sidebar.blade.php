@@ -29,7 +29,14 @@
                 <span data-i18n="Contents &amp; Pages">Data</span>
                 <i data-feather="more-horizontal"></i>
             </li>
-
+            @role('author|super admin|pic|finance')
+            <li class="nav-item {{ (request()->segment(2) == 'loa' ? 'active' : '') }}">
+                <a class="d-flex align-items-center" href="{{ route('loa.index') }}">
+                    <i data-feather="file-text"></i>
+                    <span class="menu-title text-truncate" data-i18n="LoA">LoA</span>
+                </a>
+            </li>
+            @endrole
             @role('super admin|pic')
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Master Data</span></a>
                 <ul class="menu-content">
