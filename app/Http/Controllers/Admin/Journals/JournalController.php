@@ -54,7 +54,6 @@ class JournalController extends Controller
 
             return redirect()->route('journals.index')->with('message', 'Jurnal '.$request->name.' Berhasil ditambahkan!');
         }catch(Exception $error){
-            dd($error);
             Alert::error('Error', $error->getMessage());
             return back()->withInput();
         }
