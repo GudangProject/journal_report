@@ -61,6 +61,10 @@
             })
         });
 
+        window.addEventListener('openModalPayment', event => {
+            $("#modal-proofpayment").modal('show');
+        });
+
         window.addEventListener('openModalEdit', event => {
             $("#edit-modal").modal('show');
         });
