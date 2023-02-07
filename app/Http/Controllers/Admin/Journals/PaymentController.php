@@ -35,16 +35,16 @@ class PaymentController extends Controller
         $countNaskah   = count($request->manuscript_title);
         $journal       = Journal::findOrFail($request->journal_id);
 
-        $journalStock  = $journal->total;
+        // $journalStock  = $journal->total;
 
-        if($countNaskah > $journalStock){
+        // if($countNaskah > $journalStock){
 
-            Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
-            return back()->withInput();
-        }else{
-            $updateStock   = $journalStock - $countNaskah;
-            $currentStock  = $journal->update(['total' => $updateStock]);
-        }
+        //     Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+        //     return back()->withInput();
+        // }else{
+        //     $updateStock   = $journalStock - $countNaskah;
+        //     $currentStock  = $journal->update(['total' => $updateStock]);
+        // }
 
         if($request->image != null){
             $validate = $request->validate([
@@ -122,12 +122,12 @@ class PaymentController extends Controller
                     ]);
                 }
 
-                $point = new JournalPoint();
-                $point->journal_id = $request->journal_id;
-                $point->user_id = $journal->created_by;
-                $point->point = $countNaskah * 2;
-                $point->status = 1;
-                $point->save();
+                // $point = new JournalPoint();
+                // $point->journal_id = $request->journal_id;
+                // $point->user_id = $journal->created_by;
+                // $point->point = $countNaskah * 2;
+                // $point->status = 1;
+                // $point->save();
             }
 
             Alert::success('Sukses', 'Data pembayaran berhasil ditambahkan.');

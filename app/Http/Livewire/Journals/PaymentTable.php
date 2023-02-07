@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Journals;
 
 use App\Models\Journals\Journal;
+use App\Models\Journals\JournalPoint;
 use App\Models\Journals\Knowledge;
 use App\Models\Journals\Naskah;
 use App\Models\Journals\Payment;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentTable extends DataTableComponent
 {
@@ -17,12 +19,20 @@ class PaymentTable extends DataTableComponent
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
-    public $selected_id, $status;
+    public $selected_id, $status, $detailPayment;
+
+    public function mount()
+    {
+        $this->detailPayment;
+    }
 
     public function showModalDetail($id)
     {
-
+        $this->selected_id = $id;
+        $this->detailPayment = Payment::findOrFail($id);
+        $this->dispatchBrowserEvent('openModalPayment');
     }
+
 
     public function statusModal($id, $status)
     {
@@ -32,9 +42,32 @@ class PaymentTable extends DataTableComponent
     }
 
     public function updateStatus(){
+
         $data = Payment::findOrFail($this->selected_id);
         $data->update(['status' => $this->status]);
 
+        if($data->status == true)
+        {
+            $countNaskah   = Naskah::where('payment_id', $data->id)->count();
+            $journal       = Journal::findOrFail($data->journal_id);
+            $journalStock  = $journal->total;
+
+            if($countNaskah > $journalStock){
+
+                Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+                return back()->withInput();
+            }else{
+                $updateStock   = $journalStock - $countNaskah;
+                $currentStock  = $journal->update(['total' => $updateStock]);
+
+                $point = new JournalPoint();
+                $point->journal_id = $journal->id;
+                $point->user_id = $journal->created_by;
+                $point->point = $countNaskah * 2;
+                $point->status = 1;
+                $point->save();
+            }
+        }
         $this->dispatchBrowserEvent('closeModalStatus');
     }
 
@@ -53,6 +86,7 @@ class PaymentTable extends DataTableComponent
         if($updateStock){
             $payment->delete();
             Naskah::where('payment_id', $this->selected_id)->delete();
+            JournalPoint::where('journal_id', $journal->id)->delete();
         }
 
         $this->dispatchBrowserEvent('closeModalDelete');

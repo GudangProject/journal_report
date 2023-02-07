@@ -40,13 +40,19 @@
         </button>
         @endrole
         @role('super admin|finance|pic')
-        <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }} dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-            <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 1)'>LUNAS</a>
-            <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 0)'>PENDING</a>
-        </div>
+        @if ($row->status == false)
+            <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }} dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 1)'>LUNAS</a>
+                <a class="dropdown-item" href="javascript:void(0);" wire:click='statusModal({{ $row->id }}, 0)'>PENDING</a>
+            </div>
+        @else
+            <button class="btn btn-sm btn-{{ $row->status == 1 ? 'success' : 'secondary' }}">
+                {{ $row->status == 1 ? 'LUNAS' : 'PENDING' }}
+            </button>
+        @endif
         @endrole
     </div>
 </x-livewire-tables::table.cell>
@@ -62,7 +68,7 @@
                             <span class="align-middle">Invoice</span>
                         </a>
                     @endif
-                    <a class="dropdown-item" href="{{ asset('storage/pictures/payment/big/'.$row->image) }}">
+                    <a class="dropdown-item" href="#" wire:click='showModalDetail({{ $row->id }})'>
                         <i class="mr-1 fas fa-image"></i>
                         <span class="align-middle">Bukti Bayar</span>
                     </a>
