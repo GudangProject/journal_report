@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PointSettingController;
 use App\Http\Controllers\Admin\Journals\FinanceController;
 use App\Http\Controllers\Admin\Journals\JournalController;
 use App\Http\Controllers\Admin\Journals\KnowledgeController;
+use App\Http\Controllers\Admin\Journals\LoaController;
 use App\Http\Controllers\Admin\Journals\MybankController;
 use App\Http\Controllers\Admin\Journals\PaymentController;
 use App\Http\Controllers\Admin\Journals\PointController;
@@ -45,6 +46,10 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::prefix('knowledge')->group(function (){
         Route::resource('knowledge', KnowledgeController::class);
+    });
+
+    Route::prefix('loa')->group(function (){
+        Route::resource('loa', LoaController::class);
     });
 
     Route::prefix('payment')->group(function (){

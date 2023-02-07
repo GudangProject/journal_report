@@ -62,7 +62,7 @@
         <div class="dropdown">
             <button class="btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-circle-down font-medium-3"></i></button>
             <div class="dropdown-menu dropdown-menu-right">
-                    @if ($status == true)
+                    @if ($row->status == true)
                         <a class="dropdown-item" href="{{ route('payment.invoice', ['id' => $row->id]) }}">
                             <i class="mr-1 fas fa-file"></i>
                             <span class="align-middle">Invoice</span>
