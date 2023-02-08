@@ -90,13 +90,17 @@ class LoaController extends Controller
      */
     public function edit($id)
     {
+        $data   = Journal::where('created_by', auth()->user()->id)->pluck('id');
+        $userId = Payment::whereIn('journal_id', $data)->pluck('created_by');
+        // dd($userId);
         if(auth()->user()->getRoleNames()[0] == 'super admin'){
             $journals = Journal::orderByDesc('created_at')->get();
         }else{
             $journals = Journal::where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
         }
+
         return view('admin.journals.loa.edit',[
-            'users'     => User::orderByDesc('created_at')->get(),
+            'users'     => User::whereIn('id', $userId)->orderByDesc('created_at')->get(),
             'journals'  => $journals,
             'data'      => Loa::findOrFail($id),
         ]);
