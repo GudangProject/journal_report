@@ -18,6 +18,7 @@ class CreateLoasTable extends Migration
             $table->integer('journal_id');
             $table->string('link')->nullable();
             $table->integer('user_id');
+            $table->string('username')->nullable();
             $table->integer('created_by');
             $table->integer('status');
             $table->timestamps();

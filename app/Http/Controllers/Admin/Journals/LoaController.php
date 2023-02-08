@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin\Journals;
 
 use App\Http\Controllers\Controller;
+use App\Models\Journals\Journal;
+use App\Models\Journals\Loa;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoaController extends Controller
 {
@@ -14,7 +19,7 @@ class LoaController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.journals.loa.index');
     }
 
     /**
@@ -24,7 +29,15 @@ class LoaController extends Controller
      */
     public function create()
     {
-        //
+        if(auth()->user()->getRoleNames()[0] == 'super admin'){
+            $journals = Journal::orderByDesc('created_at')->get();
+        }else{
+            $journals = Journal::where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
+        }
+        return view('admin.journals.loa.create',[
+            'users'     => User::orderByDesc('created_at')->get(),
+            'journals'  => $journals,
+        ]);
     }
 
     /**
@@ -35,7 +48,23 @@ class LoaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $username = User::findOrFail($request->user_id)->name;
+        try {
+            $save = new Loa();
+            $save->journal_id = $request->journal_id;
+            $save->user_id    = $request->user_id;
+            $save->username   = $username;
+            $save->link       = $request->link;
+            $save->created_by = auth()->user()->id;
+            $save->status     = 1;
+            $save->save();
+
+            return redirect()->route('loa.index')->with('message', 'Data LoA '.$save->username.' Berhasil ditambahkan!');
+
+        } catch (Exception $error) {
+            Alert::error('Error', $error->getMessage());
+            return back()->withInput();
+        }
     }
 
     /**
@@ -57,7 +86,16 @@ class LoaController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(auth()->user()->getRoleNames()[0] == 'super admin'){
+            $journals = Journal::orderByDesc('created_at')->get();
+        }else{
+            $journals = Journal::where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
+        }
+        return view('admin.journals.loa.edit',[
+            'users'     => User::orderByDesc('created_at')->get(),
+            'journals'  => $journals,
+            'data'      => Loa::findOrFail($id),
+        ]);
     }
 
     /**
@@ -69,7 +107,23 @@ class LoaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $username = User::findOrFail($request->user_id)->name;
+        try {
+            $save = Loa::findOrFail($id);
+            $save->journal_id = $request->journal_id;
+            $save->user_id    = $request->user_id;
+            $save->username   = $username;
+            $save->link       = $request->link;
+            $save->created_by = auth()->user()->id;
+            $save->status     = 1;
+            $save->save();
+
+            return redirect()->route('loa.index')->with('message', 'Data LoA '.$save->username.' Berhasil ditambahkan!');
+
+        } catch (Exception $error) {
+            Alert::error('Error', $error->getMessage());
+            return back()->withInput();
+        }
     }
 
     /**
