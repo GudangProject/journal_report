@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Journals;
 use App\Http\Controllers\Controller;
 use App\Models\Journals\Journal;
 use App\Models\Journals\Loa;
+use App\Models\Journals\Payment;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -29,13 +30,16 @@ class LoaController extends Controller
      */
     public function create()
     {
+        $data   = Journal::where('created_by', auth()->user()->id)->pluck('id');
+        $userId = Payment::whereIn('journal_id', $data)->pluck('created_by');
+        // dd($userId);
         if(auth()->user()->getRoleNames()[0] == 'super admin'){
             $journals = Journal::orderByDesc('created_at')->get();
         }else{
             $journals = Journal::where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
         }
         return view('admin.journals.loa.create',[
-            'users'     => User::orderByDesc('created_at')->get(),
+            'users'     => User::whereIn('id', $userId)->orderByDesc('created_at')->get(),
             'journals'  => $journals,
         ]);
     }
