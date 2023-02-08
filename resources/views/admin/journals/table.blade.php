@@ -13,7 +13,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    <a href="{{ $row->link_issue }}">{{ $row->link_issue }}</a><br>
+    <a href="{{ $row->link_issue }}" class="badge badge-primary">link issue</a><br>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
