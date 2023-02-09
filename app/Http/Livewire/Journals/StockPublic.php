@@ -65,7 +65,6 @@ class StockPublic extends DataTableComponent
             Column::make('Afiliasi'),
             Column::make('Stok'),
             Column::make('Pengelola'),
-            Column::make('No HP'),
         ];
     }
 
