@@ -57,26 +57,28 @@
         </div>
         <div class="card-body">
             {{-- {{ dd($data['top_point']) }} --}}
-            @foreach ($data['top_point']['data'] as $item)
-                <div class="browser-states">
-                    <div class="media">
-                        <img src="{{ isset($item['picture']) ? asset('storage/pictures/users/mid/'.$item['picture']) : asset('assets/images/dummy-image.jpeg') }}" class="round mr-1" height="30" alt="image" />
-                        <h6 class="align-self-center mb-0">{{ $item['username'] }}</h6>
+            @isset($data['top_point']['data'])
+                @foreach ($data['top_point']['data'] as $item)
+                    <div class="browser-states">
+                        <div class="media">
+                            <img src="{{ isset($item['picture']) ? asset('storage/pictures/users/mid/'.$item['picture']) : asset('assets/images/dummy-image.jpeg') }}" class="round mr-1" height="30" alt="image" />
+                            <h6 class="align-self-center mb-0">{{ $item['username'] }}</h6>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="font-weight-bold text-body-heading mr-1">{{ $item['total_point'] }}</div>
+                            @if ($loop->index == 0)
+                                <img src="{{ asset('app-assets/images/icons/gold.png') }}" height="40" width="40" alt="medal">
+                            @elseif(($loop->index == 1))
+                                <img src="{{ asset('app-assets/images/icons/silver.png') }}" height="40" width="40" alt="medal">
+                            @elseif(($loop->index == 2))
+                                <img src="{{ asset('app-assets/images/icons/bronze.png') }}" height="40" width="40" alt="medal">
+                            @else
+                                <img src="{{ asset('app-assets/images/icons/all.png') }}" height="40" width="40" alt="medal">
+                            @endif
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div class="font-weight-bold text-body-heading mr-1">{{ $item['total_point'] }}</div>
-                        @if ($loop->index == 0)
-                            <img src="{{ asset('app-assets/images/icons/gold.png') }}" height="40" width="40" alt="medal">
-                        @elseif(($loop->index == 1))
-                            <img src="{{ asset('app-assets/images/icons/silver.png') }}" height="40" width="40" alt="medal">
-                        @elseif(($loop->index == 2))
-                            <img src="{{ asset('app-assets/images/icons/bronze.png') }}" height="40" width="40" alt="medal">
-                        @else
-                            <img src="{{ asset('app-assets/images/icons/all.png') }}" height="40" width="40" alt="medal">
-                        @endif
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
     </div>
 </div>

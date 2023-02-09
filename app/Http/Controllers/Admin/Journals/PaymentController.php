@@ -227,7 +227,6 @@ class PaymentController extends Controller
                 $pay->image = $imageName;
             }
             $pay->description = $request->description;
-            $pay->status = false;
             $pay->created_by = auth()->user()->id;
             $pay->save();
 

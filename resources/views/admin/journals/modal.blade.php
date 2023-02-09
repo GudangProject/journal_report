@@ -1,5 +1,5 @@
 
-<div class="modal fade modal-primary" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+{{-- <div class="modal fade modal-primary" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="modal fade text-left modal-primary" id="status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
