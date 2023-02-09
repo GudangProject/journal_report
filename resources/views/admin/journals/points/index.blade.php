@@ -24,6 +24,8 @@
 
             <div class="content-body">
                 <section id="all-post">
+                    @isset($data['date'])
+
                     <form method="get" action="{{ route('points.index') }}">
                         <div class="d-flex justify-content-end align-items-end">
                             <div class="form-group mr-1">
@@ -49,6 +51,7 @@
                             </div>
                         </div>
                     </form>
+                    @endisset
                     <div class="card card-company-table">
                         <div class="card-body p-0">
                             {{-- {{ $month .'+'. $year  }} --}}

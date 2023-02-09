@@ -22,6 +22,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $data =array();
+
         $myjorunal                    = Journal::where('created_by', auth()->user()->id)->pluck('id');
         $data['total_journal']        = Journal::all()->count();
         $data['total_stock_journal']  = Journal::all()->sum('total');
@@ -135,6 +137,8 @@ class DashboardController extends Controller
         // $rows = Point::whereRaw('id in (select max(point) from journal_points group by (user_id))')->get();
         // $rows = Point::whereRaw('id in (select max(point) from journal_points group by (user_id))')->get();
         // dd($rows);
+        $data = array();
+
         $row = Point::select(DB::raw('user_id, sum(point) as totalPoint, count(journal_id) as totalJournal'))->where('point','>',0);
 
         $points = $row->groupBy('user_id')
