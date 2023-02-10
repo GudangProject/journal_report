@@ -28,9 +28,16 @@
 
             <!-- Company -->
             <div class="mt-4">
-                <x-label for="company" :value="__('Company')" />
+                <x-label for="company" :value="__('Instansi')" />
 
                 <x-input id="company" class="block mt-1 w-full" type="text" name="company" :value="old('company')" required />
+            </div>
+
+            <!-- Phone -->
+            <div class="mt-4">
+                <x-label for="phone" :value="__('No HP')" />
+
+                <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required />
             </div>
 
             <!-- Password -->

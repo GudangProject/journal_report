@@ -38,6 +38,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'company' => ['string'],
+            'phone' => ['required', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
             'slug' => Str::slug($request->name),
             'email' => $request->email,
             'company' => $request->company,
+            'phone' => $request->phone,
             'status' => 1,
             'password' => Hash::make($request->password),
         ]);

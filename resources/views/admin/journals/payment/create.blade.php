@@ -118,7 +118,8 @@
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Nominal Transfer</h5>
                                                     <div class="input-group">
-                                                        <input type="number" name="price" class="form-control" value="{{ old('price') }}" required/>
+                                                        <input type="text" name="price" class="form-control numeral-mask" placeholder="10,000" value="{{ old('price') }}" id="numeral-formatting" />
+                                                        {{-- <input type="number" name="price" class="form-control" value="{{ old('price') }}" required/> --}}
 
                                                     </div>
                                                 </div>
@@ -191,9 +192,12 @@
     @push('scripts')
     <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/cleave/cleave.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-number-input.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/forms/form-input-mask.js')}}"></script>
     <script>
         $(function () {
             var changePicture = $('#change-picture'),
