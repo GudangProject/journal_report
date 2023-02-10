@@ -13,7 +13,7 @@
 </x-livewire-tables::table.cell >
 
 <x-livewire-tables::table.cell>
-    <span>{{ $row->payer_name }}</span>
+    <span>{{ $row->createBy->name }}</span>
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
