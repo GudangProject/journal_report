@@ -92,7 +92,7 @@ class PaymentController extends Controller
             $pay->payer_rekening = $request->payer_rekening;
             $pay->payer_bank = $request->payer_bank;
             $pay->mybank_id = $request->mybank_id;
-            $pay->price = $request->price;
+            $pay->price = (int)str_replace(',', '', $request->price);
             $pay->image = $imageName;
             $pay->description = $request->description;
             $pay->status = false;
