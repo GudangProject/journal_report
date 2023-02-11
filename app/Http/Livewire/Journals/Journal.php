@@ -61,8 +61,7 @@ class Journal extends DataTableComponent
             Column::make('Indexasi'),
             Column::make('Afiliasi'),
             Column::make('Stok'),
-            Column::make('Pengelola'),
-            Column::make('No HP'),
+            Column::make('Pengelola/No. HP'),
             Column::make('Status'),
             Column::make('Aksi'),
         ];

@@ -34,22 +34,15 @@
                                     {{ strtoupper($detailPayment->knowledge) }}
                                 </div>
                                 <div class="col-6">
-                                    <b>Nama</b>
-                                </div>
-                                <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
-                                    {{ $detailPayment->payer_name }}
-                                </div>
-                                <div class="col-6">
                                     <b>Naskah</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-5">
                                     @isset($detailPayment)
                                         @foreach ($detailPayment->naskah() as $item)
-                                            <a href="{{ $item->link }}" style="margin: 3px;font-weight:bold;">
-                                                {{ $item->name }},
-                                            </a>
+                                            <a href="{{ $item->link }}" style="margin: 3px;font-weight:bold;" class="badge badge-success">
+                                                {{ $item->name }} <span class="badge badge-dark"><small>No. </small>{{ $item->number }}</span>
+                                            </a><br>
                                         @endforeach
                                     @endisset
                                 </div>
@@ -59,6 +52,47 @@
                                 <div class="col-1">:</div>
                                 <div class="col-5 d-flex justify-content-right">
                                     {{ $detailPayment->date }}
+                                </div>
+                                <div class="col-6">
+                                    <b>Nama</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-5 d-flex justify-content-right">
+                                    <tt>{{ $detailPayment->payer_name }}</tt>
+                                </div>
+                                <div class="col-6">
+                                    <b>Rekening</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-5 d-flex justify-content-right">
+                                    <tt>{{ $detailPayment->payer_bank }} {{ $detailPayment->payer_rekening }}</tt>
+                                </div>
+                                <div class="col-6">
+                                    <b>Total</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-5 d-flex justify-content-right">
+                                    <tt>Rp {{ number_format($detailPayment->price) }}</tt>
+                                </div>
+                                <div class="col-6">
+                                    <b>Dibayar kepada</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-5 d-flex justify-content-right text-danger">
+                                    <tt>{{ $detailPayment->mybank->bank }} {{ $detailPayment->mybank->no_rekening }} a.n {{ $detailPayment->mybank->owner }}</tt>
+                                </div>
+                                <div class="col-6">
+                                    <b>Status</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-5 d-flex justify-content-right">
+                                    <div class="btn-group">
+                                        @role('author')
+                                        <button class="btn btn-sm btn-{{ $detailPayment->status == 1 ? 'success' : 'secondary' }}">
+                                            {{ $detailPayment->status == 1 ? 'LUNAS' : 'PENDING' }}
+                                        </button>
+                                        @endrole
+                                    </div>
                                 </div>
                             </div>
                         </div>

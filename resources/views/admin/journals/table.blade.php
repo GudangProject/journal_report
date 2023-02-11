@@ -30,9 +30,6 @@
 
 <x-livewire-tables::table.cell>
     <span>{{ $row->createdBy->name }}</span>
-</x-livewire-tables::table.cell>
-
-<x-livewire-tables::table.cell>
     <span class="badge badge-success"><a href="https://wa.me/{{ $row->createdBy->phone }}">{{ $row->createdBy->phone }}</a></span>
 </x-livewire-tables::table.cell>
 
