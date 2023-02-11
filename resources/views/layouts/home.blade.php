@@ -53,21 +53,18 @@
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">
                 <ul class="nav navbar-nav bookmark-icons">
-                    {{-- <li class="nav-item nav-search d-none d-sm-none d-md-block d-lg-block">
-                        @if (isset($web->logo))
-                            <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" height="50" width="180" alt="Logo" />
-                        @endif
-                    </li> --}}
+
                 </ul>
             </div>
             <ul class="nav navbar-nav align-items-center ml-auto">
                 <li class="nav-item mr-2">
                     <div class="btn-group">
                         @if (auth()->user())
-                            <a href="/admin" class="btn btn-success">DASHBOARD</a>
+                            <a href="/admin" class="btn btn-success"><i data-feather="grid"></i> DASHBOARD</a>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary mr-1">LOGIN</a>
-                            <a href="{{ route('register') }}" class="btn btn-secondary">REGISTER</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary"><i data-feather="log-in"></i> LOGIN</a>
+                            <a href="{{ route('register') }}" class="btn btn-secondary"><i data-feather="user-plus"></i> REGISTER</a>
+                            <a href="{{ asset('panduan/SIPTENAN-AUTHOR.pdf') }}" class="btn btn-warning"><i data-feather="book-open"></i> PANDUAN</a>
                         @endif
                     </div>
                 </li>
