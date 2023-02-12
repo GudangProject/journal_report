@@ -92,6 +92,12 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/sitemap.xml', [MetaController::class, 'sitemap'])->name('sitemap');
+Route::get('panduan-author', function() {
+    return view('components.guide-author');
+});
+Route::get('panduan-pic', function() {
+    return view('components.guide-pic');
+});
 
 //Clear route cache
 Route::get('/route-cache', function() {

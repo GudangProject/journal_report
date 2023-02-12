@@ -32,7 +32,7 @@
 
             @role('super admin|pic')
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="{{ asset('panduan/SIPTENAN-PENGELOLA.pdf') }}">
+                <a class="d-flex align-items-center" href="/panduan-pic">
                     <i data-feather="book-open"></i>
                     <span class="menu-title text-truncate" data-i18n="Panduan">Panduan Pengelola</span>
                 </a>
