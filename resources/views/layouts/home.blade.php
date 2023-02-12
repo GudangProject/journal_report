@@ -64,7 +64,7 @@
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary"><i data-feather="log-in"></i> LOGIN</a>
                             <a href="{{ route('register') }}" class="btn btn-secondary"><i data-feather="user-plus"></i> REGISTER</a>
-                            <a href="{{ asset('panduan/SIPTENAN-AUTHOR.pdf') }}" class="btn btn-warning"><i data-feather="book-open"></i> PANDUAN</a>
+                            <a href="/panduan-author" class="btn btn-warning"><i data-feather="book-open"></i> PANDUAN</a>
                         @endif
                     </div>
                 </li>
