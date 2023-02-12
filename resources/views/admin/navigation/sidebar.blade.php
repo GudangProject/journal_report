@@ -32,7 +32,7 @@
 
             @role('super admin|pic')
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="/panduan-pic">
+                <a class="d-flex align-items-center" href="/panduan-pic" target="_blank">
                     <i data-feather="book-open"></i>
                     <span class="menu-title text-truncate" data-i18n="Panduan">Panduan Pengelola</span>
                 </a>
