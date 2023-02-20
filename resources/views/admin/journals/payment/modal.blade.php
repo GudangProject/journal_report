@@ -87,7 +87,7 @@
                                 <div class="col-1">:</div>
                                 <div class="col-7 d-flex justify-content-right">
                                     <div class="btn-group">
-                                        @role('author')
+                                        @role('author|admin|pic')
                                         <button class="btn btn-sm btn-{{ $detailPayment->status == 1 ? 'success' : 'secondary' }}">
                                             {{ $detailPayment->status == 1 ? 'LUNAS' : 'PENDING' }}
                                         </button>
