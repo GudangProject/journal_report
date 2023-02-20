@@ -5,6 +5,7 @@ namespace App\Models\Journals;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Naskah extends Model
 {
@@ -18,6 +19,10 @@ class Naskah extends Model
     public function journal()
     {
         return $this->belongsTo(Journal::class, 'journal_id')->withTrashed();
+    }
+
+    public function getSortNameAttribute(){
+        return Str::words($this->name, 3);
     }
 
 
