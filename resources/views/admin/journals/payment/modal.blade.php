@@ -40,8 +40,8 @@
                                 <div class="col-5">
                                     @isset($detailPayment)
                                         @foreach ($detailPayment->naskah() as $item)
-                                            <a href="{{ $item->link }}" style="margin: 3px;font-weight:bold;" class="badge badge-success">
-                                                {{ $item->name }} <span class="badge badge-dark"><small>No. </small>{{ $item->number }}</span>
+                                            <a href="{{ $item->link }}" style="margin: 3px;font-weight:bold;" class="badge badge-success" title="{{ $item->name }}">
+                                                {{ $item->sortName }} <span class="badge badge-dark"><small>No. </small>{{ $item->number }}</span>
                                             </a><br>
                                         @endforeach
                                     @endisset
