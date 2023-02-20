@@ -20,7 +20,7 @@
     @foreach ($row->naskah() as $item)
         <a href="{{ $item->link }}" class="badge badge-light-primary" style="margin: 3px;">
             {{ $item->name }}
-        </a>
+        </a><br>
     @endforeach
 </x-livewire-tables::table.cell>
 
