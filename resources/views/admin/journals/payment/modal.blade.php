@@ -10,34 +10,34 @@
             <div class="modal-body">
                 @isset($detailPayment)
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12">
                             <div class="row mb-3">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Jurnal</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     {{ $detailPayment->journal->name }}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Volume</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     {{ $detailPayment->journal->volume }} No. {{ $detailPayment->journal->number }} {{ $detailPayment->journal->month }} {{ $detailPayment->journal->year }}, Semester: {{ $detailPayment->journal->semester }}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Rumpun Ilmu</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     {{ strtoupper($detailPayment->knowledge) }}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Naskah</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5">
+                                <div class="col-7">
                                     @isset($detailPayment)
                                         @foreach ($detailPayment->naskah() as $item)
                                             <a href="{{ $item->link }}" style="margin: 3px;font-weight:bold;" class="badge badge-success" title="{{ $item->name }}">
@@ -46,46 +46,46 @@
                                         @endforeach
                                     @endisset
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Tanggal Pembayaran</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     {{ $detailPayment->date }}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Nama</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     <tt>{{ $detailPayment->payer_name }}</tt>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Rekening</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     <tt>{{ $detailPayment->payer_bank }} {{ $detailPayment->payer_rekening }}</tt>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Total</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     <tt>Rp {{ number_format($detailPayment->price) }}</tt>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Dibayar kepada</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right text-danger">
+                                <div class="col-7 d-flex justify-content-right text-danger">
                                     <tt>{{ $detailPayment->mybank->bank }} {{ $detailPayment->mybank->no_rekening }} a.n {{ $detailPayment->mybank->owner }}</tt>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <b>Status</b>
                                 </div>
                                 <div class="col-1">:</div>
-                                <div class="col-5 d-flex justify-content-right">
+                                <div class="col-7 d-flex justify-content-right">
                                     <div class="btn-group">
                                         @role('author')
                                         <button class="btn btn-sm btn-{{ $detailPayment->status == 1 ? 'success' : 'secondary' }}">
@@ -94,12 +94,16 @@
                                         @endrole
                                     </div>
                                 </div>
+                                <div class="col-4">
+                                    <b>Foto</b>
+                                </div>
+                                <div class="col-1">:</div>
+                                <div class="col-7 d-flex justify-content-right">
+                                    <a href="{{ asset('storage/pictures/payment/big/'.$detailPayment->image) }}">
+                                        <img src="{{ asset('storage/pictures/payment/big/'.$detailPayment->image) }}" id="account-upload-img" class="rounded" alt="image" height="150" width="150">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <a href="{{ asset('storage/pictures/payment/big/'.$detailPayment->image) }}">
-                                <img src="{{ asset('storage/pictures/payment/big/'.$detailPayment->image) }}" id="account-upload-img" class="rounded" alt="image" height="150" width="150">
-                            </a>
                         </div>
                     </div>
                 @endisset
