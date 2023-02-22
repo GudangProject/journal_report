@@ -9,7 +9,7 @@
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
         </ul>
     </div>
-    <div class="shadow-bottom"></div>
+    {{-- <div class="shadow-bottom"></div> --}}
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item">
@@ -65,6 +65,12 @@
                         </a>
                     </li>
                     @endrole
+                    <li class="nav-item {{ (request()->segment(2) == 'turnitin' ? 'active' : '') }}">
+                        <a class="d-flex align-items-center" href="{{ route('turnitin.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate" data-i18n="LoA">Turnitin & Surat Pernyataan</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
