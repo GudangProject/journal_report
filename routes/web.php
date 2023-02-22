@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Journals\MybankController;
 use App\Http\Controllers\Admin\Journals\PaymentController;
 use App\Http\Controllers\Admin\Journals\PointController;
 use App\Http\Controllers\Admin\Journals\ReportController;
+use App\Http\Controllers\Admin\Journals\TurnitinController;
 use App\Http\Controllers\Admin\Setting\AuthorController;
 use App\Http\Controllers\Admin\Setting\MenuController;
 use App\Http\Controllers\Admin\Setting\MenuCategoriesController;
@@ -50,6 +51,10 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 
     Route::prefix('loa')->group(function (){
         Route::resource('loa', LoaController::class);
+    });
+
+    Route::prefix('turnitin')->group(function (){
+        Route::resource('turnitin', TurnitinController::class);
     });
 
     Route::prefix('payment')->group(function (){
