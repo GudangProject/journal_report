@@ -42,12 +42,12 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Link Turnitin</h5>
-                                                    <input id="link" name="link_turnitin" type="url" class="form-control" placeholder="https://" value="{{ $data->link_turnitin }}" required/>
+                                                    <input id="link" name="link_turnitin" type="url" class="form-control" placeholder="https://" value="{{ $data->link_turnitin }}"/>
                                                     @error('link_turnitin') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <h5 class="text-primary">Link Surat Pernyataan</h5>
-                                                    <input id="link" name="link_surat_pernyataan" type="url" class="form-control" placeholder="https://" value="{{ $data->link_surat_pernyataan }}" required/>
+                                                    <input id="link" name="link_surat_pernyataan" type="url" class="form-control" placeholder="https://" value="{{ $data->link_surat_pernyataan }}"/>
                                                     @error('link_surat_pernyataan') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
                                             </div>
