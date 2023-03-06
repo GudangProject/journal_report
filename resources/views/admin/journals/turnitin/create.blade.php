@@ -57,7 +57,7 @@
                                                     </select>
                                                 </div> --}}
                                                 <div class="form-group">
-                                                    <h5 class="text-primary">Link Turnitin</h5>
+                                                    <h5 class="text-primary">Nama</h5>
                                                     <input id="link" name="username" type="text" class="form-control" placeholder="Nama sesuai turnitin dan surat pernyataan" value="{{ old('username') }}" required/>
                                                     @error('username') <span class="text-danger">{{ $message }}</span> @enderror
                                                 </div>
