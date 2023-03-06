@@ -19,13 +19,13 @@
                         </div>
                     </div>
                 </div>
-                @role('super admin|pic')
+                {{-- @role('super admin|pic') --}}
                 <div class="content-header-right text-md-right col-md-3 col-7">
                     <div class="form-group breadcrumb-right">
                         <a href="{{ route('turnitin.create') }}" class="btn btn-primary">Tambah</a>
                     </div>
                 </div>
-                @endrole
+                {{-- @endrole --}}
             </div>
             <div class="content-body">
                 @if (session()->has('message'))

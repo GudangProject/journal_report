@@ -71,7 +71,7 @@ class TurnitinTable extends DataTableComponent
         $data = Turnitin::query();
 
         if($user->getRoleNames()[0] == 'author'){
-            $data = $data->where('user_id', $user->id);
+            $data = $data->where('created_by', $user->id);
         }
 
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('username', 'like', '%'.$term.'%'));
