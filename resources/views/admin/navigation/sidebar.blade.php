@@ -37,6 +37,12 @@
                     <span class="menu-title text-truncate" data-i18n="Panduan">Panduan Pengelola</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="/panduan-pic" target="_blank">
+                    <i data-feather="book-open"></i>
+                    <span class="menu-title text-truncate" data-i18n="Panduan">Panduan Pengelola</span>
+                </a>
+            </li>
             @endrole
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Master Data</span></a>

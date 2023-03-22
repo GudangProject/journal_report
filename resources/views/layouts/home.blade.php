@@ -49,7 +49,35 @@
     @php
         $web = \App\Models\Websetting::orderBy('created_at')->first();
     @endphp
-    <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav navbar-sm-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            @if (isset($web->logo))
+                <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" height="80" width="250" alt="Logo" />
+            @endif
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item mr-2 mt-1 active">
+                    @if (auth()->user())
+                        <a href="/admin" class="font-weight-bold"><i data-feather="grid"></i> DASHBOARD</a>
+                    @endif
+                </li>
+                <li class="nav-item mr-2 mt-1">
+                    <a href="{{ route('login') }}" class="font-weight-bold"><i data-feather="log-in"></i> LOGIN</a>
+                </li><li class="nav-item mr-2 mt-1">
+                    <a href="{{ route('register') }}" class="font-weight-bold"><i data-feather="user-plus"></i> REGISTER</a>
+                </li>
+                <li class="nav-item mr-2 mt-1">
+                    <a href="/panduan-author" class="font-weight-bold" target="_blank"><i data-feather="book-open"></i> PANDUAN</a>
+                <li class="nav-item mr-2 mt-1">
+                    <a href="/legalitas" class="font-weight-bold" target="_blank"><i data-feather="file-text"></i> LEGALITAS</a>
+        </div>
+    </nav>
+    {{-- <nav class="header-navbar navbar navbar-expand-lg align-items-center justify-content-center floating-nav navbar-sm-light">
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">
                 <ul class="nav navbar-nav bookmark-icons">
@@ -65,26 +93,18 @@
                             <a href="{{ route('login') }}" class="btn btn-primary"><i data-feather="log-in"></i> LOGIN</a>
                             <a href="{{ route('register') }}" class="btn btn-secondary"><i data-feather="user-plus"></i> REGISTER</a>
                             <a href="/panduan-author" class="btn btn-warning" target="_blank"><i data-feather="book-open"></i> PANDUAN</a>
+                            <a href="/legalitas" class="btn btn-success" target="_blank"><i data-feather="file-text"></i> LEGALITAS</a>
                         @endif
                     </div>
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-center text-center col-12 mb-2">
-                    @if (isset($web->logo))
-                        <img src="{{ asset('storage') }}/assets/{{ $web->logo }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0 bg-secondary" height="80" width="250" alt="Logo" />
-                    @endif
-                    {{-- <h1><strong>{{ $web->name }}</strong></h1>
-                    <h5>{!! $web->description !!}</h5> --}}
-                </div>
-            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                     <div class="card">
