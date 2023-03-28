@@ -13,21 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class LoaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('admin.journals.loa.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $data   = Journal::where('created_by', auth()->user()->id)->pluck('id');
