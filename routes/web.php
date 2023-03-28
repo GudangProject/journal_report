@@ -101,7 +101,7 @@ Route::get('panduan-author', function() {
     return view('components.guide-author');
 });
 Route::get('legalitas', function() {
-    return view('components.guide-author');
+    return view('components.legalitas');
 });
 Route::get('panduan-pic', function() {
     return view('components.guide-pic');
