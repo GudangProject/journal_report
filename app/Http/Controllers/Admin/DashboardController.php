@@ -40,28 +40,29 @@ class DashboardController extends Controller
         $platform = Agent::platform();
         $browser = Agent::browser();
 
-        $website = Http::withHeaders([
-                'Authorization' => 'Bearer '.config('app.api_key'),
-            ])->get('https://panel.jarwonozt.com/api/website-check', [
-                'url' => url()->current(),
-            ]);
+        // $website = Http::withHeaders([
+        //         'Authorization' => 'Bearer '.config('app.api_key'),
+        //     ])->get('https://panel.jarwonozt.com/api/website-check', [
+        //         'url' => url()->current(),
+        //     ]);
 
-        if($website->status() == 404){
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer '.config('app.api_key'),
-            ])->post('https://panel.jarwonozt.com/api/website', [
-                'url' => url()->current(),
-                'status' => 0,
-                'os' => $device.'|'.$platform.'|'.$browser,
-            ]);
-        }
+        // if($website->status() == 404){
+        //     $response = Http::withHeaders([
+        //         'Authorization' => 'Bearer '.config('app.api_key'),
+        //     ])->post('https://panel.jarwonozt.com/api/website', [
+        //         'url' => url()->current(),
+        //         'status' => 0,
+        //         'os' => $device.'|'.$platform.'|'.$browser,
+        //     ]);
+        // }
 
-        if($website->json()[0]['status'] == true){
-            return view('admin.index', ['data' => $data]);
-        }else{
-            Alert::info('Info', 'Aplikasi berlum terdaftar, harap hubungi CS dibawah ini.');
-            abort(404);
-        }
+        // if($website->json()[0]['status'] == true){
+        // }else{
+        //     Alert::info('Info', 'Aplikasi berlum terdaftar, harap hubungi CS dibawah ini.');
+        //     abort(404);
+        // }
+
+        return view('admin.index', ['data' => $data]);
     }
 
     /**
