@@ -10,11 +10,21 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(DataController $data)
+    public function index(Journal $journal, DataController $data)
     {
+        $journal->visitsCounter()->increment();
+
+        // data pengunjung
+        $visitor = array([
+            'day' => visits($journal)->period('day')->count(),
+            'week' => visits($journal)->period('week')->count(),
+            'month' => visits($journal)->period('month')->count(),
+        ]);
+
         return view('layouts.home', [
             'data'  => Journal::orderByDesc('created_at')->get(),
             'naskah' => Naskah::orderByDesc('created_at')->get(),
+            'visitor' => $visitor
         ]);
     }
 }

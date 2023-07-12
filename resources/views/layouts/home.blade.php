@@ -36,7 +36,38 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
-
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+        .visitor {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .title{
+            padding-bottom: 5px;
+        }
+        .day{
+            background: #aa00ff;
+            color: #fff;
+            border: 1px solid #aa00ff;
+            padding-right: 10px;
+        }
+        .week{
+            background: #139e8c;
+            color: #fff;
+            border: 1px solid #139e8c;
+            padding-left: 5px;
+            padding-right: 10px;
+        }
+        .month{
+            background: #e5f8ed;
+            color: #139e8c;
+            border: 1px solid #139e8c;
+            padding-left: 5px;
+            padding-right: 10px;
+        }
+    </style>
     @livewireStyles
 
 </head>
@@ -173,7 +204,27 @@
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2023 {{ config('app.name') }} <span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+        <div class="d-flex justify-content-center">
+            <span>
+                <table class="visitor">
+                    <tr>
+                        <td colspan="3" class="title">TOTAL PENGUNJUNG<i data-feather='trending-up'></i></td>
+                    </tr>
+                    <tr>
+                        <td class="day">Hari ini  {{ $visitor[0]['day'] }} </td>
+                        <td class="week">Minggu ini  {{ $visitor[0]['week'] }}</td>
+                        <td class="month">Bulan ini  {{ $visitor[0]['month'] }}</td>
+                    </tr>
+                </table>
+            </span>
+        </div>
+        <p class="clearfix mb-0">
+            <span class="float-md-left d-block d-md-inline-block mt-25">
+                COPYRIGHT &copy; 2023 {{ config('app.name') }}
+                <span class="d-none d-sm-inline-block">, All rights Reserved</span>
+            </span>
+            <span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span>
+        </p>
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
