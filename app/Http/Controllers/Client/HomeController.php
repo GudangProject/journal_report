@@ -14,13 +14,15 @@ class HomeController extends Controller
     {
         $journal->visitsCounter()->increment();
 
+        // dd($journal->visitsCounter()->period('day')->count());
         // data pengunjung
         $visitor = array([
+            'top' => visits($journal)->languages(),
             'day' => visits($journal)->period('day')->count(),
             'week' => visits($journal)->period('week')->count(),
             'month' => visits($journal)->period('month')->count(),
         ]);
-
+        dd($visitor[0]);
         return view('layouts.home', [
             'data'  => Journal::orderByDesc('created_at')->get(),
             'naskah' => Naskah::orderByDesc('created_at')->get(),

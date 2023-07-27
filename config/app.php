@@ -205,6 +205,8 @@ return [
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Shetabit\Visitor\Provider\VisitorServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -274,6 +276,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Visitor' => Shetabit\Visitor\Facade\Visitor::class,
 
 
     ],
