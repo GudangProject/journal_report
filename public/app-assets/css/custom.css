@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+.visitor {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.title{
+    padding-bottom: 5px;
+}
+.day{
+    background: #aa00ff;
+    color: #fff;
+    border: 1px solid #aa00ff;
+    padding-right: 10px;
+}
+.week{
+    background: #139e8c;
+    color: #fff;
+    border: 1px solid #139e8c;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+.month{
+    background: #e5f8ed;
+    color: #139e8c;
+    border: 1px solid #139e8c;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+.year{
+    text-align: left;
+    color: #fff;
+    border: 1px solid #555555;
+    background: #555555;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+.total{
+    text-align: left;
+    color: #555;
+    border: 1px solid #555;
+    padding-left: 5px;
+    padding-right: 10px;
+}
