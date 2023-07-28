@@ -36,38 +36,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
-        .visitor {
-            font-family: 'Roboto Mono', monospace;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .title{
-            padding-bottom: 5px;
-        }
-        .day{
-            background: #aa00ff;
-            color: #fff;
-            border: 1px solid #aa00ff;
-            padding-right: 10px;
-        }
-        .week{
-            background: #139e8c;
-            color: #fff;
-            border: 1px solid #139e8c;
-            padding-left: 5px;
-            padding-right: 10px;
-        }
-        .month{
-            background: #e5f8ed;
-            color: #139e8c;
-            border: 1px solid #139e8c;
-            padding-left: 5px;
-            padding-right: 10px;
-        }
-    </style>
     @livewireStyles
 
 </head>
@@ -214,6 +182,12 @@
                         <td class="day">Hari ini  {{ $visitor[0]['day'] }} </td>
                         <td class="week">Minggu ini  {{ $visitor[0]['week'] }}</td>
                         <td class="month">Bulan ini  {{ $visitor[0]['month'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="year">Tahun ini {{ $visitor[0]['year'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="total">Total {{ $visitor[0]['total'] }}</td>
                     </tr>
                 </table>
             </span>

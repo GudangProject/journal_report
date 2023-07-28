@@ -11,7 +11,7 @@ return [
     |
     */
     'engine' => \Awssat\Visits\DataEngines\EloquentEngine::class,
-    'connection' => 'laravel-visits',
+    'connection' => 'mysql',
 
 
     /*
