@@ -23,7 +23,9 @@ class PaymentController extends Controller
         {
             $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
             $paid = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', true)->sum('price');
-            $pending = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', false)->sum('price');
+            $myJournalPending = Payment::whereIn('journal_id', $journalId)->where('status', 0)->sum('price');
+            $myPending = Payment::where('created_by', auth()->user()->id)->where('status', 0)->sum('price');
+            $pending = $myJournalPending + $myPending;
         }elseif(auth()->user()->getRoleNames()[0] == 'super admin' || auth()->user()->getRoleNames()[0] == 'admin'){
             $paid = Payment::where('status', true)->sum('price');
             $pending = Payment::where('status', false)->sum('price');
