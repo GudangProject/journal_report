@@ -148,7 +148,7 @@ class PaymentTable extends DataTableComponent
         })->toArray();
 
         // volume filter
-        $volumeRows = Journal::selectRaw('count(id) as id_journal, volume')
+        $volumeRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, volume')
             ->groupBy('volume')
             ->get();
         foreach ($volumeRows as $k => $v) {
@@ -161,8 +161,8 @@ class PaymentTable extends DataTableComponent
         return [
             'journal' => Filter::make('Nama Jurnal')
                 ->select($data),
-            // 'volume' => Filter::make('Volume')
-            //     ->select($dataVolume),
+            'volume' => Filter::make('Volume')
+                ->select($dataVolume),
             'status' => Filter::make('Status')
                 ->select([
                     '0' => '--Semua--',
@@ -185,14 +185,14 @@ class PaymentTable extends DataTableComponent
         if ($user->getRoleNames()[0] == 'pic') {
             $journalId = Journal::where('created_by', $user->id)->pluck('id');
             $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
-            // $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
+            $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
             $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
             $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
             $data = $data->whereIn('journal_id', $journalId)->orWhere('created_by', $user->id);
         }
 
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
-        // $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
+        $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
         $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 

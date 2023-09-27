@@ -22,15 +22,15 @@ class PaymentController extends Controller
         if (auth()->user()->getRoleNames()[0] == 'pic') {
             if ($q->volume != null) {
 
-                $journalId = Journal::where('volume', $q->volume)->pluck('id');
+                $journalId = Journal::where('volume', $q->volume)->where('created_by', auth()->user()->id)->pluck('id');
             } else {
                 $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
             }
             // dd($journalId);
-            $paid = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', true)->sum('price');
+            $paid = Payment::whereIn('journal_id', $journalId)->where('status', true)->sum('price');
             $myJournalPending = Payment::whereIn('journal_id', $journalId)->where('status', 0)->sum('price');
-            $myPending = Payment::where('created_by', auth()->user()->id)->where('status', 0)->sum('price');
-            $pending = $myJournalPending + $myPending;
+            // $myPending = Payment::where('created_by', auth()->user()->id)->where('status', 0)->sum('price');
+            $pending = $myJournalPending;
             // dd($journalId);
         } elseif (auth()->user()->getRoleNames()[0] == 'super admin' || auth()->user()->getRoleNames()[0] == 'admin') {
             $paid = Payment::where('status', true)->sum('price');
@@ -40,7 +40,8 @@ class PaymentController extends Controller
             $pending    = Payment::where('created_by', auth()->user()->id)->where('status', false)->sum('price');
         }
 
-        $volumeRows = Journal::selectRaw('count(id) as id_journal, volume')
+        $volumeRows = Journal::where('created_by', auth()->user()->id)
+            ->selectRaw('count(id) as id_journal, volume')
             ->groupBy('volume')
             ->get();
         foreach ($volumeRows as $k => $v) {
@@ -55,8 +56,15 @@ class PaymentController extends Controller
 
     public function create()
     {
+        if (auth()->user()->getRoleNames()[0] == 'pic')
+        {
+            $journal = Journal::where('status', true)->where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
+        }else{
+            $journal = Journal::where('status', true)->orderByDesc('created_at')->get();
+        }
+
         return view('admin.journals.payment.create', [
-            'journals' => Journal::where('status', true)->orderByDesc('created_at')->get(),
+            'journals' => $journal,
             'mybank' => Mybank::all()
         ]);
     }
