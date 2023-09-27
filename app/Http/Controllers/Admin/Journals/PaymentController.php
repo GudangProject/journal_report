@@ -16,9 +16,24 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
+
     public function index()
     {
-        return view('admin.journals.payment.index');
+        if(auth()->user()->getRoleNames()[0] == 'pic')
+        {
+            $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
+            $paid = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', true)->sum('price');
+            $pending = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', false)->sum('price');
+        }elseif(auth()->user()->getRoleNames()[0] == 'super admin' || auth()->user()->getRoleNames()[0] == 'admin'){
+            $paid = Payment::where('status', true)->sum('price');
+            $pending = Payment::where('status', false)->sum('price');
+        }else{
+            $paid       = Payment::where('created_by', auth()->user()->id)->where('status', true)->sum('price');
+            $pending    = Payment::where('created_by', auth()->user()->id)->where('status', false)->sum('price');
+        }
+
+
+        return view('admin.journals.payment.index', compact('paid', 'pending'));
     }
 
     public function create()

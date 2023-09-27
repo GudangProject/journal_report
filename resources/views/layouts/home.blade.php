@@ -63,11 +63,11 @@
                 <li class="nav-item mr-2 mt-1 active">
                     @if (auth()->user())
                         <a href="/admin" class="font-weight-bold"><i data-feather="grid"></i> DASHBOARD</a>
+                    @else
+                        <a href="{{ route('login') }}" class="font-weight-bold"><i data-feather="log-in"></i> LOGIN</a>
                     @endif
                 </li>
                 <li class="nav-item mr-2 mt-1">
-                    <a href="{{ route('login') }}" class="font-weight-bold"><i data-feather="log-in"></i> LOGIN</a>
-                </li><li class="nav-item mr-2 mt-1">
                     <a href="{{ route('register') }}" class="font-weight-bold"><i data-feather="user-plus"></i> REGISTER</a>
                 </li>
                 <li class="nav-item mr-2 mt-1">

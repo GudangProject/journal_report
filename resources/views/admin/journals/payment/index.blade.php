@@ -20,28 +20,61 @@
                     </div>
                 </div>
                 @role('author|super admin|pic')
-                <div class="content-header-right text-md-right col-md-3 col-7">
-                    <div class="form-group breadcrumb-right">
-                        <a href="{{ route('payment.create') }}" class="btn btn-primary">Tambah</a>
+                    <div class="content-header-right text-md-right col-md-3 col-7">
+                        <div class="form-group breadcrumb-right">
+                            <a href="{{ route('payment.create') }}" class="btn btn-primary">Tambah</a>
+                        </div>
+                    </div>
+                @endrole
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($paid) }}</h2>
+                                <p class="card-text">LUNAS</p>
+                            </div>
+                            <div class="avatar bg-light-success p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="fa fa-credit-card font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                @endrole
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h2 class="font-weight-bolder mb-0">Rp {{ number_format($pending) }}</h2>
+                                <p class="card-text">PENDING</p>
+                            </div>
+                            <div class="avatar bg-light-warning p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="fa fa-credit-card font-medium-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="content-body">
                 @if (session()->has('message'))
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <div class="alert-body"><strong>{{ session('message') }}</strong></div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <div class="alert-body"><strong>{{ session('message') }}</strong></div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 @else
-                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                    <div class="alert-body"><strong>Invoice akan muncul pada kolom AKSI, jika status pembayaran sudah LUNAS</strong></div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                        <div class="alert-body"><strong>Invoice akan muncul pada kolom AKSI, jika status pembayaran
+                                sudah LUNAS</strong></div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 @endif
                 @livewire('journals.payment-table')
             </div>
@@ -49,54 +82,54 @@
     </div>
 
     @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-            Livewire.hook('message.processed', (message, component) => {
-                $(function () {
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                $(function() {
                     $('[data-toggle="tooltip"]').tooltip()
                 })
-            })
-        });
+                Livewire.hook('message.processed', (message, component) => {
+                    $(function() {
+                        $('[data-toggle="tooltip"]').tooltip()
+                    })
+                })
+            });
 
-        window.addEventListener('openModalPayment', event => {
-            $("#modal-proofpayment").modal('show');
-        });
+            window.addEventListener('openModalPayment', event => {
+                $("#modal-proofpayment").modal('show');
+            });
 
-        window.addEventListener('openModalEdit', event => {
-            $("#edit-modal").modal('show');
-        });
+            window.addEventListener('openModalEdit', event => {
+                $("#edit-modal").modal('show');
+            });
 
-        window.addEventListener('closeModalEdit', event => {
-            $("#edit-modal").modal('hide');
-        });
+            window.addEventListener('closeModalEdit', event => {
+                $("#edit-modal").modal('hide');
+            });
 
-        window.addEventListener('openModalStatus', event => {
-            $("#status-modal").modal('show');
-        });
+            window.addEventListener('openModalStatus', event => {
+                $("#status-modal").modal('show');
+            });
 
-        window.addEventListener('closeModalStatus', event => {
-            $("#status-modal").modal('hide');
-        });
+            window.addEventListener('closeModalStatus', event => {
+                $("#status-modal").modal('hide');
+            });
 
-        window.addEventListener('openModalDelete', event => {
-            $("#delete-modal").modal('show');
-        });
+            window.addEventListener('openModalDelete', event => {
+                $("#delete-modal").modal('show');
+            });
 
-        window.addEventListener('closeModalDelete', event => {
-            $("#delete-modal").modal('hide');
-        });
+            window.addEventListener('closeModalDelete', event => {
+                $("#delete-modal").modal('hide');
+            });
 
-        window.addEventListener('openModalDeleteSelected', event => {
-            $("#delete-modal-selected").modal('show');
-        });
+            window.addEventListener('openModalDeleteSelected', event => {
+                $("#delete-modal-selected").modal('show');
+            });
 
-        window.addEventListener('closeModalDeleteSelected', event => {
-            $("#delete-modal-selected").modal('hide');
-        });
-    </script>
+            window.addEventListener('closeModalDeleteSelected', event => {
+                $("#delete-modal-selected").modal('hide');
+            });
+        </script>
     @endpush
 
 </x-master-layout>
