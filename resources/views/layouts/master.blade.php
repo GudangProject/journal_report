@@ -62,7 +62,7 @@
         <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
         <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
         <script src="{{asset('app-assets/js/core/app.js')}}"></script>
-
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
         @stack('scripts')
         <script>
             $(window).on('load', function() {

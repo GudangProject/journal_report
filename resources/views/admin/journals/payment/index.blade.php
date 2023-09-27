@@ -34,6 +34,7 @@
                             <div>
                                 <h2 class="font-weight-bolder mb-0">Rp {{ number_format($paid) }}</h2>
                                 <p class="card-text">LUNAS</p>
+
                             </div>
                             <div class="avatar bg-light-success p-50 m-0">
                                 <div class="avatar-content">
@@ -41,6 +42,25 @@
                                 </div>
                             </div>
                         </div>
+                        @role('pic')
+                        <div class="card-footer">
+                            <h5 class="text-primary">Berdasarkan Volume :</h5>
+                            <form action="{{ route('payment.index') }}" method="get">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <select name="volume" id="" class="form-control">
+                                            @foreach ($dataVolume as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-4 text-left">
+                                        <button type="submit" class="btn btn-dark">CEK</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        @endrole
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">

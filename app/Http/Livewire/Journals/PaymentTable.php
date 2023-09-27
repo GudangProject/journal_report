@@ -41,22 +41,22 @@ class PaymentTable extends DataTableComponent
         $this->dispatchBrowserEvent('openModalStatus');
     }
 
-    public function updateStatus(){
+    public function updateStatus()
+    {
 
         $data = Payment::findOrFail($this->selected_id);
         $data->update(['status' => $this->status]);
 
-        if($data->status == true)
-        {
+        if ($data->status == true) {
             $countNaskah   = Naskah::where('payment_id', $data->id)->count();
             $journal       = Journal::findOrFail($data->journal_id);
             $journalStock  = $journal->total;
 
-            if($countNaskah > $journalStock){
+            if ($countNaskah > $journalStock) {
 
-                Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+                Alert::error('Error', 'Slot tidak cucup, slot tersisa ' . $journalStock);
                 return back()->withInput();
-            }else{
+            } else {
                 $updateStock   = $journalStock - $countNaskah;
                 $currentStock  = $journal->update(['total' => $updateStock]);
 
@@ -77,13 +77,14 @@ class PaymentTable extends DataTableComponent
         $this->dispatchBrowserEvent('openModalDelete');
     }
 
-    public function deleteStatus(){
+    public function deleteStatus()
+    {
         $payment     = Payment::findOrFail($this->selected_id);
         $naskahCount = Naskah::where('payment_id', $this->selected_id)->get()->count();
         $journal     = Journal::findOrFail($payment->journal_id);
         $updateStock = $journal->update(['total' => $journal->total + $naskahCount]);
 
-        if($updateStock){
+        if ($updateStock) {
             $payment->delete();
             Naskah::where('payment_id', $this->selected_id)->delete();
             JournalPoint::where('journal_id', $journal->id)->delete();
@@ -97,7 +98,8 @@ class PaymentTable extends DataTableComponent
         $this->dispatchBrowserEvent('openModalDeleteSelected');
     }
 
-    public function deleteSelected(){
+    public function deleteSelected()
+    {
         Payment::whereIn('id', $this->selectedKeys)->delete();
         $this->dispatchBrowserEvent('closeModalDeleteSelected');
     }
@@ -111,7 +113,12 @@ class PaymentTable extends DataTableComponent
             Column::make('Nama'),
             Column::make('Judul Naskah'),
             Column::make('Tanggal Pembayaran'),
-            Column::make('Nominal'),
+            Column::make('Nominal', 'price')
+                ->sortable()
+                ->asHtml()
+                ->secondaryHeader(function () {
+                    return view('admin.journals.payment.subtotal', ['subtotal' => 'price']);
+                }),
             Column::make('Status'),
             Column::make('Aksi'),
         ];
@@ -123,25 +130,39 @@ class PaymentTable extends DataTableComponent
 
     public function filters(): array
     {
-        if(auth()->user()->getRoleNames()[0] == 'pic'){
+        if (auth()->user()->getRoleNames()[0] == 'pic') {
             $dataJournal = Journal::where('created_by', auth()->user()->id)->get();
-        }else{
+        } else {
             $dataJournal = Journal::all();
         }
 
         $journal = array();
-        foreach($dataJournal as $k=>$v){
+        foreach ($dataJournal as $k => $v) {
             $journal[$k]['id'] = $v->id;
             $journal[$k]['name'] = $v->name;
+            $journal[$k]['volume'] = $v->volume;
         }
-
+        // dd($journal);
         $data = collect($journal)->mapWithKeys(function ($name) {
             return [$name['id'] => $name['name']];
         })->toArray();
-        // dd($data);
+
+        // volume filter
+        $volumeRows = Journal::selectRaw('count(id) as id_journal, volume')
+            ->groupBy('volume')
+            ->get();
+        foreach ($volumeRows as $k => $v) {
+            $vol[$k]['volume'] = $v->volume;
+        }
+        $dataVolume = collect($vol)->mapWithKeys(function ($a) {
+            return [$a['volume'] => $a['volume']];
+        })->toArray();
+
         return [
             'journal' => Filter::make('Nama Jurnal')
                 ->select($data),
+            // 'volume' => Filter::make('Volume')
+            //     ->select($dataVolume),
             'status' => Filter::make('Status')
                 ->select([
                     '0' => '--Semua--',
@@ -157,29 +178,26 @@ class PaymentTable extends DataTableComponent
         $naskah = Payment::where('journal_id', 157)->pluck('id');
         // dd($naskah);
         $data = Payment::query();
-        if($user->getRoleNames()[0] == 'author')
-        {
+        if ($user->getRoleNames()[0] == 'author') {
             $data = $data->where('created_by', $user->id);
         }
 
-        if($user->getRoleNames()[0] == 'pic')
-        {
+        if ($user->getRoleNames()[0] == 'pic') {
             $journalId = Journal::where('created_by', $user->id)->pluck('id');
             $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
+            // $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
             $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
-            $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
+            $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
             $data = $data->whereIn('journal_id', $journalId)->orWhere('created_by', $user->id);
         }
 
-        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
+        // $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
         $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         // dd($data);
         return $data;
-
-
-
     }
 
     public function rowView(): string

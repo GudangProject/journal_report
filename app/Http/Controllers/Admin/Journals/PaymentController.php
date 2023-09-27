@@ -17,25 +17,40 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PaymentController extends Controller
 {
 
-    public function index()
+    public function index(Request $q)
     {
-        if(auth()->user()->getRoleNames()[0] == 'pic')
-        {
-            $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
+        if (auth()->user()->getRoleNames()[0] == 'pic') {
+            if ($q->volume != null) {
+
+                $journalId = Journal::where('volume', $q->volume)->pluck('id');
+            } else {
+                $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
+            }
+            // dd($journalId);
             $paid = Payment::whereIn('journal_id', $journalId)->orWhere('created_by', auth()->user()->id)->where('status', true)->sum('price');
             $myJournalPending = Payment::whereIn('journal_id', $journalId)->where('status', 0)->sum('price');
             $myPending = Payment::where('created_by', auth()->user()->id)->where('status', 0)->sum('price');
             $pending = $myJournalPending + $myPending;
-        }elseif(auth()->user()->getRoleNames()[0] == 'super admin' || auth()->user()->getRoleNames()[0] == 'admin'){
+            // dd($journalId);
+        } elseif (auth()->user()->getRoleNames()[0] == 'super admin' || auth()->user()->getRoleNames()[0] == 'admin') {
             $paid = Payment::where('status', true)->sum('price');
             $pending = Payment::where('status', false)->sum('price');
-        }else{
+        } else {
             $paid       = Payment::where('created_by', auth()->user()->id)->where('status', true)->sum('price');
             $pending    = Payment::where('created_by', auth()->user()->id)->where('status', false)->sum('price');
         }
 
-
-        return view('admin.journals.payment.index', compact('paid', 'pending'));
+        $volumeRows = Journal::selectRaw('count(id) as id_journal, volume')
+            ->groupBy('volume')
+            ->get();
+        foreach ($volumeRows as $k => $v) {
+            $vol[$k]['volume'] = $v->volume;
+        }
+        $dataVolume = collect($vol)->mapWithKeys(function ($a) {
+            return [$a['volume'] => $a['volume']];
+        });
+        // dd($dataVolume);
+        return view('admin.journals.payment.index', compact('paid', 'pending', 'dataVolume'));
     }
 
     public function create()
@@ -63,39 +78,39 @@ class PaymentController extends Controller
         //     $currentStock  = $journal->update(['total' => $updateStock]);
         // }
 
-        if($request->image != null){
+        if ($request->image != null) {
             $validate = $request->validate([
-                'image' =>'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
             ]);
 
             $image_setting = [
-                'ori_width'=>config('app.img_size.ori_width'),
-                'ori_height'=>config('app.img_size.ori_height'),
-                'mid_width'=>config('app.img_size.mid_width'),
-                'mid_height'=>config('app.img_size.mid_height'),
-                'thumb_width'=>config('app.img_size.thumb_width'),
-                'thumb_height'=>config('app.img_size.thumb_height')
+                'ori_width' => config('app.img_size.ori_width'),
+                'ori_height' => config('app.img_size.ori_height'),
+                'mid_width' => config('app.img_size.mid_width'),
+                'mid_height' => config('app.img_size.mid_height'),
+                'thumb_width' => config('app.img_size.thumb_width'),
+                'thumb_height' => config('app.img_size.thumb_height')
             ];
 
-            if($request->file('image') != null){
+            if ($request->file('image') != null) {
                 $data = array(
                     'skala11' => array(
-                        'width'=>$request->input('1_1_width'),
-                        'height'=>$request->input('1_1_height'),
-                        'x'=>$request->input('1_1_x'),
-                        'y'=>$request->input('1_1_y')
+                        'width' => $request->input('1_1_width'),
+                        'height' => $request->input('1_1_height'),
+                        'x' => $request->input('1_1_x'),
+                        'y' => $request->input('1_1_y')
                     )
                 );
 
                 $image_data = [
-                    'file'=>$request->file('image'),
-                    'setting'=>$image_setting,
-                    'path'=>public_path('storage/pictures/payment/'),
-                    'modul'=>'payment',
-                    'data'=>$data
+                    'file' => $request->file('image'),
+                    'setting' => $image_setting,
+                    'path' => public_path('storage/pictures/payment/'),
+                    'modul' => 'payment',
+                    'data' => $data
                 ];
                 $image_service = ImageServices::imageUser($image_data);
-                if($image_service['status'] == true){
+                if ($image_service['status'] == true) {
                     $imageName = $image_service['namaImage'];
                 }
             }
@@ -116,10 +131,10 @@ class PaymentController extends Controller
             $pay->created_by = auth()->user()->id;
             $pay->save();
 
-            if($pay){
+            if ($pay) {
                 $invoice = new Invoice();
                 $invoice->payment_id = $pay->id;
-                $invoice->code = $pay->id.time();
+                $invoice->code = $pay->id . time();
                 $invoice->price = $pay->price;
                 $invoice->status = true;
                 $invoice->created_by = auth()->user()->id;
@@ -128,7 +143,7 @@ class PaymentController extends Controller
                 $mybank = Mybank::findOrFail($pay->mybank_id);
                 $mybank->update(['balance' => $mybank->balance + $pay->price]);
 
-                for ($i=0; $i < $countNaskah ; $i++) {
+                for ($i = 0; $i < $countNaskah; $i++) {
                     $naskah[$i] = Naskah::create([
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
@@ -149,13 +164,11 @@ class PaymentController extends Controller
 
             Alert::success('Sukses', 'Data pembayaran berhasil ditambahkan.');
             return redirect()->route('payment.index');
-
         } catch (Exception $error) {
             dd($error->getMessage());
             Alert::error('Error', $error->getMessage());
             return back()->withInput();
         }
-
     }
 
     public function show($id)
@@ -179,53 +192,53 @@ class PaymentController extends Controller
         $imageName = '';
         $countNaskah = count($request->manuscript_title);
 
-        if($request->manuscript_title[0] != null || $request->manuscript_link[0] != null){
+        if ($request->manuscript_title[0] != null || $request->manuscript_link[0] != null) {
             $journal       = Journal::findOrFail($request->journal_id);
             $journalStock  = $journal->total;
 
-            if($countNaskah > $journalStock){
+            if ($countNaskah > $journalStock) {
 
-                Alert::error('Error', 'Slot tidak cucup, slot tersisa '.$journalStock);
+                Alert::error('Error', 'Slot tidak cucup, slot tersisa ' . $journalStock);
                 return back()->withInput();
-            }else{
+            } else {
                 $updateStock   = $journalStock - $countNaskah;
                 $currentStock  = $journal->update(['total' => $updateStock]);
             }
         }
 
-        if($request->image != null){
+        if ($request->image != null) {
             $validate = $request->validate([
-                'image' =>'image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|dimensions:max_width=1500,max_height:1500',
             ]);
 
             $image_setting = [
-                'ori_width'=>config('app.img_size.ori_width'),
-                'ori_height'=>config('app.img_size.ori_height'),
-                'mid_width'=>config('app.img_size.mid_width'),
-                'mid_height'=>config('app.img_size.mid_height'),
-                'thumb_width'=>config('app.img_size.thumb_width'),
-                'thumb_height'=>config('app.img_size.thumb_height')
+                'ori_width' => config('app.img_size.ori_width'),
+                'ori_height' => config('app.img_size.ori_height'),
+                'mid_width' => config('app.img_size.mid_width'),
+                'mid_height' => config('app.img_size.mid_height'),
+                'thumb_width' => config('app.img_size.thumb_width'),
+                'thumb_height' => config('app.img_size.thumb_height')
             ];
 
-            if($request->file('image') != null){
+            if ($request->file('image') != null) {
                 $data = array(
                     'skala11' => array(
-                        'width'=>$request->input('1_1_width'),
-                        'height'=>$request->input('1_1_height'),
-                        'x'=>$request->input('1_1_x'),
-                        'y'=>$request->input('1_1_y')
+                        'width' => $request->input('1_1_width'),
+                        'height' => $request->input('1_1_height'),
+                        'x' => $request->input('1_1_x'),
+                        'y' => $request->input('1_1_y')
                     )
                 );
 
                 $image_data = [
-                    'file'=>$request->file('image'),
-                    'setting'=>$image_setting,
-                    'path'=>public_path('storage/pictures/payment/'),
-                    'modul'=>'payment',
-                    'data'=>$data
+                    'file' => $request->file('image'),
+                    'setting' => $image_setting,
+                    'path' => public_path('storage/pictures/payment/'),
+                    'modul' => 'payment',
+                    'data' => $data
                 ];
                 $image_service = ImageServices::imageUser($image_data);
-                if($image_service['status'] == true){
+                if ($image_service['status'] == true) {
                     $imageName = $image_service['namaImage'];
                 }
             }
@@ -240,15 +253,15 @@ class PaymentController extends Controller
             $pay->payer_bank = $request->payer_bank;
             $pay->mybank_id = $request->mybank_id;
             $pay->price = $request->price;
-            if($request->file('image') != null){
+            if ($request->file('image') != null) {
                 $pay->image = $imageName;
             }
             $pay->description = $request->description;
             //$pay->created_by = auth()->user()->id;
             $pay->save();
 
-            if($pay && $request->manuscript_title[0] != null){
-                for ($i=0; $i < $countNaskah ; $i++) {
+            if ($pay && $request->manuscript_title[0] != null) {
+                for ($i = 0; $i < $countNaskah; $i++) {
                     $naskah[$i] = Naskah::create([
                         'payment_id' => $pay->id,
                         'journal_id' => $request->journal_id,
@@ -258,12 +271,10 @@ class PaymentController extends Controller
                         'created_by' => $request->created_by[$i],
                     ]);
                 }
-
             }
 
             Alert::success('Sukses', 'Data pembayaran berhasil diupdate.');
             return redirect()->route('payment.index');
-
         } catch (Exception $error) {
             dd($error);
             Alert::error('Error', $error->getMessage());
@@ -281,7 +292,7 @@ class PaymentController extends Controller
         $naskah = Naskah::findOrFail($id);
         $journal = Journal::findOrFail($naskah->journal_id)->increment('total');
 
-        if($journal){
+        if ($journal) {
             $naskah->delete();
         }
 
@@ -289,12 +300,12 @@ class PaymentController extends Controller
         return back()->withInput();
     }
 
-    public function invoice(Request $request){
-        return view('admin.journals.payment.invoice',[
+    public function invoice(Request $request)
+    {
+        return view('admin.journals.payment.invoice', [
             'payment' => Payment::findOrfail($request->id),
             'invoice' => Invoice::where('payment_id', $request->id)->first(),
             'naskah'  => Naskah::where('payment_id', $request->id)->get()
         ]);
     }
-
 }
