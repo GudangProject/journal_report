@@ -132,8 +132,22 @@ class PaymentTable extends DataTableComponent
     {
         if (auth()->user()->getRoleNames()[0] == 'pic') {
             $dataJournal = Journal::where('created_by', auth()->user()->id)->get();
+
+            $volumeRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, volume')
+                ->groupBy('volume')
+                ->get();
+
+            $numberRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, number')
+                ->groupBy('number')
+                ->get();
         } else {
             $dataJournal = Journal::all();
+            $volumeRows = Journal::selectRaw('count(id) as id_journal, volume')
+                ->groupBy('volume')
+                ->get();
+            $numberRows = Journal::selectRaw('count(id) as id_journal, number')
+                ->groupBy('number')
+                ->get();
         }
 
         $journal = array();
@@ -149,10 +163,6 @@ class PaymentTable extends DataTableComponent
         })->toArray();
 
         // volume filter
-        $volumeRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, volume')
-            ->groupBy('volume')
-            ->get();
-
         foreach ($volumeRows as $k => $v) {
             $vol[$k]['volume'] = $v->volume;
         }
@@ -162,10 +172,6 @@ class PaymentTable extends DataTableComponent
         })->toArray();
 
         // number filter
-        $numberRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, number')
-            ->groupBy('number')
-            ->get();
-
         foreach ($numberRows as $k => $v) {
             $vol[$k]['number'] = $v->number;
         }
