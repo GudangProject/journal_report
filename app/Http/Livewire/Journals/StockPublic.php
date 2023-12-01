@@ -84,7 +84,7 @@ class StockPublic extends DataTableComponent
         $all           = array("0" => '--Semua--');
 
         $knowledge = array();
-        foreach($dataKnowledge as $k=>$v){
+        foreach ($dataKnowledge as $k => $v) {
             $knowledge[$k]['id'] = $v->id;
             $knowledge[$k]['name'] = $v->name;
         }
@@ -95,9 +95,10 @@ class StockPublic extends DataTableComponent
 
 
         $dataJournal = array();
-        foreach($journal as $k=>$v){
+        foreach ($journal as $k => $v) {
             $dataJournal[$k]['volume'] = $v->volume;
             $dataJournal[$k]['month'] = $v->month;
+            $dataJournal[$k]['number'] = $v->number;
             $dataJournal[$k]['year'] = $v->year;
             $dataJournal[$k]['indexasi'] = $v->indexasi;
             $dataJournal[$k]['semester'] = $v->semester;
@@ -111,6 +112,11 @@ class StockPublic extends DataTableComponent
         // month
         $dataMonth = collect($dataJournal)->mapWithKeys(function ($month) {
             return [$month['month'] => $month['month']];
+        })->toArray();
+
+        // number
+        $dataNumber = collect($dataJournal)->mapWithKeys(function ($number) {
+            return [$number['number'] => $number['number']];
         })->toArray();
 
         // year
@@ -133,6 +139,8 @@ class StockPublic extends DataTableComponent
                 ->select($data),
             'volume' => Filter::make('Volume')
                 ->select($dataVolume),
+            'number' => Filter::make('Number')
+                ->select($dataNumber),
             'month' => Filter::make('Bulan')
                 ->select($dataMonth),
             'year' => Filter::make('Tahun')
@@ -140,7 +148,7 @@ class StockPublic extends DataTableComponent
             'indexasi' => Filter::make('INDEXASI')
                 ->select($dataIndexasi),
             'semester' => Filter::make('Semester')
-            ->select($dataSemester),
+                ->select($dataSemester),
             'status' => Filter::make('Status')
                 ->select([
                     1 => 'Aktif',
@@ -157,9 +165,10 @@ class StockPublic extends DataTableComponent
         // if($user->getRoleNames()[0] == 'super admin' && $user->getRoleNames()[0] == 'pic'){
         //     $data = $data->where('created_by', $user->id);
         // }
-        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%' . $term . '%'));
         $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
         $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->where('volume', $volume));
+        $data = $data->when($this->getFilter('number'), fn ($query, $number) => $query->where('number', $number));
         $data = $data->when($this->getFilter('month'), fn ($query, $month) => $query->where('month', $month));
         $data = $data->when($this->getFilter('year'), fn ($query, $year) => $query->where('year', $year));
         $data = $data->when($this->getFilter('indexasi'), fn ($query, $indexasi) => $query->where('indexasi', $indexasi));
@@ -167,9 +176,6 @@ class StockPublic extends DataTableComponent
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         return $data;
-
-
-
     }
 
     public function rowView(): string

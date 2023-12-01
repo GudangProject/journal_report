@@ -141,6 +141,7 @@ class PaymentTable extends DataTableComponent
             $journal[$k]['id'] = $v->id;
             $journal[$k]['name'] = $v->name;
             $journal[$k]['volume'] = $v->volume;
+            $journal[$k]['number'] = $v->number;
         }
         // dd($journal);
         $data = collect($journal)->mapWithKeys(function ($name) {
@@ -151,11 +152,26 @@ class PaymentTable extends DataTableComponent
         $volumeRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, volume')
             ->groupBy('volume')
             ->get();
+
         foreach ($volumeRows as $k => $v) {
             $vol[$k]['volume'] = $v->volume;
         }
+
         $dataVolume = collect($vol)->mapWithKeys(function ($a) {
             return [$a['volume'] => $a['volume']];
+        })->toArray();
+
+        // number filter
+        $numberRows = Journal::where('created_by', auth()->user()->id)->selectRaw('count(id) as id_journal, number')
+            ->groupBy('number')
+            ->get();
+
+        foreach ($numberRows as $k => $v) {
+            $vol[$k]['number'] = $v->number;
+        }
+
+        $dataNumber = collect($vol)->mapWithKeys(function ($b) {
+            return [$b['number'] => $b['number']];
         })->toArray();
 
         return [
@@ -163,6 +179,8 @@ class PaymentTable extends DataTableComponent
                 ->select($data),
             'volume' => Filter::make('Volume')
                 ->select($dataVolume),
+            'number' => Filter::make('Number')
+                ->select($dataNumber),
             'status' => Filter::make('Status')
                 ->select([
                     '0' => '--Semua--',
@@ -186,6 +204,7 @@ class PaymentTable extends DataTableComponent
             $journalId = Journal::where('created_by', $user->id)->pluck('id');
             $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
             $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
+            $data = $data->when($this->getFilter('number'), fn ($query, $number) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('number', $number)));
             $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
             $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
             $data = $data->whereIn('journal_id', $journalId)->orWhere('created_by', $user->id);
@@ -193,6 +212,7 @@ class PaymentTable extends DataTableComponent
 
         $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('payer_name', 'like', '%' . $term . '%'));
         $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('volume', $volume)));
+        $data = $data->when($this->getFilter('number'), fn ($query, $number) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('number', $number)));
         $data = $data->when($this->getFilter('journal'), fn ($query, $journal) => $query->with('journal')->whereHas('journal', fn ($q) => $q->where('id', $journal)));
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 

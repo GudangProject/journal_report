@@ -22,7 +22,6 @@ class Journal extends DataTableComponent
 
     public function showModalDetail($id)
     {
-
     }
 
     public function statusModal($id)
@@ -31,9 +30,10 @@ class Journal extends DataTableComponent
         $this->dispatchBrowserEvent('openModalStatus');
     }
 
-    public function updateStatus(){
+    public function updateStatus()
+    {
         $data = JournalModel::findOrFail($this->selected_id);
-        ($data->status == 1 ? $data->update(['status' => 0 ]) : $data->update(['status' => 1]));
+        ($data->status == 1 ? $data->update(['status' => 0]) : $data->update(['status' => 1]));
 
         Cache::flush('journals');
 
@@ -46,7 +46,8 @@ class Journal extends DataTableComponent
         $this->dispatchBrowserEvent('openModalDelete');
     }
 
-    public function deleteStatus(){
+    public function deleteStatus()
+    {
         JournalModel::findOrFail($this->selected_id)->delete();
         $this->dispatchBrowserEvent('closeModalDelete');
     }
@@ -74,7 +75,7 @@ class Journal extends DataTableComponent
         $all           = array("0" => '--Semua--');
 
         $knowledge = array();
-        foreach($dataKnowledge as $k=>$v){
+        foreach ($dataKnowledge as $k => $v) {
             $knowledge[$k]['id'] = $v->id;
             $knowledge[$k]['name'] = $v->name;
         }
@@ -85,8 +86,9 @@ class Journal extends DataTableComponent
 
 
         $dataJournal = array();
-        foreach($journal as $k=>$v){
+        foreach ($journal as $k => $v) {
             $dataJournal[$k]['volume'] = $v->volume;
+            $dataJournal[$k]['number'] = $v->number;
             $dataJournal[$k]['month'] = $v->month;
             $dataJournal[$k]['year'] = $v->year;
             $dataJournal[$k]['indexasi'] = $v->indexasi;
@@ -96,6 +98,11 @@ class Journal extends DataTableComponent
         // volume
         $dataVolume = collect($dataJournal)->mapWithKeys(function ($volumeName) {
             return [$volumeName['volume'] => $volumeName['volume']];
+        })->toArray();
+
+        // number
+        $dataNumber = collect($dataJournal)->mapWithKeys(function ($number) {
+            return [$number['number'] => $number['number']];
         })->toArray();
 
         // month
@@ -123,6 +130,8 @@ class Journal extends DataTableComponent
                 ->select($data),
             'volume' => Filter::make('Volume')
                 ->select($dataVolume),
+            'number' => Filter::make('Number')
+                ->select($dataNumber),
             'month' => Filter::make('Bulan')
                 ->select($dataMonth),
             'year' => Filter::make('Tahun')
@@ -130,7 +139,7 @@ class Journal extends DataTableComponent
             'indexasi' => Filter::make('INDEXASI')
                 ->select($dataIndexasi),
             'semester' => Filter::make('Semester')
-            ->select($dataSemester),
+                ->select($dataSemester),
             'status' => Filter::make('Status')
                 ->select([
                     1 => 'Aktif',
@@ -144,12 +153,13 @@ class Journal extends DataTableComponent
         $user = auth()->user();
 
         $data = JournalModel::query();
-        if($user->getRoleNames()[0] == 'pic'){
+        if ($user->getRoleNames()[0] == 'pic') {
             $data = $data->where('created_by', $user->id);
         }
-        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%'.$term.'%'));
+        $data = $data->when($this->getFilter('search'), fn ($query, $term) => $query->where('name', 'like', '%' . $term . '%'));
         $data = $data->when($this->getFilter('knowledge'), fn ($query, $knowledge) => $query->whereHas('knowledge', fn ($q) => $q->where('knowledge_id', $knowledge)));
         $data = $data->when($this->getFilter('volume'), fn ($query, $volume) => $query->where('volume', $volume));
+        $data = $data->when($this->getFilter('number'), fn ($query, $number) => $query->where('number', $number));
         $data = $data->when($this->getFilter('month'), fn ($query, $month) => $query->where('month', $month));
         $data = $data->when($this->getFilter('year'), fn ($query, $year) => $query->where('year', $year));
         $data = $data->when($this->getFilter('indexasi'), fn ($query, $indexasi) => $query->where('indexasi', $indexasi));
@@ -157,9 +167,6 @@ class Journal extends DataTableComponent
         $data = $data->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
 
         return $data;
-
-
-
     }
 
     public function rowView(): string

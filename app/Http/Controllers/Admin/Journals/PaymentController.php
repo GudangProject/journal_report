@@ -22,7 +22,7 @@ class PaymentController extends Controller
         if (auth()->user()->getRoleNames()[0] == 'pic') {
             if ($q->volume != null) {
 
-                $journalId = Journal::where('volume', $q->volume)->where('created_by', auth()->user()->id)->pluck('id');
+                $journalId = Journal::where('volume', $q->volume)->where('number', $q->number)->where('created_by', auth()->user()->id)->pluck('id');
             } else {
                 $journalId = Journal::where('created_by', auth()->user()->id)->pluck('id');
             }
@@ -44,22 +44,36 @@ class PaymentController extends Controller
             ->selectRaw('count(id) as id_journal, volume')
             ->groupBy('volume')
             ->get();
+
+        $numberRows = Journal::where('created_by', auth()->user()->id)
+            ->selectRaw('count(id) as id_journal, number')
+            ->groupBy('number')
+            ->get();
+
         foreach ($volumeRows as $k => $v) {
             $vol[$k]['volume'] = $v->volume;
         }
+
         $dataVolume = collect($vol)->mapWithKeys(function ($a) {
             return [$a['volume'] => $a['volume']];
         });
+
+        foreach ($numberRows as $k => $v) {
+            $num[$k]['number'] = $v->number;
+        }
+
+        $dataNumber = collect($num)->mapWithKeys(function ($b) {
+            return [$b['number'] => $b['number']];
+        });
         // dd($dataVolume);
-        return view('admin.journals.payment.index', compact('paid', 'pending', 'dataVolume'));
+        return view('admin.journals.payment.index', compact('paid', 'pending', 'dataVolume', 'dataNumber'));
     }
 
     public function create()
     {
-        if (auth()->user()->getRoleNames()[0] == 'pic')
-        {
+        if (auth()->user()->getRoleNames()[0] == 'pic') {
             $journal = Journal::where('status', true)->where('created_by', auth()->user()->id)->orderByDesc('created_at')->get();
-        }else{
+        } else {
             $journal = Journal::where('status', true)->orderByDesc('created_at')->get();
         }
 
