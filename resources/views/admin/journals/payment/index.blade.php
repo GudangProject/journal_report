@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         @role('pic')
-                        {{-- <div class="card-footer">
+                        <div class="card-footer">
                             <h5 class="text-primary">Berdasarkan Volume :</h5>
                             <form action="{{ route('payment.index') }}" method="get">
                                 <div class="row">
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div> --}}
+                        </div>
                         @endrole
                     </div>
                 </div>
